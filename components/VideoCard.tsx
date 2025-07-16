@@ -89,7 +89,14 @@ const VideoCard = ({
                         </span>
                     </aside>
                 </div>
-                <h2 className="text-base text-dark-100 font-semibold truncate">{ title } - {" "} { formattedDate }</h2>
+                <h2
+                    className="text-base text-dark-100 font-semibold truncate"
+                >
+                    { title } - {" "} 
+                    <span className="text-sm text-gray-100 font-normal capitalize">
+                        { formattedDate }
+                    </span>
+                </h2>
             </article>
         </Link>
     );
