@@ -216,10 +216,10 @@
 
   /* dropdown */
   .dropdown {
-    @apply absolute bg-white shadow-lg rounded-lg flex flex-col gap-2 w-full z-10 top-12;
+    @apply absolute bg-white shadow-lg flex flex-col w-full z-10 top-12;
 
     .list-item {
-      @apply px-3 py-2.5 text-sm font-medium -tracking-[0.8px] relative text-dark-100 cursor-pointer hover:bg-pink-100 hover:text-white transition-colors duration-200 ease-in-out rounded-md;
+      @apply px-3 py-3 text-sm font-medium -tracking-[0.8px] relative text-dark-100 cursor-pointer hover:bg-[#1d073a] hover:text-white transition-colors duration-200 ease-in-out;
 
       img {
         @apply absolute right-3 top-1/2 -translate-y-1/2;
@@ -474,7 +474,7 @@
   }
 
   .filter-trigger {
-    @apply flex items-center justify-center px-4 py-2 border border-gray-20 rounded-[28px] gap-3;
+    @apply flex items-center justify-center gap-3;
 
     figure {
       @apply flex items-center gap-1;

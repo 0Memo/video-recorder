@@ -1,6 +1,7 @@
 import { ICONS } from "@/constants"
 import Image from "next/image"
 import Link from "next/link"
+import DropdownList from "./DropdownList"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Header = ({ subHeader, title, userImg } : any) => {
@@ -39,6 +40,7 @@ const Header = ({ subHeader, title, userImg } : any) => {
                     <Link
                         href="/upload"
                         style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #E9D4FF' }}
+                        className="border !border-t-purple-900 border-r-purple-900 border-l-purple-900"
                     >
                         <Image
                             src={ ICONS.upload }
@@ -83,15 +85,21 @@ const Header = ({ subHeader, title, userImg } : any) => {
                 >
                     <input
                         type="text"
-                        style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
+                        style={{ border: '2px solid #1d073a', borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
                         placeholder="Search for videos, tags, folders..."
                     />
                     <Image
-                        src="/assets/icons/search.png" alt="search" width={20} height={20}
+                        src="/assets/icons/search.svg"
+                        alt="search"
+                        width={20}
+                        height={20}
+                        style={{ 
+                            filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)'
+                        }}
                     />
                 </div>
 
-                {/* <DropdownList /> */}
+                <DropdownList />
                 
             </section>
         </header>

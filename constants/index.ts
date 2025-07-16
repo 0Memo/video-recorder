@@ -21,9 +21,9 @@ export const filterOptions = [
 export const visibilities: Visibility[] = ["public", "private"];
 
 export const ICONS = {
-  record: "/assets/icons/record.png",
+  record: "/assets/icons/record.svg",
   close: "/assets/icons/close.svg",
-  upload: "/assets/icons/upload.png",
+  upload: "/assets/icons/upload.svg",
 };
 
 export const initialVideoState = {
