@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Karla } from "next/font/google";
 import "./globals.css";
 import { satoshi } from "../fonts/font";
+import Navbar from "@/components/Navbar";
 
 const geistKarla = Karla({
   variable: "--font-geist-karla",
@@ -21,11 +22,19 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const htmlClassNames = `${geistKarla.variable} ${satoshi.variable}`;
+
+  // Diagnostic log to compare server and client class names
+  if (typeof window === "undefined") {
+    console.log("SERVER HTML ClassName:", htmlClassNames);
+  } else {
+    console.log("CLIENT HTML ClassName:", htmlClassNames);
+  }
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistKarla.variable} ${satoshi.variable} font-karla antialiased`}
-      >
+    <html lang="en" className={htmlClassNames}>
+      <body suppressHydrationWarning={true} className="font-karla antialiased">
+        <Navbar />
         {children}
       </body>
     </html>

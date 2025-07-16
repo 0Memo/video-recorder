@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import Header from "@/components/Header";
 
 
-const Page = async ({ params } : any) => {
+const Page = async ({ params } : ParamsWithSearch) => {
     const { id } = await params;
     
     return (

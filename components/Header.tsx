@@ -3,8 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import DropdownList from "./DropdownList"
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const Header = ({ subHeader, title, userImg } : any) => {
+const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
     return (
         <header
             className="header"
@@ -20,7 +19,8 @@ const Header = ({ subHeader, title, userImg } : any) => {
                             src={userImg || '/assets/images/test.png'}
                             alt="User"
                             width={66}
-                            height={66} 
+                            height={66}
+                            style={{ width: 'auto', height: 'auto' }}
                         />
                     )}
 

@@ -42,6 +42,7 @@ const Navbar = () => {
                                 width={60}
                                 height={60}
                                 className='mt-2'
+                                style={{ width: 'auto', height: 'auto' }}
                             />
                         </button>
                         <button
