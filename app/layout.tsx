@@ -9,7 +9,7 @@ const geistKarla = Karla({
 });
 
 export const metadata: Metadata = {
-  title: "Memo Recorder",
+  title: "MemoCast",
   description: "Screen Recording & Sharing",
   icons: {
     icon: "/assets/icons/favicon.ico",

@@ -301,7 +301,7 @@
   }
   /* navbar */
   .navbar {
-    @apply h-[90px] border-b border-gray-20 flex items-center;
+    @apply h-[90px] border-b border-purple-900 flex items-center;
 
     nav {
       @apply flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full;
