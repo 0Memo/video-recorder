@@ -25,7 +25,7 @@ const Navbar = () => {
                         height={32}
                     />
                     <h1
-                        className='font-semibold mt-1 text-[#1d073a]'
+                        className='font-semibold mt-1 text-[#1d073a] text-shadow-lg'
                     >
                         MemoCast
                     </h1>

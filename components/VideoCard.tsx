@@ -38,15 +38,34 @@ const VideoCard = ({
                 />
             </div>
 
-            <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-1">{title}</h3>
-                <p className="text-sm text-gray-600 mb-2">By {username}</p>
-                <div className="flex items-center text-xs text-gray-500">
-                <span>{formattedDate}</span>
-                <span className="mx-1">&bull;</span>
-                <span>{views} views</span>
+            <article className="flex flex-col gap-3 px-3.5 pt-4 pb-4.5 rounded-b-2xl">
+                <div className="flex gap-2 justify-between">
+                    <figure className="flex items-center gap-1.5">
+                        <Image
+                            src={userImg}
+                            alt="avatar"
+                            width={34}
+                            height={34}
+                        />
+                        <figcaption className="flex flex-col gap-0.5">
+                            <h3 className="text-xs font-semibold text-[#1d073a]">{ username }</h3>
+                            <p className="text-xs text-gray-100 font-normal capitalize">{ visibility }</p>
+                        </figcaption>
+                    </figure>
+                    <aside className="flex items-center gap-1">
+                        <Image
+                            src="/assets/icons/eye.svg"
+                            alt="views"
+                            width={16}
+                            height={16}
+                            style={{ 
+                                filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)'
+                            }}
+                        />
+                        <span className="text-xs text-gray-100 font-normal">{ views }</span>
+                    </aside>
                 </div>
-            </div>
+            </article>
         </Link>
     );
 };

@@ -29,7 +29,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                             {subHeader}
                         </p>
                         <h1
-                            className="text-[#1d073a]"
+                            className="text-[#1d073a] text-shadow-lg"
                         >
                             {title}
                         </h1>
