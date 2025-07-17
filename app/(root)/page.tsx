@@ -1,24 +1,19 @@
-import Header from '@/components/Header'
-import VideoCard from '@/components/VideoCard'
+import Header from '../../components/Header'
+import VideoCard from '../../components/VideoCard'
+import { dummyCards } from '../../constants';
 import React from 'react'
 
 const Page = () => {
-  const createdAt = new Date("2025-05-01");
 
   return (
     <main className="wrapper page">
       <Header title="All videos" subHeader="Public Library" />
-      <VideoCard
-        id="1"
-        title="SnapChat Message"
-        thumbnail="/assets/samples/thumbnail(1).png"
-        createdAt={createdAt}
-        userImg="/assets/images/test.png"
-        username="Guillermo"
-        views={10}
-        visibility="public"
-        duration={156}
-      />
+
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {dummyCards.map((card) => (
+          <VideoCard key={card.id} {...card} />
+        ))}
+      </section>
     </main>
   );
 }

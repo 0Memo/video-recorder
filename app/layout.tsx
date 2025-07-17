@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Karla } from "next/font/google";
 import "./globals.css";
 import { satoshi } from "../fonts/font";
-import Navbar from "@/components/Navbar";
+import Navbar from "../components/Navbar";
 
 const geistKarla = Karla({
   variable: "--font-geist-karla",

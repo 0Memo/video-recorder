@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const VideoCard = ({
     id,
@@ -14,12 +15,16 @@ const VideoCard = ({
     visibility,
     duration,
 }: VideoCardProps) => {
-    // Format the date safely
-    const formattedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    }).format(createdAt);
+    const [formattedDate, setFormattedDate] = useState("");
+
+    useEffect(() => {
+        const date = new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        }).format(new Date(createdAt));
+        setFormattedDate(date);
+    }, [createdAt]);
 
     return (
         <Link
@@ -53,6 +58,7 @@ const VideoCard = ({
                             alt="avatar"
                             width={34}
                             height={34}
+                            className="rounded-full aspect-square"
                         />
                         <figcaption
                             className="flex flex-col gap-0.5"
