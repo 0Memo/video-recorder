@@ -22,7 +22,7 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const htmlClassNames = `${geistKarla.variable} ${satoshi.variable}`;
+  const htmlClassNames = `${geistKarla.variable} ${satoshi.variable} antialiased`;
 
   // Diagnostic log to compare server and client class names
   if (typeof window === "undefined") {
@@ -33,7 +33,7 @@ export default function Layout({
 
   return (
     <html lang="en" className={htmlClassNames}>
-      <body suppressHydrationWarning={true} className="font-karla antialiased">
+      <body suppressHydrationWarning={true} className="font-karla">
         <Navbar />
         {children}
       </body>

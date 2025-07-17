@@ -62,7 +62,8 @@ const Page = () => {
                                 src="/assets/images/test.png"
                                 alt="person"
                                 width={64}
-                                height={64} 
+                                height={64}
+                                className="w-16 h-16 object-cover"
                             />
                             <div 
                                 className="flex flex-col items-center gap-1"
@@ -70,7 +71,7 @@ const Page = () => {
                                 <h2 
                                     className="text-base font-bold text-dark-100"
                                 >
-                                    Jason Rivera
+                                    Luis Contreras
                                 </h2>
                                 <p 
                                     className="text-gray-100 font-normal text-sm
@@ -118,7 +119,7 @@ const Page = () => {
                     >
                         Create and share your first
                             <span 
-                                className="text-[#C3B1E1]"
+                                className="text-[#C3B1E1] mx-2"
                             >
                                 MemoCast video
                             </span>
