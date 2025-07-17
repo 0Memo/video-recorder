@@ -39,7 +39,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                 <aside>
                     <Link
                         href="/upload"
-                        style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #E9D4FF' }}
+                        style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}
                         className="border !border-t-purple-900 border-r-purple-900 border-l-purple-900"
                     >
                         <Image
@@ -60,7 +60,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                     >
                         <button
                             className="primary-btn"
-                            style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
+                            style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}
                         >
                             <Image
                                 src={ ICONS.record }
@@ -87,6 +87,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                         type="text"
                         style={{ border: '2px solid #1d073a', borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
                         placeholder="Search for videos, tags, folders..."
+                        className="focus:outline-[#C3B1E1]"
                     />
                     <Image
                         src="/assets/icons/search.svg"

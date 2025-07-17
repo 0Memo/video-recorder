@@ -13,7 +13,7 @@ const DropdownList = () => {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div
-                    style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #E9D4FF' }}
+                    style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}
                     className='p-4 flex flex-row items-center justify-center gap-3 border border-purple-900'
                 >
                     <figure

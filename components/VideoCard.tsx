@@ -88,17 +88,17 @@ const VideoCard = ({
                             }}
                         />
                         <span
-                            className="text-xs text-gray-100 font-normal"
+                            className="text-xs text-[#1d073a] font-normal"
                         >
                             { views }
                         </span>
                     </aside>
                 </div>
                 <h2
-                    className="text-base text-dark-100 font-semibold truncate"
+                    className="text-bas font-semibold truncate"
                 >
-                    { title } - {" "} 
-                    <span className="text-sm text-gray-100 font-normal capitalize">
+                    <span className="text-[#1d073a]">{ title }</span> - {" "} 
+                    <span className="text-sm font-extralight capitalize">
                         { formattedDate }
                     </span>
                 </h2>
@@ -115,7 +115,10 @@ const VideoCard = ({
                 />
             </button>
             {duration && (
-                <div className="duration">
+                <div
+                    className="duration bg-[#1d073a] flex flex-col items-center justify-center p-3"
+                    style={{ borderRadius: '59% 41% 56% 44% / 58% 52% 48% 42%' }}
+                >
                     {Math.ceil(duration / 60)}min
                 </div>
             )}
