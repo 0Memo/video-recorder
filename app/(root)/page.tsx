@@ -8,7 +8,6 @@ const Page = () => {
   return (
     <main className="wrapper page">
       <Header title="All videos" subHeader="Public Library" />
-      <h1 className="text-2xl font-karla text-shadow-lg">Welcome to MemoCast</h1>
       <VideoCard
         id="1"
         title="SnapChat Message"
