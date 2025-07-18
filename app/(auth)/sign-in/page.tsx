@@ -83,8 +83,15 @@ const Page = () => {
                         </article>
                     </section>
                 </div>
-                <p>
-                    © MemoCast {(new Date()).getFullYear()}
+                <p className="flex flex-row gap-2">
+                    <Image
+                        src="/assets/icons/copyright.svg"
+                        alt="copyright"
+                        width={16}
+                        height={16}
+                        className="w-6 h-6 object-cover"
+                    />
+                    MemoCast {(new Date()).getFullYear()}
                 </p>
             </aside>
 
