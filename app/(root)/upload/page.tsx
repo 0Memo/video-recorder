@@ -11,6 +11,7 @@ const UploadPage = () => {
         visibility: "public",
     });
     const [error, setError] = useState<string | null>(null);
+    console.log('setError', setError)
 
     // These useCallback definitions are correct and crucial for stable onChange props
     const handleInputChange = useCallback(
