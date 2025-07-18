@@ -63,7 +63,7 @@ const Page = () => {
                                 alt="person"
                                 width={64}
                                 height={64}
-                                className="w-16 h-16 object-cover"
+                                className="w-16 h-16 object-contain"
                             />
                             <div 
                                 className="flex flex-col items-center gap-1"
@@ -89,7 +89,7 @@ const Page = () => {
                         alt="copyright"
                         width={16}
                         height={16}
-                        className="w-6 h-6 object-cover"
+                        className="w-6 h-6 object-contain"
                     />
                     MemoCast {(new Date()).getFullYear()}
                 </p>
