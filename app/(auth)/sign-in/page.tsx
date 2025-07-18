@@ -1,7 +1,13 @@
+"use client"
+import { authClient } from "@/lib/auth-client"
 import Image from "next/image"
 import Link from "next/link"
 
 const Page = () => {
+    const handleSignIn = async () => {
+        return await authClient.signIn.social({ provider: 'google'})
+    }
+
     return (
         <main 
             className='w-full min-h-screen flex flex-col-reverse lg:flex-row
@@ -136,6 +142,7 @@ const Page = () => {
                         className="w-full flex justify-center items-center gap-2.5
                         bg-white border border-gray-25 rounded-4xl py-4 text-base 
                         text-dark-100 font-semibold cursor-pointer -tracking-[0.8px]"
+                        onClick={ handleSignIn }
                     >
                         <Image
                             src="/assets/icons/google.svg"
