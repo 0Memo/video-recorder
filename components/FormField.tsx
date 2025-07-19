@@ -74,7 +74,8 @@ const InputToRenderComponent = memo(function InputToRender({
             <div className="relative">
             <ListboxButton
                 style={sharedStyles}
-                className={`${sharedClasses} w-full text-left bg-white pr-10`}
+                className={`${sharedClasses} w-full border-2 text-left bg-white pr-10
+                focus:border-[#C3B1E1]`}
             >
                 {options?.find((opt) => opt.value === value)?.label || "Select"}
                 <span
@@ -157,7 +158,7 @@ const FormField = memo(function FormFieldComponent({
         borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
     };
     const sharedClasses =
-        "border border-[#1d073a] focus:outline-[#C3B1E1] placeholder:text-gray-100 placeholder:font-medium text-base font-semibold text-[#1d073a] py-2.5 px-4";
+        "border-2 border-[#1d073a] focus:outline-[#C3B1E1] placeholder:text-gray-100 placeholder:font-medium text-base font-semibold text-[#1d073a] py-2.5 px-4";
 
     const handleTextChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -167,21 +168,26 @@ const FormField = memo(function FormFieldComponent({
     );
 
     return (
-        <div className="flex flex-col gap-2">
-        <label htmlFor={id} className="text-[#1d073a] text-base font-medium">
-            {label}
-        </label>
-        <InputToRenderComponent
-            id={id}
-            type={as} // Pass 'as' as 'type' to InputToRenderComponent
-            value={value}
-            onChange={onChange} // Pass the original onChange for select, and for handleTextChange
-            placeholder={placeholder}
-            options={options}
-            sharedStyles={sharedStyles}
-            sharedClasses={sharedClasses}
-            handleTextChange={handleTextChange}
-        />
+        <div
+            className="flex flex-col gap-2"
+        >
+            <label
+                htmlFor={id}
+                className="text-[#1d073a] text-base font-medium"
+            >
+                {label}
+            </label>
+            <InputToRenderComponent
+                id={id}
+                type={as} // Pass 'as' as 'type' to InputToRenderComponent
+                value={value}
+                onChange={onChange} // Pass the original onChange for select, and for handleTextChange
+                placeholder={placeholder}
+                options={options}
+                sharedStyles={sharedStyles}
+                sharedClasses={sharedClasses}
+                handleTextChange={handleTextChange}
+            />
         </div>
     );
 });
