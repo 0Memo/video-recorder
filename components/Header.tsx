@@ -86,7 +86,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                     <input
                         type="text"
                         style={{ border: '2px solid #1d073a', borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
-                        placeholder="Search for videos, tags, folders..."
+                        placeholder="Search for videos, folders..."
                         className="focus:outline-[#C3B1E1]"
                     />
                     <Image
