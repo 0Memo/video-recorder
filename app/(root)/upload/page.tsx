@@ -6,6 +6,7 @@ import FormField from "../../../components/FormField";
 import { useFileInput } from "../../../lib/hooks/useFileInput";
 import { MAX_THUMBNAIL_SIZE, MAX_VIDEO_SIZE } from "../../../constants";
 import { getThumbnailUploadUrl, getVideoUploadUrl, saveVideoDetails } from "../../../lib/actions/video";
+import { useRouter } from "next/navigation";
 
 const uploadFileToBunny = (file: File, uploadUrl: string, accessKey: string): Promise<void> => {
     return fetch(uploadUrl, {
@@ -21,6 +22,7 @@ const uploadFileToBunny = (file: File, uploadUrl: string, accessKey: string): Pr
 }
 
 const UploadPage = () => {
+    const router = useRouter()
     const [ isSubmitting, setIsSubmitting ] = useState(false)
 
     const [ videoDuration, setVideoDuration ] = useState(0) 
@@ -68,7 +70,7 @@ const UploadPage = () => {
                 return
             }
 
-            if (!formData.title || formData.description) {
+            if (!formData.title || !formData.description) {
                 setError('Please fill in all the details')
                 return
             }
@@ -100,6 +102,7 @@ const UploadPage = () => {
                 duration: videoDuration
             })
             
+        router.push(`/video/${videoId}`)
         } catch (error) {
             console.log('Error submitting form: ', error)
         } finally {
@@ -179,8 +182,7 @@ const UploadPage = () => {
                     disabled={ isSubmitting }
                     className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px]
                     bg-[#1d073a] text-white px-4 py-3 cursor-pointer text-base
-                    font-semibold hover:bg-[#C3B1E1] transition-colors
-                    disabled:opacity-50 disabled:cursor-not-allowed"
+                    font-semibold hover:bg-[#C3B1E1] transition-colors"
                 >
                     { isSubmitting ? 'Uploading ...' : 'Upload video' }
                 </button>
