@@ -6,13 +6,13 @@ import DropdownList from "./DropdownList"
 const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
     return (
         <header
-            className="header"
+            className="flex flex-col gap-9"
         >
             <section
-                className="header-container"
+                className="flex flex-col md:flex-row md:items-center justify-between gap-5"
             >
                 <div
-                    className="details"
+                    className="flex gap-2.5 items-center"
                 >
                     {userImg && (
                         <Image
@@ -24,23 +24,32 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                         />
                     )}
 
-                    <article>
-                        <p>
+                    <article
+                        className="flex flex-col gap-1 -tracking-[0.8px]"
+                    >
+                        <p
+                            className="text-sm text-gray-100 font-medium"
+                        >
                             {subHeader}
                         </p>
                         <h1
-                            className="text-[#1d073a] text-shadow-lg"
+                            className="text-[#1d073a] text-3xl font-bold text-shadow-lg capitalize"
                         >
                             {title}
                         </h1>
                     </article>
                 </div>
 
-                <aside>
+                <aside
+                    className="flex items-center gap-2 md:gap-4"
+                >
                     <Link
                         href="/upload"
                         style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}
-                        className="border !border-t-purple-900 border-r-purple-900 border-l-purple-900"
+                        className="border !border-t-purple-900
+                        border-r-purple-900 border-l-purple-900
+                        py-2.5 px-5 flex items-center gap-2.5 text-sm
+                        font-semibold"
                     >
                         <Image
                             src={ ICONS.upload }
@@ -51,7 +60,9 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                                 filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)'
                             }}
                         />
-                        <span>
+                        <span
+                            className="truncate"
+                        >
                             Upload a video
                         </span>
                     </Link>
@@ -78,16 +89,19 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
             </section>
 
             <section
-                className="search-filter"
+                className="flex flex-col md:flex-row md:items-center gap-5 justify-between"
             >
                 <div
-                    className="search"
+                    className="relative max-w-[500px] w-full"
                 >
                     <input
                         type="text"
-                        style={{ border: '2px solid #1d073a', borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
+                        style={{ border: '1px solid #1d073a', borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
                         placeholder="Search for videos, folders..."
-                        className="focus:outline-[#C3B1E1]"
+                        className="focus:outline-[#C3B1E1] py-2 pl-8
+                        pr-5 text-[#1d073a] text-sm font-normal w-full
+                        placeholder:text-gray-100 placeholder:italic
+                        placeholder:font-semibold"
                     />
                     <Image
                         src="/assets/icons/search.svg"
@@ -97,6 +111,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                         style={{ 
                             filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)'
                         }}
+                        className="absolute top-1/2 left-3 -translate-y-1/2"
                     />
                 </div>
 

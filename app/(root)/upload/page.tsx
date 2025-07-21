@@ -112,14 +112,16 @@ const UploadPage = () => {
 
     return (
         <main
-            className="wrapper-md upload-page"
+            className="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8
+            flex flex-col gap-7.5 pt-12.5 pb-20"
         >
             <h1
-                className="text-shadow-lg text-[#1d073a]"
+                className="text-shadow-lg text-[#1d073a]
+                text-3xl font-bold"
             >
                 Upload a video
             </h1>
-            {error && <div className="error-field">{error}</div>}
+            {error && <div className="border border-red-500 bg-red-100 text-red-700 p-4 rounded-[255px_15px_225px_15px/15px_225px_15px_255px]">{error}</div>}
             <form
                 className="rounded-20 shadow-10 gap-6 w-full
                 flex flex-col px-5 py-7.5"

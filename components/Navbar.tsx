@@ -9,14 +9,14 @@ const Navbar = () => {
     const router = useRouter()
     return (
         <header
-            className='navbar'
+            className='h-[90px] border-b border-[#1d073a] flex items-center'
         >
             <nav
-                className='wrapper flex justify-between'
+                className='flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full'
             >
                 <Link
                     href="/"
-                    className='flex flex-row gap-4'
+                    className='flex items-center gap-2.5'
                 >
                     <Image
                         src="/assets/icons/favicon.ico"
@@ -25,14 +25,14 @@ const Navbar = () => {
                         height={32}
                     />
                     <h1
-                        className='font-semibold mt-1 text-[#1d073a] text-shadow-lg'
+                        className='font-semibold mt-1 text-xl text-[#1d073a] text-shadow-lg font-satochi -tracking-[0.1px]'
                     >
                         MemoCast
                     </h1>
                 </Link>
             
                 {user && (
-                    <figure>
+                    <figure className='flex items-center gap-2.5'>
                         <button
                             onClick={() => router.push('/profile/123456')}
                         >

@@ -5,7 +5,10 @@ import { dummyCards } from '../../constants';
 const Page = () => {
 
   return (
-    <main className="wrapper page">
+    <main
+      className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8
+      flex flex-col min-h-screen pt-12.5 pb-20 gap-9"
+    >
       <Header title="All videos" subHeader="Public Library" />
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

@@ -105,7 +105,7 @@ const VideoCard = ({
             </article>
             <button
                 onClick={() => {}}
-                className="copy-btn"
+                className="absolute top-3 right-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-6 flex items-center justify-center"
             >
                 <Image
                     src="/assets/icons/link.svg"
@@ -116,7 +116,7 @@ const VideoCard = ({
             </button>
             {duration && (
                 <div
-                    className="duration bg-[#1d073a] flex flex-col items-center justify-center p-3"
+                    className="absolute top-40 right-2 font-medium text-white text-xs px-2.5 py-1 bg-[#1d073a] flex flex-col items-center justify-center p-3"
                     style={{ borderRadius: '59% 41% 56% 44% / 58% 52% 48% 42%' }}
                 >
                     {Math.ceil(duration / 60)}min

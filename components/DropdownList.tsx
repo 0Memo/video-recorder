@@ -45,13 +45,13 @@ const DropdownList = () => {
 
             {isOpen && (
                 <ul
-                    className='dropdown'
+                    className='absolute bg-white shadow-lg flex flex-col w-full z-10 top-12'
                     style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
                 >
                     {['Most recent', 'Most liked'].map((option) =>(
                         <li
                             key={option}
-                            className='list-item'
+                            className='px-3 py-3 text-sm font-medium -tracking-[0.8px] relative text-dark-100 cursor-pointer hover:bg-[#1d073a] hover:text-white transition-colors duration-200 ease-in-out'
                             style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
                         >
                             {option}
