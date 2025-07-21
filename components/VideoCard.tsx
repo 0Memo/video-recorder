@@ -26,6 +26,8 @@ const VideoCard = ({
         setFormattedDate(date);
     }, [createdAt]);
 
+    const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
+
     return (
         <Link
             href={`/video/${id}`}
@@ -35,7 +37,7 @@ const VideoCard = ({
                 className="relative w-auto h-[210px] rounded-sm overflow-hidden"
             >
                 <Image
-                    src={thumbnail}
+                    src={thumbnail || "/placeholder.svg"}
                     alt="thumbnail"
                     fill
                     sizes="(max-width: 768px) 100vw, 290px"
@@ -54,7 +56,7 @@ const VideoCard = ({
                         className="flex items-center gap-1.5"
                     >
                         <Image
-                            src={userImg}
+                            src={finalUserImgSrc || "/placeholder.svg"}
                             alt="avatar"
                             width={34}
                             height={34}

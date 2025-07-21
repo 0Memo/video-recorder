@@ -1,12 +1,15 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-
-const user = {}
+import { redirect, useRouter } from 'next/navigation'
+import { authClient } from '@/lib/auth-client'
+import ImageWithFallback from "./ImageWithFallback";
 
 const Navbar = () => {
     const router = useRouter()
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
+    
     return (
         <header
             className='h-[90px] border-b border-[#1d073a] flex items-center'
@@ -36,8 +39,8 @@ const Navbar = () => {
                         <button
                             onClick={() => router.push('/profile/123456')}
                         >
-                            <Image
-                                src="/assets/images/test.png"
+                            <ImageWithFallback
+                                src={session?.user.image ?? ""}
                                 alt="user"
                                 width={60}
                                 height={60}
@@ -47,6 +50,15 @@ const Navbar = () => {
                         </button>
                         <button
                             className='cursor-pointer'
+                            onClick={async () => {
+                                return await authClient.signOut({
+                                fetchOptions: {
+                                    onSuccess: () => {
+                                    redirect("/sign-in");
+                                    },
+                                },
+                                });
+                            }}
                         >
                             <Image
                                 src="/assets/icons/exit.svg"

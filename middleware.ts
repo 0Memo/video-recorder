@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest, response: NextResponse){
 
 const validate = aj
     .withRule(shield({ mode: 'LIVE' }))
-    .withRule(detectBot({ mode: 'LIVE', allow: ['CATEGORY:SEARCH_ENGINE', 'GOOGLE_CRAWLER'] }))
+    .withRule(detectBot({ mode: 'LIVE', allow: ['CATEGORY:SEARCH_ENGINE', 'G00G1E_CRAWLER'] }))
 
 export default createMiddleware(validate)
 
