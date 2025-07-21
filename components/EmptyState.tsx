@@ -6,14 +6,16 @@ const EmptyState = ({ icon, title, description} : EmptyStateProps) => {
             className="flex flex-col items-center px-4 py-10 gap-6
             rounded-2xl border border-gray-20 shadow-10 w-full"
         >
-            <div>
+            <figure
+                className="bg-[#C3B1E1] rounded-[20px] flex items-center justify-center size-20"
+            >
                 <Image
                     src={ icon }
                     alt="icon"
                     width={46}
                     height={46}
                 />
-            </div>
+            </figure>
             <article
                 className="flex flex-col items-center gap-1.5"
             >

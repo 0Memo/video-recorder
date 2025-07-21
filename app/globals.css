@@ -70,15 +70,6 @@
 
 @layer components {
 
-  /*! details page */
-  .video-details {
-    @apply flex flex-col lg:flex-row gap-7.5;
-
-    .content {
-      @apply flex flex-col gap-6 w-full;
-    }
-  }
-
   /* === components === */
 
   /*! dropdown */
@@ -91,15 +82,6 @@
       img {
         @apply absolute right-3 top-1/2 -translate-y-1/2;
       }
-    }
-  }
-
-  /*! empty state */
-  .empty-state {
-    @apply flex flex-col items-center px-4 py-10 gap-6 rounded-2xl border border-gray-20 shadow-10 w-full;
-
-    figure {
-      @apply bg-pink-10 rounded-[20px] flex items-center justify-center size-20;
     }
   }
 
@@ -258,10 +240,6 @@
       p {
         @apply text-white text-lg font-semibold;
       }
-    }
-
-    iframe {
-      @apply absolute inset-0 h-full w-full rounded-2xl;
     }
   }
 

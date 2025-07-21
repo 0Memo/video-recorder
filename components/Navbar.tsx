@@ -37,7 +37,7 @@ const Navbar = () => {
                 {user && (
                     <figure className='flex items-center gap-2.5'>
                         <button
-                            onClick={() => router.push('/profile/123456')}
+                            onClick={() => router.push(`/profile/${ user?.id }`)}
                         >
                             <ImageWithFallback
                                 src={session?.user.image ?? ""}

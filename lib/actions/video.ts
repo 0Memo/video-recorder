@@ -109,7 +109,7 @@ export const getThumbnailUploadUrl = withErrorHandling(async (videoId: string) =
     }
 })
 
-export const saveVideoDetails = withErrorHandling(async(videoDetails: VideoDetails) => {
+export const saveVideoDetails = withErrorHandling(async (videoDetails: VideoDetails) => {
     const userId = await getSessionUserId()
 
     await validateWithArcjet(userId)
@@ -183,4 +183,11 @@ export const getAllVideos = withErrorHandling(async (
             pageSize
         }
     }
+})
+
+export const getVideoById = withErrorHandling(async (videoId: string) => {
+    const [ videoRecord ] = await buildVideoWithUserQuery()
+        .where(eq(videos.id, videoId))
+
+    return videoRecord
 })
