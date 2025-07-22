@@ -7,6 +7,7 @@ import { useFileInput } from "../../../lib/hooks/useFileInput";
 import { MAX_THUMBNAIL_SIZE, MAX_VIDEO_SIZE } from "../../../constants";
 import { getThumbnailUploadUrl, getVideoUploadUrl, saveVideoDetails } from "../../../lib/actions/video";
 import { useRouter } from "next/navigation";
+import LoadingOverlay from "../../../components/LoadingOverlay";
 
 const uploadFileToBunny = (file: File, uploadUrl: string, accessKey: string): Promise<void> => {
     return fetch(uploadUrl, {
@@ -25,7 +26,8 @@ const UploadPage = () => {
     const router = useRouter()
     const [ isSubmitting, setIsSubmitting ] = useState(false)
 
-    const [ videoDuration, setVideoDuration ] = useState(0) 
+    const [ videoDuration, setVideoDuration ] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [ formData, setFormData ] = useState({
         title: "",
@@ -137,7 +139,11 @@ const UploadPage = () => {
                 duration: videoDuration
             })
             
-        router.push(`/`)
+            setIsLoading(true)
+            router.push(`/`)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         } catch (error) {
             console.log('Error submitting form: ', error)
         } finally {
@@ -146,85 +152,88 @@ const UploadPage = () => {
     }
 
     return (
-        <main
-            className="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8
-            flex flex-col gap-7.5 pt-12.5 pb-20"
-        >
-            <h1
-                className="text-shadow-lg text-[#1d073a]
-                text-3xl font-bold"
+        <>
+            <main
+                className="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8
+                flex flex-col gap-7.5 pt-12.5 pb-20"
             >
-                Upload a video
-            </h1>
-            {error && <div className="border border-red-500 bg-red-100 text-red-700 p-4 rounded-[255px_15px_225px_15px/15px_225px_15px_255px]">{error}</div>}
-            <form
-                className="rounded-20 shadow-10 gap-6 w-full
-                flex flex-col px-5 py-7.5"
-                onSubmit={ handleSubmit }
-            >
-                <FormField
-                    id="title"
-                    label="Title"
-                    value={formData.title}
-                    onChange={handleInputChange("title")}
-                    placeholder="Enter a clear and concise video title"
-                />
-                <FormField
-                    id="description"
-                    label="Description"
-                    value={formData.description}
-                    onChange={handleInputChange("description")}
-                    placeholder="Describe what this video is about"
-                    as="textarea"
-                />
-
-                <FileInput
-                    id="video"
-                    label="Video"
-                    accept="video/*"
-                    file={ video.file }
-                    previewUrl={ video.previewUrl }
-                    inputRef={ video.inputRef }
-                    onChange={ video.handleFileChange }
-                    onReset={ video.resetFile }
-                    type="video"
-                />
-
-                <FileInput
-                    id="thumbnail"
-                    label="Thumbnail"
-                    accept="image/*"
-                    file={ thumbnail.file }
-                    previewUrl={ thumbnail.previewUrl }
-                    inputRef={ thumbnail.inputRef }
-                    onChange={ thumbnail.handleFileChange }
-                    onReset={ thumbnail.resetFile }
-                    type="image"
-                />
-
-                <FormField
-                    id="visibility"
-                    label="Visibility"
-                    value={formData.visibility}
-                    onChange={handleSelectChange("visibility")}
-                    options={[
-                        { value: "public", label: "Public" },
-                        { value: "private", label: "Private" },
-                    ]}
-                    as="select"
-                />
-
-                <button
-                    type="submit"
-                    disabled={ isSubmitting }
-                    className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px]
-                    bg-[#1d073a] text-white px-4 py-3 cursor-pointer text-base
-                    font-semibold hover:bg-[#C3B1E1] transition-colors"
+                <h1
+                    className="text-shadow-lg text-[#1d073a]
+                    text-3xl font-bold"
                 >
-                    { isSubmitting ? 'Uploading ...' : 'Upload video' }
-                </button>
-            </form>
-        </main>
+                    Upload a video
+                </h1>
+                {error && <div className="border border-red-500 bg-red-100 text-red-700 p-4 rounded-[255px_15px_225px_15px/15px_225px_15px_255px]">{error}</div>}
+                <form
+                    className="rounded-20 shadow-10 gap-6 w-full
+                    flex flex-col px-5 py-7.5"
+                    onSubmit={ handleSubmit }
+                >
+                    <FormField
+                        id="title"
+                        label="Title"
+                        value={formData.title}
+                        onChange={handleInputChange("title")}
+                        placeholder="Enter a clear and concise video title"
+                    />
+                    <FormField
+                        id="description"
+                        label="Description"
+                        value={formData.description}
+                        onChange={handleInputChange("description")}
+                        placeholder="Describe what this video is about"
+                        as="textarea"
+                    />
+            
+                    <FileInput
+                        id="video"
+                        label="Video"
+                        accept="video/*"
+                        file={ video.file }
+                        previewUrl={ video.previewUrl }
+                        inputRef={ video.inputRef }
+                        onChange={ video.handleFileChange }
+                        onReset={ video.resetFile }
+                        type="video"
+                    />
+            
+                    <FileInput
+                        id="thumbnail"
+                        label="Thumbnail"
+                        accept="image/*"
+                        file={ thumbnail.file }
+                        previewUrl={ thumbnail.previewUrl }
+                        inputRef={ thumbnail.inputRef }
+                        onChange={ thumbnail.handleFileChange }
+                        onReset={ thumbnail.resetFile }
+                        type="image"
+                    />
+            
+                    <FormField
+                        id="visibility"
+                        label="Visibility"
+                        value={formData.visibility}
+                        onChange={handleSelectChange("visibility")}
+                        options={[
+                            { value: "public", label: "Public" },
+                            { value: "private", label: "Private" },
+                        ]}
+                        as="select"
+                    />
+            
+                    <button
+                        type="submit"
+                        disabled={ isSubmitting }
+                        className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px]
+                        bg-[#1d073a] text-white px-4 py-3 cursor-pointer text-base
+                        font-semibold hover:bg-[#C3B1E1] transition-colors"
+                    >
+                        { isSubmitting ? 'Uploading ...' : 'Upload video' }
+                    </button>
+                </form>
+            </main>
+            {isLoading && <LoadingOverlay color="#1d073a" />}{" "}
+        </>
     );
 };
 
