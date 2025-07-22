@@ -1,13 +1,28 @@
 "use client"
 import Image from 'next/image';
 import { getVideoById } from '../lib/actions/video';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
+import { daysAgo } from '@/lib/utils';
 
-const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl }: VideoDetailHeaderProps) => {
+const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id }: VideoDetailHeaderProps) => {
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
 
     const router = useRouter()
+    const [copied, setCopied] = useState(false)
+    
+    const handleCopyLink = () => {
+        navigator.clipboard.writeText(`${ window.location.origin }/video/${ id }`)
+        setCopied(true)
+    }
+
+    useEffect(() => {
+        const changeChecked = setTimeout(() => {
+            if (copied) setCopied(false)
+        }, 2000)
+
+        return () => clearTimeout(changeChecked)
+    }, [ copied ])
 
     return (
         <header
@@ -35,8 +50,35 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
                             height={24}
                             className='rounded-full'
                         />
+                        <h2>{ username ?? 'Guest' }</h2>
                     </button>
+                    <figcaption
+                        className='flex items-center gap-1 text-gray-100 text-sm font-semibold'
+                    >
+                        <span
+                            className='mt-1'
+                        >
+                            ・
+                        </span>
+                        <p>
+                            { daysAgo(createdAt) }
+                        </p>
+                    </figcaption>
                 </figure>
+            </aside>
+            <aside
+                className='flex gap-4 items-center'
+            >
+                <button
+                    onClick={ handleCopyLink }
+                >
+                    <Image
+                        src={copied ? '/assets/images/checked.png' : '/assets/icons/link.svg'}
+                        alt="copy link"
+                        width={24}
+                        height={24}
+                    />
+                </button>
             </aside>
         </header>
     );

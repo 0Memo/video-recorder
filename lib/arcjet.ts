@@ -1,7 +1,27 @@
-import arcject from '@arcjet/next'
+import arcjet, {
+    detectBot,
+    fixedWindow,
+    shield,
+    request,
+    validateEmail,
+    slidingWindow,
+    ArcjetDecision,
+    createMiddleware,
+} from "@arcjet/next";
 import { getEnv } from './utils'
 
-const aj = arcject({
+export {
+    detectBot,
+    fixedWindow,
+    shield,
+    request,
+    slidingWindow,
+    validateEmail,
+    createMiddleware,
+    ArcjetDecision,
+};
+
+const aj = arcjet({
     key: getEnv('ARCJET_API_KEY'),
     rules: [],
 })

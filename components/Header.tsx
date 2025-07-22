@@ -2,6 +2,7 @@ import { ICONS } from "../constants"
 import Image from "next/image"
 import Link from "next/link"
 import DropdownList from "./DropdownList"
+import RecordScreen from "./RecordScreen"
 
 const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
     return (
@@ -33,7 +34,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                             {subHeader}
                         </p>
                         <h1
-                            className="text-[#1d073a] text-3xl font-bold text-shadow-lg capitalize"
+                            className="text-[#1d073a] text-2xl font-bold text-shadow-lg"
                         >
                             {title}
                         </h1>
@@ -66,25 +67,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                             Upload a video
                         </span>
                     </Link>
-                    <div
-                        className="record"
-                    >
-                        <button
-                            className="primary-btn"
-                            style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}
-                        >
-                            <Image
-                                src={ ICONS.record }
-                                alt="record"
-                                width={24}
-                                height={24}
-                                style={{ filter: 'brightness(0) invert(1)' }} 
-                            />
-                            <span>
-                                Record a video
-                            </span>
-                        </button>
-                    </div>
+                    <RecordScreen />
                 </aside>
             </section>
 

@@ -1,15 +1,14 @@
 "use server"
 
-import { headers } from "next/headers"
-import { apiFetch, doesTitleMatch, getEnv, getOrderByClause, withErrorHandling } from "../utils"
-import { auth } from "../auth"
-import { BUNNY, type Visibility } from "../../constants"
 import { db } from "../../drizzle/db"
 import { user, videos } from "../../drizzle/schema"
+import { headers } from "next/headers"
 import { revalidatePath } from "next/cache"
-import aj from "../arcjet"
-import { fixedWindow, request } from "@arcjet/next"
-import { and, eq, or, sql } from "drizzle-orm"
+import { and, desc, eq, ilike, or, sql } from "drizzle-orm"
+import { auth } from "../auth"
+import { apiFetch, doesTitleMatch, getEnv, getOrderByClause, withErrorHandling } from "../utils"
+import { BUNNY, type Visibility } from "../../constants"
+import aj, { fixedWindow, request } from "../arcjet"
 
 const VIDEO_STREAM_BASE_URL = BUNNY.STREAM_BASE_URL
 const THUMBNAIL_STORAGE_BASE_URL = BUNNY.STORAGE_BASE_URL
@@ -191,3 +190,61 @@ export const getVideoById = withErrorHandling(async (videoId: string) => {
 
     return videoRecord
 })
+
+export const getTranscript = withErrorHandling(async (videoId: string) => {
+    const response = await fetch(
+        `${BUNNY.TRANSCRIPT_URL}/${videoId}/captions/en-auto.vtt`
+    );
+    return response.text();
+});
+
+export const incrementVideoViews = withErrorHandling(
+    async (videoId: string) => {
+        await db
+            .update(videos)
+            .set({ views: sql`${videos.views} + 1`, updatedAt: new Date() })
+            .where(eq(videos.videoId, videoId));
+
+        revalidatePaths([`/video/${videoId}`]);
+        return {};
+    }
+);
+
+export const getAllVideosByUser = withErrorHandling(
+    async (
+        userIdParameter: string,
+        searchQuery: string = "",
+        sortFilter?: string
+    ) => {
+        const currentUserId = (
+            await auth.api.getSession({ headers: await headers() })
+        )?.user.id;
+        const isOwner = userIdParameter === currentUserId;
+
+        const [userInfo] = await db
+            .select({
+                id: user.id,
+                name: user.name,
+                image: user.image,
+                email: user.email,
+            })
+            .from(user)
+            .where(eq(user.id, userIdParameter));
+        if (!userInfo) throw new Error("User not found");
+
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        const conditions = [
+            eq(videos.userId, userIdParameter),
+            !isOwner && eq(videos.visibility, "public"),
+            searchQuery.trim() && ilike(videos.title, `%${searchQuery}%`),
+        ].filter(Boolean) as any[];
+
+        const userVideos = await buildVideoWithUserQuery()
+            .where(and(...conditions))
+            .orderBy(
+                sortFilter ? getOrderByClause(sortFilter) : desc(videos.createdAt)
+            );
+
+        return { user: userInfo, videos: userVideos, count: userVideos.length };
+    }
+);

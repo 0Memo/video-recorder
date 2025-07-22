@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const ImageWithFallback = ({
-    fallback = "/assets/images/test.png",
+    fallback = "/assets/images/dummy.jpg",
     alt,
     src,
     ...props
@@ -22,6 +22,7 @@ const ImageWithFallback = ({
             onError={() => setError(true)}
             src={error ? fallback : imgSrc}
             {...props}
+            className="rounded-full aspect-square"
         />
     );
 };
