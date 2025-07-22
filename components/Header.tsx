@@ -28,16 +28,16 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                     <article
                         className="flex flex-col gap-1 -tracking-[0.8px]"
                     >
-                        <p
-                            className="text-sm text-gray-100 font-medium"
-                        >
-                            {subHeader}
-                        </p>
                         <h1
                             className="text-[#1d073a] text-2xl font-bold text-shadow-lg"
                         >
                             {title}
                         </h1>
+                        <p
+                            className="text-sm text-gray-100 font-medium"
+                        >
+                            {subHeader}
+                        </p>
                     </article>
                 </div>
 
@@ -99,7 +99,6 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                 </div>
 
                 <DropdownList />
-                
             </section>
         </header>
     )

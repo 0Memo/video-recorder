@@ -12,7 +12,20 @@ const Navbar = () => {
     
     return (
         <header
-            className='h-[90px] border-b border-[#1d073a] flex items-center'
+            className='h-[90px] flex items-center'
+            style={{
+                // For multiple backgrounds, combine them into a single string for backgroundImage
+                backgroundImage: `
+                    linear-gradient(to bottom, #1d073a 0%, #1d073a 100%),
+                    linear-gradient(to bottom, #1d073a 0%, #1d073a 100%),
+                    radial-gradient(circle, #1d073a 0%, #1d073a 30%, transparent 40%, transparent 100%)
+                `,
+                // Combine multiple background sizes into a single string
+                backgroundSize: 'calc(50% - 1rem) 1px, calc(50% - 1rem) 1px, 1rem 1rem',
+                // Combine multiple background positions into a single string
+                backgroundPosition: '0% calc(100% - .5rem), 100% calc(100% - .5rem), 50% 100%',
+                backgroundRepeat: 'no-repeat',
+            }}
         >
             <nav
                 className='flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full'
@@ -42,8 +55,8 @@ const Navbar = () => {
                             <ImageWithFallback
                                 src={session?.user.image ?? ""}
                                 alt="user"
-                                width={60}
-                                height={60}
+                                width={20}
+                                height={20}
                                 className='mt-2'
                                 style={{ width: 'auto', height: 'auto' }}
                             />

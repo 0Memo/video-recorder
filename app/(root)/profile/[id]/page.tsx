@@ -17,8 +17,8 @@ const Page = async ({ params, searchParams } : ParamsWithSearch) => {
             flex flex-col min-h-screen pt-12.5 pb-20 gap-9"
         >
             <Header
-                title={ user?.email }
-                subHeader={ user?.name }
+                subHeader={ user?.email }
+                title={ user?.name }
                 userImg={ user?.image ?? '' }
             />
 

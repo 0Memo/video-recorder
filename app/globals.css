@@ -72,18 +72,6 @@
 
   /* === components === */
 
-  /*! dropdown */
-  .dropdown {
-    @apply absolute bg-white shadow-lg flex flex-col w-full z-10 top-12;
-
-    .list-item {
-      @apply px-3 py-3 text-sm font-medium -tracking-[0.8px] relative text-dark-100 cursor-pointer hover:bg-[#1d073a] hover:text-white transition-colors duration-200 ease-in-out;
-
-      img {
-        @apply absolute right-3 top-1/2 -translate-y-1/2;
-      }
-    }
-  }
 
   /*! pagination */
   .pagination {
