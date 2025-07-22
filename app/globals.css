@@ -70,9 +70,6 @@
 
 @layer components {
 
-  /* === components === */
-
-
   /*! pagination */
   .pagination {
     @apply flex justify-between items-center py-5 gap-5 border-t border-gray-20;

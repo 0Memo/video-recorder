@@ -17,11 +17,12 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                 >
                     {userImg && (
                         <Image
-                            src={userImg || '/assets/images/test.png'}
+                            src={userImg || '/assets/images/dummy.jpg'}
                             alt="User"
                             width={66}
                             height={66}
                             style={{ width: 'auto', height: 'auto' }}
+                            className="rounded-full aspect-square"
                         />
                     )}
 
