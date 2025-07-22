@@ -1,3 +1,4 @@
+import { ICONS } from "../constants"
 import Image from "next/image"
 
 const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, onReset, type }: FileInputProps) => {
@@ -23,7 +24,7 @@ const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, on
                     className="border-2 border-[#1d073a] rounded-18 text-gray-100 py-1.5 px-3.5 flex justify-center items-center w-full h-40 gap-2.5 cursor-pointer"
                 >
                     <Image
-                        src="/assets/icons/upload.svg"
+                        src={ ICONS.upload }
                         alt="upload"
                         width={24}
                         height={24}
@@ -48,7 +49,7 @@ const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, on
                         className="absolute top-2 right-2 bg-gray-20 text-white p-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] opacity-90 hover:opacity-100 cursor-pointer"
                     >
                         <Image
-                            src="/assets/icons/close.svg"
+                            src={ ICONS.close }
                             alt="close"
                             width={16}
                             height={16}

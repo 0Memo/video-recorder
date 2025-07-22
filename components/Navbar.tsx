@@ -40,10 +40,10 @@ const Navbar = () => {
                     className="flex items-center gap-2.5"
                 >
                     <Image
-                    src={ ICONS.favicon }
-                    alt="Logo"
-                    width={32}
-                    height={32}
+                        src={ ICONS.favicon }
+                        alt="Logo"
+                        width={32}
+                        height={32}
                     />
                     <h1 className="font-semibold mt-1 text-xl text-[#1d073a] text-shadow-lg font-satochi -tracking-[0.1px]">
                     MemoCast

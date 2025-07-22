@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import LoadingOverlay from "./LoadingOverlay";
 import { useRouter } from "next/navigation";
+import { ICONS } from "../constants"
 
 const VideoCard = ({
     id,
@@ -91,7 +92,7 @@ const VideoCard = ({
                             className="flex items-center gap-1"
                         >
                             <Image
-                                src="/assets/icons/eye.svg"
+                                src={ ICONS.eye }
                                 alt="views"
                                 width={16}
                                 height={16}
@@ -117,11 +118,22 @@ const VideoCard = ({
                 </article>
                 <button
                     onClick={() => {}}
+                    className="absolute top-3 left-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-6 flex items-center justify-center"
+                >
+                    <Image
+                        src={ ICONS.link }
+                        alt="copy"
+                        width={18}
+                        height={18}
+                    />
+                </button>
+                <button
+                    onClick={() => {}}
                     className="absolute top-3 right-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-6 flex items-center justify-center"
                 >
                     <Image
-                        src="/assets/icons/link.svg"
-                        alt="copy"
+                        src={ ICONS.garbage }
+                        alt="delete"
                         width={18}
                         height={18}
                     />

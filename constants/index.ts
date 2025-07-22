@@ -20,8 +20,13 @@ export const visibilities: Visibility[] = ["public", "private"]
 export const ICONS = {
   record: "/assets/icons/record.svg",
   close: "/assets/icons/close.svg",
+  eye: "/assets/icons/eye.svg",
+  search: "/assets/icons/search.svg",
+  checked: "/assets/images/checked.png",
   upload: "/assets/icons/upload.svg",
   favicon: "/assets/icons/favicon.ico",
+  link: "/assets/icons/link.svg",
+  garbage: "/assets/icons/garbage.svg",
 }
 
 export const initialVideoState = {

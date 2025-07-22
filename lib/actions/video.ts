@@ -248,3 +248,36 @@ export const getAllVideosByUser = withErrorHandling(
         return { user: userInfo, videos: userVideos, count: userVideos.length };
     }
 );
+
+export const deleteVideo = withErrorHandling(async (dbVideoId: string, bunnyVideoId: string) => {
+    const userId = await getSessionUserId() // Authenticate user
+
+    // Fetch video details from DB to verify ownership
+    const [videoRecord] = await db.select().from(videos).where(eq(videos.id, dbVideoId))
+
+    if (!videoRecord) {
+        throw new Error("Video not found.")
+    }
+
+    if (videoRecord.userId !== userId) {
+        throw new Error("Unauthorized: You do not own this video.")
+    }
+
+    // Rate limit the deletion
+    await validateWithArcjet(userId)
+
+    // 1. Delete from Bunny Stream
+    await apiFetch(`${VIDEO_STREAM_BASE_URL}/${BUNNY_LIBRARY_ID}/videos/${bunnyVideoId}`, {
+        method: "DELETE",
+        bunnyType: "stream",
+        expectJson: false, // DELETE requests usually don't return JSON
+    })
+
+    // 2. Delete from Drizzle/PostgreSQL
+    await db.delete(videos).where(eq(videos.id, dbVideoId))
+
+    // 3. Revalidate paths to update UI
+    revalidatePaths(["/", `/video/${dbVideoId}`, `/profile/${userId}`]) // Revalidate home, video detail, and user profile pages
+
+    return { success: true, message: "Video deleted successfully." }
+})

@@ -101,7 +101,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                             placeholder:font-semibold"
                         />
                         <Image
-                            src="/assets/icons/search.svg"
+                            src={ ICONS.search }
                             alt="search"
                             width={20}
                             height={20}

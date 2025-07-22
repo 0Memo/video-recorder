@@ -4,6 +4,7 @@ import { getVideoById } from '../lib/actions/video';
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { daysAgo } from '@/lib/utils';
+import { ICONS } from '../constants';
 
 const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id }: VideoDetailHeaderProps) => {
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
@@ -73,7 +74,7 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
                     onClick={ handleCopyLink }
                 >
                     <Image
-                        src={copied ? '/assets/images/checked.png' : '/assets/icons/link.svg'}
+                        src={copied ? ICONS.checked : ICONS.link}
                         alt="copy link"
                         width={24}
                         height={24}
