@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { redirect, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import ImageWithFallback from "./ImageWithFallback"; // Assuming this component exists
+import ImageWithFallback from "./ImageWithFallback";
 import { useState } from "react";
-import LoadingOverlay from "./LoadingOverlay"; // Import the new component
+import LoadingOverlay from "./LoadingOverlay";
 import { ICONS } from "../constants";
 
 const Navbar = () => {
@@ -45,12 +45,16 @@ const Navbar = () => {
                         width={32}
                         height={32}
                     />
-                    <h1 className="font-semibold mt-1 text-xl text-[#1d073a] text-shadow-lg font-satochi -tracking-[0.1px]">
+                    <h1
+                        className="font-semibold mt-1 text-xl text-[#1d073a] text-shadow-lg font-satochi -tracking-[0.1px]"
+                    >
                     MemoCast
                     </h1>
                 </button>
                 {user && (
-                    <figure className="flex items-center gap-2.5">
+                    <figure
+                        className="flex items-center gap-2.5"
+                    >
                     <button
                         onClick={() => {
                             setIsLoading(true);

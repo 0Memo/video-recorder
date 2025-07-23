@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import LoadingOverlay from "./LoadingOverlay";
 import { useRouter } from "next/navigation";
 import { ICONS } from "../constants"
+import ConfirmModal from "./ConfirmModal";
+import { deleteVideo } from "../lib/actions/video";
 
 const VideoCard = ({
     id,
@@ -18,6 +20,25 @@ const VideoCard = ({
     duration,
 }: VideoCardProps) => {
     const [formattedDate, setFormattedDate] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
+    const [copied, setCopied] = useState(false)
+        
+    const handleCopyLink = () => {
+        navigator.clipboard.writeText(`${ window.location.origin }/video/${ id }`)
+        setCopied(true)
+    }
+
+    useEffect(() => {
+        const changeChecked = setTimeout(() => {
+            if (copied) setCopied(false)
+        }, 2000)
+
+        return () => clearTimeout(changeChecked)
+    }, [ copied ])
 
     useEffect(() => {
         const date = new Intl.DateTimeFormat("en-US", {
@@ -28,9 +49,22 @@ const VideoCard = ({
         setFormattedDate(date);
     }, [createdAt]);
 
-    const router = useRouter();
-    const [isLoading, setIsLoading] = useState(false)
-    const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
+
+    const handleDelete = () => {
+        setIsDeleting(true);
+        startTransition(async () => {
+            try {
+                await deleteVideo(id, thumbnail);
+                setShowModal(false);
+                router.push('/');
+            } catch (err) {
+                console.error(err);
+                alert("Failed to delete video.");
+            } finally {
+                setIsDeleting(false);
+            }
+        });
+    };
 
     return (
         <>
@@ -117,19 +151,25 @@ const VideoCard = ({
                     </h2>
                 </article>
                 <button
-                    onClick={() => {}}
-                    className="absolute top-3 left-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-6 flex items-center justify-center"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        handleCopyLink()
+                    }}
+                    className="absolute top-3 left-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
                 >
                     <Image
-                        src={ ICONS.link }
+                        src={ copied ? ICONS.checked : ICONS.link }
                         alt="copy"
                         width={18}
                         height={18}
                     />
                 </button>
                 <button
-                    onClick={() => {}}
-                    className="absolute top-3 right-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-6 flex items-center justify-center"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        setShowModal(true)
+                    }}
+                    className="absolute top-3 right-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
                 >
                     <Image
                         src={ ICONS.garbage }
@@ -147,6 +187,15 @@ const VideoCard = ({
                     </div>
                 )}
             </div>
+            {showModal && (
+                <ConfirmModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    onConfirm={handleDelete}
+                    title="Delete this video?"
+                    message="This will permanently remove the video and its thumbnail. Are you sure?"
+                />
+            )}
             {isLoading && <LoadingOverlay color="#1d073a" />}{" "}
         </>
     );

@@ -186,7 +186,7 @@ export const getAllVideos = withErrorHandling(async (
 
 export const getVideoById = withErrorHandling(async (videoId: string) => {
     const [ videoRecord ] = await buildVideoWithUserQuery()
-        .where(eq(videos.id, videoId))
+        .where(eq(videos.videoId, videoId))
 
     return videoRecord
 })
@@ -248,3 +248,29 @@ export const getAllVideosByUser = withErrorHandling(
         return { user: userInfo, videos: userVideos, count: userVideos.length };
     }
 );
+
+export const deleteVideo = withErrorHandling(async (videoId: string, thumbnailUrl: string) => {
+    const userId = await getSessionUserId();
+
+    // Fetch video info to verify ownership
+    const [video] = await db.select().from(videos).where(eq(videos.id, videoId));
+    if (!video || video.userId !== userId) throw new Error("Unauthorized");
+
+    // Delete from Bunny Stream
+    await apiFetch(`${VIDEO_STREAM_BASE_URL}/${BUNNY_LIBRARY_ID}/videos/${video.videoId}`, {
+        method: "DELETE",
+        bunnyType: "stream",
+    });
+
+    // Delete from Bunny Storage (thumbnail)
+    const fileName = thumbnailUrl.split("/").pop();
+    await apiFetch(`${THUMBNAIL_STORAGE_BASE_URL}/thumbnails/${fileName}`, {
+        method: "DELETE",
+        bunnyType: "storage",
+    });
+
+    // Remove from DB
+    await db.delete(videos).where(eq(videos.id, videoId));
+    revalidatePaths(["/"]);
+    return { success: true };
+});

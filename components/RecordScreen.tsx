@@ -110,7 +110,7 @@ const RecordScreen = () => {
                             className="absolute inset-0 bg-gray-40 backdrop-blur-xs shadow-20"
                             onClick={ closeModal }
                         />
-                        <div className="relative bg-white rounded-20 p-6 shadow-lg w-full max-w-lg z-10">
+                        <div className="relative bg-white rounded-20 p-6 shadow-lg w-full max-w-lg z-10 border border-[#1d073a]">
                             <figure
                                 className="flex justify-between items-center mb-4"
                             >

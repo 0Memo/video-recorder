@@ -74,7 +74,7 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
                     onClick={ handleCopyLink }
                 >
                     <Image
-                        src={copied ? ICONS.checked : ICONS.link}
+                        src={ copied ? ICONS.checked : ICONS.link }
                         alt="copy link"
                         width={24}
                         height={24}

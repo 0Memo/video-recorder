@@ -45,7 +45,7 @@ const DropdownList = () => {
 
             {isOpen && (
                 <ul
-                    className='absolute bg-white shadow-lg flex flex-col w-full z-10 top-12'
+                    className='absolute bg-white shadow-lg flex flex-col w-full z-10 top-12 border border-[#1d073a]'
                     style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
                 >
                     {['Most recent', 'Most liked'].map((option) =>(

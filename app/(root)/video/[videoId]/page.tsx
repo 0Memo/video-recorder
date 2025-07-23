@@ -7,9 +7,13 @@ import VideoDetailHeader from '../../../../components/VideoDetailHeader'
 const page = async ({ params }: Params) => {
     const { videoId } = await params
 
-    const { user, video } = await getVideoById(videoId)
+    const data = await getVideoById(videoId);
 
-    if (!video) redirect('/404')
+    if (!data || !data.video) {
+        redirect("/404");
+    }
+
+    const { user, video } = data;
 
     return (
         <main
