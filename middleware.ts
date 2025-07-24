@@ -1,18 +1,20 @@
-import { type NextRequest, NextResponse } from "next/server"
+import { type NextRequest, NextResponse, type NextFetchEvent } from "next/server"
 import { getSessionCookie } from "better-auth/cookies"
 import aj from "./lib/arcjet"
 import { detectBot, shield } from "arcjet"
 import { createMiddleware } from "@arcjet/next"
 
-async function authAndRedirectMiddleware(request: NextRequest) {
+// This function contains your core authentication and redirection logic.
+// It now also accepts the 'event' argument to match the expected signature for createMiddleware.
+async function authAndRedirectHandler(request: NextRequest, event: NextFetchEvent) {
     const sessionCookie = getSessionCookie(request)
     const { pathname } = request.nextUrl
 
     // Define paths that should always be accessible without a session cookie.
-    // This typically includes your sign-in page and the Better Auth API routes.
     const publicPaths = [
-        "/sign-in",
-        "/api/auth",
+        "/sign-in", // Your sign-in page
+        "/api/auth", // Better Auth API routes (e.g., /api/auth/sign-in/social, /api/auth/callback/google)
+        // Add any other public routes here, e.g., '/about', '/contact', '/privacy-policy'
     ]
 
     // Check if the current path starts with any of the public paths.
@@ -38,12 +40,28 @@ const arcjetRules = aj
     .withRule(shield({ mode: "LIVE" }))
     .withRule(detectBot({ mode: "LIVE", allow: ["CATEGORY:SEARCH_ENGINE", "G00G1E_CRAWLER"] }))
 
-// Export the combined middleware using createMiddleware from @arcjet/next
-// It takes the Arcjet rules as the first argument and your custom middleware function as the second.
-export default createMiddleware(arcjetRules, authAndRedirectMiddleware)
+// Create the Arcjet middleware instance that wraps your auth handler
+// Pass authAndRedirectHandler as the second argument to createMiddleware
+const arcjetMiddleware = createMiddleware(arcjetRules, authAndRedirectHandler)
+
+// The main middleware function that Vercel will invoke.
+// This is where we add the conditional bypass for Vercel's internal requests.
+// Ensure it accepts both 'request' and 'event'.
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
+    // Check for Vercel internal headers to bypass Arcjet for previews.
+    const vercelIdHeader = request.headers.get("x-vercel-id")
+
+    if (vercelIdHeader) {
+        // If it's a Vercel internal request, bypass Arcjet and just run your
+        // authentication/redirection logic directly. Pass both request and event.
+        return authAndRedirectHandler(request, event)
+    }
+
+    // Otherwise, apply Arcjet rules first, then your authentication/redirection logic.
+    // Pass both request and event to arcjetMiddleware.
+    return arcjetMiddleware(request, event)
+}
 
 export const config = {
-    // This matcher will apply the middleware to all routes except those starting with
-    // _next/static, _next/image, favicon.ico, your sign-in page, and assets.
     matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sign-in|assets).*)"],
 }
