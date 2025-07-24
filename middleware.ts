@@ -1,10 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getSessionCookie } from "better-auth/cookies" // Import the lightweight helper
-import aj from "./lib/arcjet" // Assuming aj is your Arcjet instance
+import { getSessionCookie } from "better-auth/cookies"
+import aj from "./lib/arcjet"
 import { detectBot, shield } from "arcjet"
 import { createMiddleware } from "@arcjet/next"
 
-// Define the core authentication logic for your application
 async function authAndRedirectMiddleware(request: NextRequest) {
     const sessionCookie = getSessionCookie(request)
     const { pathname } = request.nextUrl
@@ -12,9 +11,8 @@ async function authAndRedirectMiddleware(request: NextRequest) {
     // Define paths that should always be accessible without a session cookie.
     // This typically includes your sign-in page and the Better Auth API routes.
     const publicPaths = [
-        "/sign-in", // Your sign-in page
-        "/api/auth", // Better Auth API routes (e.g., /api/auth/sign-in/social, /api/auth/callback/google)
-        // Add any other public routes here, e.g., '/about', '/contact', '/privacy-policy'
+        "/sign-in",
+        "/api/auth",
     ]
 
     // Check if the current path starts with any of the public paths.
