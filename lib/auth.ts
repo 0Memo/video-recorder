@@ -15,7 +15,6 @@ export const auth = betterAuth({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
             profile: (profile: { sub: any; name: any; email: any; email_verified: any; picture: any; }) => {
-                console.log("Raw Google Profile Data:", profile)
                 return {
                     id: profile.sub, // Google's unique user ID
                     name: profile.name,

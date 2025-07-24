@@ -1,28 +1,51 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "./lib/auth";
-import { headers } from "next/headers";
-import aj from "./lib/arcjet";
-import { detectBot, shield } from "arcjet";
-import { createMiddleware } from "@arcjet/next";
+import { type NextRequest, NextResponse } from "next/server"
+import { getSessionCookie } from "better-auth/cookies" // Import the lightweight helper
+import aj from "./lib/arcjet" // Assuming aj is your Arcjet instance
+import { detectBot, shield } from "arcjet"
+import { createMiddleware } from "@arcjet/next"
 
-export async function middleware(request: NextRequest, response: NextResponse){
-    const session = await auth.api.getSession({
-        headers: await headers()
-    })
+// Define the core authentication logic for your application
+async function authAndRedirectMiddleware(request: NextRequest) {
+    const sessionCookie = getSessionCookie(request)
+    const { pathname } = request.nextUrl
 
-    if (!session){
-        return NextResponse.redirect(new URL('/sign-in', request.url))
+    // Define paths that should always be accessible without a session cookie.
+    // This typically includes your sign-in page and the Better Auth API routes.
+    const publicPaths = [
+        "/sign-in", // Your sign-in page
+        "/api/auth", // Better Auth API routes (e.g., /api/auth/sign-in/social, /api/auth/callback/google)
+        // Add any other public routes here, e.g., '/about', '/contact', '/privacy-policy'
+    ]
+
+    // Check if the current path starts with any of the public paths.
+    const isPublicPath = publicPaths.some((path) => pathname.startsWith(path))
+
+    // If it's a public path, allow the request to proceed without checking for a session.
+    if (isPublicPath) {
+        return NextResponse.next()
     }
 
-    return NextResponse.next();
+    // If it's not a public path and no session cookie is found, redirect to the sign-in page.
+    // This is an optimistic check; full session validation happens in protected pages/routes.
+    if (!sessionCookie) {
+        return NextResponse.redirect(new URL("/sign-in", request.url))
+    }
+
+    // If a session cookie exists and it's not a public path, allow the request to proceed.
+    return NextResponse.next()
 }
 
-const validate = aj
-    .withRule(shield({ mode: 'LIVE' }))
-    .withRule(detectBot({ mode: 'LIVE', allow: ['CATEGORY:SEARCH_ENGINE', 'G00G1E_CRAWLER'] }))
+// Arcjet validation rules
+const arcjetRules = aj
+    .withRule(shield({ mode: "LIVE" }))
+    .withRule(detectBot({ mode: "LIVE", allow: ["CATEGORY:SEARCH_ENGINE", "G00G1E_CRAWLER"] }))
 
-export default createMiddleware(validate)
+// Export the combined middleware using createMiddleware from @arcjet/next
+// It takes the Arcjet rules as the first argument and your custom middleware function as the second.
+export default createMiddleware(arcjetRules, authAndRedirectMiddleware)
 
 export const config = {
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sign-in|assets).*)"]
+    // This matcher will apply the middleware to all routes except those starting with
+    // _next/static, _next/image, favicon.ico, your sign-in page, and assets.
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sign-in|assets).*)"],
 }
