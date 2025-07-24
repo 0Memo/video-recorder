@@ -4,37 +4,37 @@ import "./globals.css";
 import { satoshi } from "../fonts/font";
 
 const geistKarla = Karla({
-  variable: "--font-geist-karla",
-  subsets: ["latin"],
+    variable: "--font-geist-karla",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "MemoCast",
-  description: "Screen Recording & Sharing",
-  icons: {
-    icon: "/assets/icons/favicon.ico",
-  },
+    title: "MemoCast",
+    description: "Screen Recording & Sharing",
+    icons: {
+        icon: "/assets/icons/favicon.ico",
+    },
 };
 
 export default function Layout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  const htmlClassNames = `${geistKarla.variable} ${satoshi.variable} antialiased`;
+    const htmlClassNames = `${geistKarla.variable} ${satoshi.variable} antialiased`;
 
-  // Diagnostic log to compare server and client class names
-  if (typeof window === "undefined") {
-    console.log("SERVER HTML ClassName:", htmlClassNames);
-  } else {
-    console.log("CLIENT HTML ClassName:", htmlClassNames);
-  }
+    // Diagnostic log to compare server and client class names
+    if (typeof window === "undefined") {
+        console.log("SERVER HTML ClassName:", htmlClassNames);
+    } else {
+        console.log("CLIENT HTML ClassName:", htmlClassNames);
+    }
 
-  return (
-    <html lang="en" className={htmlClassNames}>
-      <body suppressHydrationWarning={true} className="font-karla">
-        {children}
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className={htmlClassNames}>
+            <body suppressHydrationWarning={true} className="font-karla">
+                    {children}
+            </body>
+        </html>
+    );
 }
