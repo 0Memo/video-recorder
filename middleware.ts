@@ -3,22 +3,61 @@ import { getSessionCookie } from "better-auth/cookies"
 import aj from "./lib/arcjet"
 import { detectBot, shield } from "arcjet"
 import { createMiddleware } from "@arcjet/next"
+import { i18n, type Locale } from "./lib/i18n/config"
+import { getLocaleFromPathname, addLocaleToPathname, removeLocaleFromPathname } from "./lib/i18n/utils"
+
+// Locale detection and redirection
+function handleLocaleRedirect(request: NextRequest): NextResponse | null {
+    const pathname = request.nextUrl.pathname
+    const currentLocale = getLocaleFromPathname(pathname)
+
+    // If no locale in URL and not default locale, redirect to add locale
+    if (currentLocale === i18n.defaultLocale && !pathname.startsWith(`/${i18n.defaultLocale}`)) {
+        // Check if we should add a locale prefix
+        const acceptLanguage = request.headers.get("accept-language")
+        let preferredLocale: Locale = i18n.defaultLocale
+
+        if (acceptLanguage) {
+            // Simple language detection - you can make this more sophisticated
+            for (const locale of i18n.locales) {
+                if (acceptLanguage.includes(locale.split("-")[0])) {
+                    preferredLocale = locale
+                    break
+                }
+            }
+        }
+
+        // Only redirect if not default locale
+        if (preferredLocale !== i18n.defaultLocale) {
+            const newUrl = new URL(addLocaleToPathname(pathname, preferredLocale), request.url)
+            return NextResponse.redirect(newUrl)
+        }
+    }
+
+    return null
+}
 
 // This function contains your core authentication and redirection logic.
-// It now also accepts the 'event' argument to match the expected signature for createMiddleware.
 async function authAndRedirectHandler(request: NextRequest, event: NextFetchEvent) {
+    // Handle locale first
+    const localeRedirect = handleLocaleRedirect(request)
+    if (localeRedirect) {
+        return localeRedirect
+    }
+
     const sessionCookie = getSessionCookie(request)
     const { pathname } = request.nextUrl
+    const currentLocale = getLocaleFromPathname(pathname)
+    const pathnameWithoutLocale = removeLocaleFromPathname(pathname)
 
     // Define paths that should always be accessible without a session cookie.
     const publicPaths = [
         "/sign-in", // Your sign-in page
-        "/api/auth", // Better Auth API routes (e.g., /api/auth/sign-in/social, /api/auth/callback/google)
-        // Add any other public routes here, e.g., '/about', '/contact', '/privacy-policy'
+        "/api/auth", // Better Auth API routes
     ]
 
-    // Check if the current path starts with any of the public paths.
-    const isPublicPath = publicPaths.some((path) => pathname.startsWith(path))
+    // Check if the current path (without locale) starts with any of the public paths.
+    const isPublicPath = publicPaths.some((path) => pathnameWithoutLocale.startsWith(path))
 
     // If it's a public path, allow the request to proceed without checking for a session.
     if (isPublicPath) {
@@ -26,9 +65,9 @@ async function authAndRedirectHandler(request: NextRequest, event: NextFetchEven
     }
 
     // If it's not a public path and no session cookie is found, redirect to the sign-in page.
-    // This is an optimistic check; full session validation happens in protected pages/routes.
     if (!sessionCookie) {
-        return NextResponse.redirect(new URL("/sign-in", request.url))
+        const signInUrl = new URL(addLocaleToPathname("/sign-in", currentLocale), request.url)
+        return NextResponse.redirect(signInUrl)
     }
 
     // If a session cookie exists and it's not a public path, allow the request to proceed.
@@ -41,27 +80,20 @@ const arcjetRules = aj
     .withRule(detectBot({ mode: "LIVE", allow: ["CATEGORY:SEARCH_ENGINE", "G00G1E_CRAWLER"] }))
 
 // Create the Arcjet middleware instance that wraps your auth handler
-// Pass authAndRedirectHandler as the second argument to createMiddleware
 const arcjetMiddleware = createMiddleware(arcjetRules, authAndRedirectHandler)
 
 // The main middleware function that Vercel will invoke.
-// This is where we add the conditional bypass for Vercel's internal requests.
-// Ensure it accepts both 'request' and 'event'.
 export async function middleware(request: NextRequest, event: NextFetchEvent) {
     // Check for Vercel internal headers to bypass Arcjet for previews.
     const vercelIdHeader = request.headers.get("x-vercel-id")
-
     if (vercelIdHeader) {
-        // If it's a Vercel internal request, bypass Arcjet and just run your
-        // authentication/redirection logic directly. Pass both request and event.
         return authAndRedirectHandler(request, event)
     }
 
     // Otherwise, apply Arcjet rules first, then your authentication/redirection logic.
-    // Pass both request and event to arcjetMiddleware.
     return arcjetMiddleware(request, event)
 }
 
 export const config = {
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sign-in|assets).*)"],
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|assets).*)"],
 }

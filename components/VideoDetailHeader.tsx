@@ -3,10 +3,15 @@ import Image from 'next/image';
 import { getVideoById } from '../lib/actions/video';
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
-import { daysAgo } from '@/lib/utils';
 import { ICONS } from '../constants';
+import type { Dictionary } from "../lib/i18n/dictionaries";
+import { daysAgo } from "../lib/utils";
 
-const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id }: VideoDetailHeaderProps) => {
+interface VideoDetailHeaderDictionaryProps extends VideoDetailHeaderProps {
+    dictionary: Dictionary
+}
+
+const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id, dictionary }: VideoDetailHeaderDictionaryProps) => {
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
 
     const router = useRouter()
@@ -61,9 +66,7 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
                         >
                             ・
                         </span>
-                        <p>
-                            { daysAgo(createdAt) }
-                        </p>
+                        <p>{daysAgo(createdAt, dictionary)}</p>
                     </figcaption>
                 </figure>
             </aside>

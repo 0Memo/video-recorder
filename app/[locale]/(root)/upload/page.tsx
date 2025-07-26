@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useCallback, FormEvent, useEffect, ChangeEvent } from "react";
-import FileInput from "../../../components/FileInput";
-import FormField from "../../../components/FormField";
-import { useFileInput } from "../../../lib/hooks/useFileInput";
-import { MAX_THUMBNAIL_SIZE, MAX_VIDEO_SIZE } from "../../../constants";
-import { getThumbnailUploadUrl, getVideoUploadUrl, saveVideoDetails } from "../../../lib/actions/video";
+import FileInput from "../../../../components/FileInput";
+import FormField from "../../../../components/FormField";
+import { useFileInput } from "../../../../lib/hooks/useFileInput";
+import { MAX_THUMBNAIL_SIZE, MAX_VIDEO_SIZE } from "../../../../constants";
+import { getThumbnailUploadUrl, getVideoUploadUrl, saveVideoDetails } from "../../../../lib/actions/video";
 import { useRouter } from "next/navigation";
-import LoadingOverlay from "../../../components/LoadingOverlay";
+import LoadingOverlay from "../../../../components/LoadingOverlay";
 
 const uploadFileToBunny = (file: File, uploadUrl: string, accessKey: string): Promise<void> => {
     return fetch(uploadUrl, {

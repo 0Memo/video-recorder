@@ -27,6 +27,9 @@ export const ICONS = {
   favicon: "/assets/icons/favicon.ico",
   link: "/assets/icons/link.svg",
   garbage: "/assets/icons/garbage.svg",
+  arrowDown: "/assets/icons/arrow-down.svg",
+  menu: "/assets/icons/menu.svg",
+  video: "/assets/icons/video.svg",
 }
 
 export const initialVideoState = {

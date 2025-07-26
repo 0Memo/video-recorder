@@ -1,9 +1,20 @@
 "use client"
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { ICONS } from "../constants"
+import { usePathname } from "next/navigation"
+import { getLocaleFromPathname } from "../lib/i18n/utils";
+import type { Dictionary } from "../lib/i18n/dictionaries";
 
-const DropdownList = () => {
+interface DropDownProps {
+    dictionary: Dictionary;
+}
+
+const DropdownList = ({ dictionary }: DropDownProps) => {
     const [ isOpen, setIsOpen ] = useState(false)
+    const pathname = usePathname();
+    const currentLocale = getLocaleFromPathname(pathname);
+
     return (
         <div
             className='relative'
@@ -13,14 +24,13 @@ const DropdownList = () => {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div
-                    style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}
-                    className='p-4 flex flex-row items-center justify-center gap-3 border border-purple-900'
+                    className='p-4 flex flex-row items-center justify-center gap-3 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border border-[#1d073a] border-b-4 border-b-[#C3B1E1]'
                 >
                     <figure
                         className='inline-flex'
                     >
                         <Image
-                            src="/assets/icons/menu.svg"
+                            src={ ICONS.menu }
                             alt="menu"
                             width={24}
                             height={24}
@@ -28,11 +38,11 @@ const DropdownList = () => {
                                 filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)', marginRight: '5px'
                             }}
                         />
-                        Most recent
+                        {dictionary.list.title}
                     </figure>
 
                     <Image
-                        src="/assets/icons/arrow-down.svg"
+                        src={ ICONS.arrowDown }
                         alt="arrow down"
                         width={20}
                         height={20}
@@ -45,14 +55,12 @@ const DropdownList = () => {
 
             {isOpen && (
                 <ul
-                    className='absolute bg-white shadow-lg flex flex-col w-full z-10 top-12 border border-[#1d073a]'
-                    style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
+                    className='absolute bg-white shadow-lg flex flex-col w-full z-10 top-12 border border-[#1d073a] rounded-[255px_15px_225px_15px/15px_225px_15px_255px]'
                 >
-                    {['Most recent', 'Most liked'].map((option) =>(
+                    {[dictionary.list.recent, dictionary.list.like].map((option) =>(
                         <li
                             key={option}
-                            className='px-3 py-3 text-sm font-medium -tracking-[0.8px] relative text-dark-100 cursor-pointer hover:bg-[#1d073a] hover:text-white transition-colors duration-200 ease-in-out'
-                            style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
+                            className='px-3 py-3 text-sm font-medium -tracking-[0.8px] relative text-dark-100 cursor-pointer hover:bg-[#1d073a] hover:text-white transition-colors duration-200 ease-in-out rounded-[255px_15px_225px_15px/15px_225px_15px_255px]'
                         >
                             {option}
                         </li>

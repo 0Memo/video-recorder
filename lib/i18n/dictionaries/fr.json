@@ -1,0 +1,94 @@
+{
+    "common": {
+        "loading": "Chargement...",
+        "error": "Erreur",
+        "success": "Succès",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "back": "Retour",
+        "next": "Suivant",
+        "previous": "Précédent",
+        "search": "Rechercher",
+        "upload": "Télécharger",
+        "download": "Télécharger"
+    },
+    "navbar": {
+        "brand": "MemoCast",
+        "profile": "Profil",
+        "logout": "Déconnexion",
+        "language": "Langue"
+    },
+    "auth": {
+        "signIn": "Se Connecter",
+        "signOut": "Se Déconnecter",
+        "signUp": "S'inscrire",
+        "email": "Email",
+        "password": "Mot de passe",
+        "forgotPassword": "Mot de passe oublié ?",
+        "rememberMe": "Se souvenir de moi",
+        "welcomeBack": "Bon retour",
+        "createAccount": "Créer un compte",
+        "alreadyHaveAccount": "Vous avez déjà un compte ?",
+        "dontHaveAccount": "Vous n'avez pas de compte ?"
+    },
+    "list": {
+        "title": "Filtrer",
+        "recent": "Les plus récents",
+        "like": "Les plus aimés"
+    },
+    "video": {
+        "title": "Vidéo",
+        "upload": "Télécharger une Vidéo",
+        "record": "Enregistrer l'Écran",
+        "myVideos": "Mes Vidéos",
+        "allVideos": "Toutes les Vidéos",
+        "publicLibrary": "Bibliothèque publique",
+        "noVideos": "Aucune vidéo trouvée",
+        "videoDetails": "Détails de la Vidéo",
+        "duration": "Durée",
+        "createdAt": "Créé le",
+        "views": "Vues"
+    },
+    "time": {
+        "justNow": "Just now",
+        "oneMinuteAgo": "1 minute ago",
+        "minutesAgo": "{count} minutes ago",
+        "oneHourAgo": "1 hour ago",
+        "hoursAgo": "{count} hours ago",
+        "oneDayAgo": "1 day ago",
+        "daysAgo": "{count} days ago",
+        "oneWeekAgo": "1 week ago",
+        "weeksAgo": "{count} weeks ago",
+        "oneMonthAgo": "1 month ago",
+        "monthsAgo": "{count} months ago",
+        "oneYearAgo": "1 year ago",
+        "yearsAgo": "{count} years ago"
+    },
+    "profile": {
+        "title": "Profil",
+        "editProfile": "Modifier le Profil",
+        "myProfile": "Mon Profil",
+        "videos": "Vidéos",
+        "settings": "Paramètres"
+    },
+    "upload": {
+        "title": "Télécharger une Vidéo",
+        "selectFile": "Sélectionner un Fichier",
+        "dragAndDrop": "Glissez et déposez votre vidéo ici",
+        "supportedFormats": "Formats supportés : MP4, AVI, MOV",
+        "maxSize": "Taille maximale du fichier : 100MB",
+        "uploading": "Téléchargement...",
+        "uploadSuccess": "Téléchargement réussi !",
+        "uploadError": "Échec du téléchargement. Veuillez réessayer."
+    },
+    "record": {
+        "screen": "Enregistrement de l'écran",
+        "recording": "Enregistrement en cours...",
+        "click": "Cliquez sur enregistrer pour commencer à capturer votre écran",
+        "stop": "Arrêter l'enregistrement",
+        "again": "Recommencer l'enregistrement",
+        "continue": "Continuer vers le téléversement"
+    }
+}

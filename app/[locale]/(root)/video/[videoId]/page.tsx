@@ -1,11 +1,21 @@
 import { redirect } from 'next/navigation'
-import { getVideoById } from '../../../../lib/actions/video'
+import { getVideoById } from '../../../../../lib/actions/video'
 import React from 'react'
-import VideoPlayer from '../../../../components/VideoPlayer'
-import VideoDetailHeader from '../../../../components/VideoDetailHeader'
+import VideoPlayer from '../../../../../components/VideoPlayer'
+import VideoDetailHeader from '../../../../../components/VideoDetailHeader'
+import { getDictionary } from "../../../../../lib/i18n/dictionaries";
+import type { Locale } from "../../../../../lib/i18n/config";
 
-const page = async ({ params }: Params) => {
-    const { videoId } = await params
+interface VideoPageProps {
+    params: Promise<{
+        locale: Locale;
+        videoId: string;
+    }>
+}
+
+const page = async ({ params }: VideoPageProps) => {
+    const { locale, videoId } = await params
+    const dictionary = await getDictionary(locale);
 
     const data = await getVideoById(videoId);
 
@@ -25,6 +35,7 @@ const page = async ({ params }: Params) => {
                 userImg={ user?.image}
                 username={ user?.name}
                 ownerId={ video.userId}
+                dictionary={ dictionary }
             />
             <section
                 className='flex flex-col lg:flex-row gap-7.5'

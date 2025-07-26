@@ -1,0 +1,94 @@
+{
+    "common": {
+        "loading": "Laddar...",
+        "error": "Fel",
+        "success": "Framgång",
+        "cancel": "Avbryt",
+        "save": "Spara",
+        "delete": "Ta bort",
+        "edit": "Redigera",
+        "back": "Tillbaka",
+        "next": "Nästa",
+        "previous": "Föregående",
+        "search": "Sök",
+        "upload": "Ladda upp",
+        "download": "Ladda ner"
+    },
+    "navbar": {
+        "brand": "MemoCast",
+        "profile": "Profil",
+        "logout": "Logga ut",
+        "language": "Språk"
+    },
+    "auth": {
+        "signIn": "Logga in",
+        "signOut": "Logga ut",
+        "signUp": "Registrera",
+        "email": "E-post",
+        "password": "Lösenord",
+        "forgotPassword": "Glömt lösenord?",
+        "rememberMe": "Kom ihåg mig",
+        "welcomeBack": "Välkommen tillbaka",
+        "createAccount": "Skapa ett konto",
+        "alreadyHaveAccount": "Har du redan ett konto?",
+        "dontHaveAccount": "Har du inget konto?"
+    },
+    "list": {
+        "title": "Filtrera",
+        "recent": "Senaste",
+        "like": "Mest gillade"
+    },
+    "video": {
+        "title": "Video",
+        "upload": "Ladda upp Video",
+        "record": "Spela in Skärm",
+        "myVideos": "Mina Videor",
+        "allVideos": "Alla Videor",
+        "publicLibrary": "Offentligt bibliotek",
+        "noVideos": "Inga videor hittades",
+        "videoDetails": "Videodetaljer",
+        "duration": "Varaktighet",
+        "createdAt": "Skapad",
+        "views": "Visningar"
+    },
+    "time": {
+        "justNow": "Just now",
+        "oneMinuteAgo": "1 minute ago",
+        "minutesAgo": "{count} minutes ago",
+        "oneHourAgo": "1 hour ago",
+        "hoursAgo": "{count} hours ago",
+        "oneDayAgo": "1 day ago",
+        "daysAgo": "{count} days ago",
+        "oneWeekAgo": "1 week ago",
+        "weeksAgo": "{count} weeks ago",
+        "oneMonthAgo": "1 month ago",
+        "monthsAgo": "{count} months ago",
+        "oneYearAgo": "1 year ago",
+        "yearsAgo": "{count} years ago"
+    },
+    "profile": {
+        "title": "Profil",
+        "editProfile": "Redigera Profil",
+        "myProfile": "Min Profil",
+        "videos": "Videor",
+        "settings": "Inställningar"
+    },
+    "upload": {
+        "title": "Ladda upp Video",
+        "selectFile": "Välj Fil",
+        "dragAndDrop": "Dra och släpp din video här",
+        "supportedFormats": "Stödda format: MP4, AVI, MOV",
+        "maxSize": "Maximal filstorlek: 100MB",
+        "uploading": "Laddar upp...",
+        "uploadSuccess": "Uppladdning lyckades!",
+        "uploadError": "Uppladdning misslyckades. Försök igen."
+    },
+    "record": {
+        "screen": "Skärminspelning",
+        "recording": "Inspelning pågår...",
+        "click": "Klicka på spela in för att börja fånga din skärm",
+        "stop": "Stoppa inspelning",
+        "again": "Spela in igen",
+        "continue": "Fortsätt till uppladdning"
+    }
+}

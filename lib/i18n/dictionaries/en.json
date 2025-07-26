@@ -1,0 +1,95 @@
+{
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "search": "Search",
+        "upload": "Upload",
+        "download": "Download"
+    },
+    "navbar": {
+        "brand": "MemoCast",
+        "profile": "Profile",
+        "logout": "Logout",
+        "language": "Language"
+    },
+    "auth": {
+        "signIn": "Sign In",
+        "signOut": "Sign Out",
+        "signUp": "Sign Up",
+        "email": "Email",
+        "password": "Password",
+        "forgotPassword": "Forgot Password?",
+        "rememberMe": "Remember me",
+        "welcomeBack": "Welcome back",
+        "createAccount": "Create an account",
+        "alreadyHaveAccount": "Already have an account?",
+        "dontHaveAccount": "Don't have an account?"
+    },
+    "list": {
+        "title": "Filter",
+        "recent": "Most recent",
+        "like": "Most liked"
+
+    },
+    "video": {
+        "title": "Video",
+        "upload": "Upload Video",
+        "record": "Record Screen",
+        "myVideos": "My Videos",
+        "allVideos": "All Videos",
+        "publicLibrary": "Public Library",
+        "noVideos": "No videos found",
+        "videoDetails": "Video Details",
+        "duration": "Duration",
+        "createdAt": "Created at",
+        "views": "Views"
+    },
+    "time": {
+        "justNow": "Just now",
+        "oneMinuteAgo": "1 minute ago",
+        "minutesAgo": "{count} minutes ago",
+        "oneHourAgo": "1 hour ago",
+        "hoursAgo": "{count} hours ago",
+        "oneDayAgo": "1 day ago",
+        "daysAgo": "{count} days ago",
+        "oneWeekAgo": "1 week ago",
+        "weeksAgo": "{count} weeks ago",
+        "oneMonthAgo": "1 month ago",
+        "monthsAgo": "{count} months ago",
+        "oneYearAgo": "1 year ago",
+        "yearsAgo": "{count} years ago"
+    },
+    "profile": {
+        "title": "Profile",
+        "editProfile": "Edit Profile",
+        "myProfile": "My Profile",
+        "videos": "Videos",
+        "settings": "Settings"
+    },
+    "upload": {
+        "title": "Upload Video",
+        "selectFile": "Select File",
+        "dragAndDrop": "Drag and drop your video here",
+        "supportedFormats": "Supported formats: MP4, AVI, MOV",
+        "maxSize": "Maximum file size: 100MB",
+        "uploading": "Uploading...",
+        "uploadSuccess": "Upload successful!",
+        "uploadError": "Upload failed. Please try again."
+    },
+    "record": {
+        "screen": "Screen Recording",
+        "recording": "Recording in progress...",
+        "click": "Click record to start capturing your screen",
+        "stop": "Stop recording",
+        "again": "Record again",
+        "continue": "Continue to upload"
+    }
+}

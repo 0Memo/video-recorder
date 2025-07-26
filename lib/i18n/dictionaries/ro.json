@@ -1,0 +1,94 @@
+{
+    "common": {
+        "loading": "Se încarcă...",
+        "error": "Eroare",
+        "success": "Succes",
+        "cancel": "Anulează",
+        "save": "Salvează",
+        "delete": "Șterge",
+        "edit": "Editează",
+        "back": "Înapoi",
+        "next": "Următorul",
+        "previous": "Anterior",
+        "search": "Caută",
+        "upload": "Încarcă",
+        "download": "Descarcă"
+    },
+    "navbar": {
+        "brand": "MemoCast",
+        "profile": "Profil",
+        "logout": "Deconectare",
+        "language": "Limbă"
+    },
+    "auth": {
+        "signIn": "Conectare",
+        "signOut": "Deconectare",
+        "signUp": "Înregistrare",
+        "email": "Email",
+        "password": "Parolă",
+        "forgotPassword": "Ai uitat parola?",
+        "rememberMe": "Ține-mă minte",
+        "welcomeBack": "Bun venit înapoi",
+        "createAccount": "Creează un cont",
+        "alreadyHaveAccount": "Ai deja un cont?",
+        "dontHaveAccount": "Nu ai un cont?"
+    },
+    "list": {
+        "title": "Filtrează",
+        "recent": "Cele mai recente",
+        "like": "Cele mai apreciate"
+    },
+    "video": {
+        "title": "Video",
+        "upload": "Încarcă Video",
+        "record": "Înregistrează Ecranul",
+        "myVideos": "Videoclipurile Mele",
+        "allVideos": "Toate Videoclipurile",
+        "publicLibrary": "Bibliotecă publică",
+        "noVideos": "Nu s-au găsit videoclipuri",
+        "videoDetails": "Detalii Video",
+        "duration": "Durată",
+        "createdAt": "Creat la",
+        "views": "Vizualizări"
+    },
+    "time": {
+        "justNow": "Just now",
+        "oneMinuteAgo": "1 minute ago",
+        "minutesAgo": "{count} minutes ago",
+        "oneHourAgo": "1 hour ago",
+        "hoursAgo": "{count} hours ago",
+        "oneDayAgo": "1 day ago",
+        "daysAgo": "{count} days ago",
+        "oneWeekAgo": "1 week ago",
+        "weeksAgo": "{count} weeks ago",
+        "oneMonthAgo": "1 month ago",
+        "monthsAgo": "{count} months ago",
+        "oneYearAgo": "1 year ago",
+        "yearsAgo": "{count} years ago"
+    },
+    "profile": {
+        "title": "Profil",
+        "editProfile": "Editează Profilul",
+        "myProfile": "Profilul Meu",
+        "videos": "Videoclipuri",
+        "settings": "Setări"
+    },
+    "upload": {
+        "title": "Încarcă Video",
+        "selectFile": "Selectează Fișier",
+        "dragAndDrop": "Trage și lasă videoclipul aici",
+        "supportedFormats": "Formate suportate: MP4, AVI, MOV",
+        "maxSize": "Dimensiunea maximă a fișierului: 100MB",
+        "uploading": "Se încarcă...",
+        "uploadSuccess": "Încărcare reușită!",
+        "uploadError": "Încărcarea a eșuat. Te rog încearcă din nou."
+    },
+    "record": {
+        "screen": "Înregistrare ecran",
+        "recording": "Înregistrare în curs...",
+        "click": "Apasă pe înregistrare pentru a începe capturarea ecranului",
+        "stop": "Oprește înregistrarea",
+        "again": "Înregistrează din nou",
+        "continue": "Continuă pentru a încărca"
+    }
+}

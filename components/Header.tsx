@@ -4,11 +4,19 @@ import Image from "next/image"
 import DropdownList from "./DropdownList"
 import RecordScreen from "./RecordScreen"
 import LoadingOverlay from "./LoadingOverlay"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useState } from "react"
+import { getLocaleFromPathname } from "../lib/i18n/utils";
+import type { Dictionary } from "../lib/i18n/dictionaries";
 
-const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
+interface HeaderProps extends SharedHeaderProps {
+    dictionary: Dictionary;
+}
+
+const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
     const router = useRouter();
+    const pathname = usePathname();
+    const currentLocale = getLocaleFromPathname(pathname);
     const [isLoading, setIsLoading] = useState(false);
 
     return (
@@ -39,12 +47,12 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                             <h1
                                 className="text-[#1d073a] text-2xl font-bold text-shadow-lg"
                             >
-                                {title}
+                                {dictionary.video.allVideos}
                             </h1>
                             <p
                                 className="text-sm text-gray-100 font-medium"
                             >
-                                {subHeader}
+                                {dictionary.video.publicLibrary}
                             </p>
                         </article>
                     </div>
@@ -78,7 +86,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                             <span
                                 className="truncate"
                             >
-                                Upload a video
+                                {dictionary.upload.title}
                             </span>
                         </button>
                         <RecordScreen />
@@ -94,7 +102,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                         <input
                             type="text"
                             style={{ border: '1px solid #1d073a', borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
-                            placeholder="Search for videos, folders..."
+                            placeholder={dictionary.common.search}
                             className="focus:outline-[#C3B1E1] py-2 pl-8
                             pr-5 text-[#1d073a] text-sm font-normal w-full
                             placeholder:text-gray-100 placeholder:italic
@@ -112,7 +120,7 @@ const Header = ({ subHeader, title, userImg } : SharedHeaderProps) => {
                         />
                     </div>
             
-                    <DropdownList />
+                    <DropdownList dictionary={dictionary} />
                 </section>
             </header>
             {isLoading && <LoadingOverlay color="#1d073a" />}{" "}

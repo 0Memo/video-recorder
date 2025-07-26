@@ -1,8 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ilike, sql } from "drizzle-orm";
-import { DEFAULT_VIDEO_CONFIG, DEFAULT_RECORDING_CONFIG } from "@/constants";
-import { videos } from "@/drizzle/schema";
+import { DEFAULT_VIDEO_CONFIG, DEFAULT_RECORDING_CONFIG } from "../constants";
+import { videos } from "../drizzle/schema";
+import type { Dictionary } from "./i18n/dictionaries"
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -284,19 +285,34 @@ export function parseTranscript(transcript: string): TranscriptEntry[] {
     return result;
 }
 
-export function daysAgo(inputDate: Date): string {
-    const input = new Date(inputDate);
-    const now = new Date();
+export function daysAgo(date: string | Date, dictionary: Dictionary): string {
+    const now = new Date()
+    const targetDate = new Date(date)
+    const diffInMs = now.getTime() - targetDate.getTime()
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
+    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60))
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60))
 
-    const diffTime = now.getTime() - input.getTime();
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-    if (diffDays <= 0) {
-        return "Today";
-    } else if (diffDays === 1) {
-        return "1 day ago";
+    if (diffInDays > 365) {
+        const years = Math.floor(diffInDays / 365)
+        return years === 1 ? dictionary.time.oneYearAgo : dictionary.time.yearsAgo.replace("{count}", years.toString())
+    } else if (diffInDays > 30) {
+        const months = Math.floor(diffInDays / 30)
+        return months === 1 ? dictionary.time.oneMonthAgo : dictionary.time.monthsAgo.replace("{count}", months.toString())
+    } else if (diffInDays > 0) {
+        return diffInDays === 1
+            ? dictionary.time.oneDayAgo
+            : dictionary.time.daysAgo.replace("{count}", diffInDays.toString())
+    } else if (diffInHours > 0) {
+        return diffInHours === 1
+            ? dictionary.time.oneHourAgo
+            : dictionary.time.hoursAgo.replace("{count}", diffInHours.toString())
+    } else if (diffInMinutes > 0) {
+        return diffInMinutes === 1
+            ? dictionary.time.oneMinuteAgo
+            : dictionary.time.minutesAgo.replace("{count}", diffInMinutes.toString())
     } else {
-        return `${diffDays} days ago`;
+        return dictionary.time.justNow
     }
 }
 

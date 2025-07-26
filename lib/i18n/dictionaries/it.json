@@ -1,0 +1,94 @@
+{
+    "common": {
+        "loading": "Caricamento...",
+        "error": "Errore",
+        "success": "Successo",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "delete": "Elimina",
+        "edit": "Modifica",
+        "back": "Indietro",
+        "next": "Avanti",
+        "previous": "Precedente",
+        "search": "Cerca",
+        "upload": "Carica",
+        "download": "Scarica"
+    },
+    "navbar": {
+        "brand": "MemoCast",
+        "profile": "Profilo",
+        "logout": "Esci",
+        "language": "Lingua"
+    },
+    "auth": {
+        "signIn": "Accedi",
+        "signOut": "Esci",
+        "signUp": "Registrati",
+        "email": "Email",
+        "password": "Password",
+        "forgotPassword": "Password dimenticata?",
+        "rememberMe": "Ricordami",
+        "welcomeBack": "Bentornato",
+        "createAccount": "Crea un account",
+        "alreadyHaveAccount": "Hai già un account?",
+        "dontHaveAccount": "Non hai un account?"
+    },
+    "list": {
+        "title": "Filtra",
+        "recent": "Più recenti",
+        "like": "Più apprezzati"
+    },
+    "video": {
+        "title": "Video",
+        "upload": "Carica Video",
+        "record": "Registra Schermo",
+        "myVideos": "I Miei Video",
+        "allVideos": "Tutti i Video",
+        "publicLibrary": "Biblioteca pubblica",
+        "noVideos": "Nessun video trovato",
+        "videoDetails": "Dettagli Video",
+        "duration": "Durata",
+        "createdAt": "Creato il",
+        "views": "Visualizzazioni"
+    },
+    "time": {
+        "justNow": "Just now",
+        "oneMinuteAgo": "1 minute ago",
+        "minutesAgo": "{count} minutes ago",
+        "oneHourAgo": "1 hour ago",
+        "hoursAgo": "{count} hours ago",
+        "oneDayAgo": "1 day ago",
+        "daysAgo": "{count} days ago",
+        "oneWeekAgo": "1 week ago",
+        "weeksAgo": "{count} weeks ago",
+        "oneMonthAgo": "1 month ago",
+        "monthsAgo": "{count} months ago",
+        "oneYearAgo": "1 year ago",
+        "yearsAgo": "{count} years ago"
+    },
+    "profile": {
+        "title": "Profilo",
+        "editProfile": "Modifica Profilo",
+        "myProfile": "Il Mio Profilo",
+        "videos": "Video",
+        "settings": "Impostazioni"
+    },
+    "upload": {
+        "title": "Carica Video",
+        "selectFile": "Seleziona File",
+        "dragAndDrop": "Trascina e rilascia il tuo video qui",
+        "supportedFormats": "Formati supportati: MP4, AVI, MOV",
+        "maxSize": "Dimensione massima file: 100MB",
+        "uploading": "Caricamento...",
+        "uploadSuccess": "Caricamento riuscito!",
+        "uploadError": "Caricamento fallito. Riprova."
+    },
+    "record": {
+        "screen": "Registrazione dello schermo",
+        "recording": "Registrazione in corso...",
+        "click": "Clicca su registra per iniziare a catturare lo schermo",
+        "stop": "Interrompi registrazione",
+        "again": "Registra di nuovo",
+        "continue": "Continua per caricare"
+    }
+}

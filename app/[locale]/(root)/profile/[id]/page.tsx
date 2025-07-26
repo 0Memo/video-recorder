@@ -1,12 +1,27 @@
 import { redirect } from "next/navigation";
-import { getAllVideosByUser } from '../../../../lib/actions/video'
-import EmptyState from "../../../../components/EmptyState";
-import VideoCard from "../../../../components/VideoCard";
-import Header from "../../../../components/Header";
+import { getAllVideosByUser } from '../../../../../lib/actions/video'
+import EmptyState from "../../../../../components/EmptyState";
+import VideoCard from "../../../../../components/VideoCard";
+import Header from "../../../../../components/Header";
+import { getDictionary } from "../../../../../lib/i18n/dictionaries";
+import type { Locale } from "../../../../../lib/i18n/config";
+import { ICONS } from "../../../../../constants"
 
-const Page = async ({ params, searchParams } : ParamsWithSearch) => {
-    const { id } = await params;
+interface PageProps {
+    params: Promise<{
+        locale: Locale;
+        id: string;
+    }>;
+    searchParams: Promise<{
+        query?: string;
+        filter?: string;
+    }>;
+}
+
+const Page = async ({ params, searchParams } : PageProps) => {
+    const { locale, id } = await params;
     const { query, filter } = await searchParams;
+    const dictionary = await getDictionary(locale);
 
     const { user, videos } = await getAllVideosByUser(id, query, filter);
     if (!user) redirect("/404");
@@ -20,6 +35,7 @@ const Page = async ({ params, searchParams } : ParamsWithSearch) => {
                 subHeader={ user?.email }
                 title={ user?.name }
                 userImg={ user?.image ?? '' }
+                dictionary={ dictionary }
             />
 
             {videos?.length > 0 ? (
@@ -43,7 +59,7 @@ const Page = async ({ params, searchParams } : ParamsWithSearch) => {
                 </section>
             ) : (
                 <EmptyState
-                    icon="/assets/icons/video.svg"
+                    icon={ ICONS.video }
                     title="No Videos Available Yet"
                     description="Video will show up here once you upload them."
                 />
