@@ -63,7 +63,7 @@ const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
         </button>
 
         {isOpen && (
-            <div className="absolute mt-2 bg-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-lg border border-gray-200 py-1 z-50 w-full">
+            <div className="absolute mt-2 w-48 bg-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-lg border border-gray-200 py-1 z-100">
             {i18n.locales.map((locale) => (
                 <button
                     key={locale}
