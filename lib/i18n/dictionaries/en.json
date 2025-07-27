@@ -21,17 +21,11 @@
         "language": "Language"
     },
     "auth": {
-        "signIn": "Sign In",
-        "signOut": "Sign Out",
-        "signUp": "Sign Up",
-        "email": "Email",
-        "password": "Password",
-        "forgotPassword": "Forgot Password?",
-        "rememberMe": "Remember me",
-        "welcomeBack": "Welcome back",
-        "createAccount": "Create an account",
-        "alreadyHaveAccount": "Already have an account?",
-        "dontHaveAccount": "Don't have an account?"
+        "title1": "Create and share your first",
+        "title2": "MemoCast video",
+        "title3": "in no time!",
+        "signIn": "Sign in with Google",
+        "testimony": "MemoCast makes screen recording easy. From quick walkthroughs to full presentiations, it is fast, smooth and shareable in seconds"
     },
     "list": {
         "title": "Filter",

@@ -30,7 +30,11 @@ export const ICONS = {
   arrowDown: "/assets/icons/arrow-down.svg",
   menu: "/assets/icons/menu.svg",
   video: "/assets/icons/video.svg",
-  exit: "/assets/icons/exit.svg"
+  exit: "/assets/icons/exit.svg",
+  test: "/assets/images/test.png",
+  copyright: "/assets/icons/copyright.svg",
+  google: "/assets/icons/google.svg",
+  star: "/assets/icons/star.svg",
 }
 
 export const initialVideoState = {

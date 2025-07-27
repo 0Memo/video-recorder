@@ -21,17 +21,11 @@
         "language": "Språk"
     },
     "auth": {
-        "signIn": "Logga in",
-        "signOut": "Logga ut",
-        "signUp": "Registrera",
-        "email": "E-post",
-        "password": "Lösenord",
-        "forgotPassword": "Glömt lösenord?",
-        "rememberMe": "Kom ihåg mig",
-        "welcomeBack": "Välkommen tillbaka",
-        "createAccount": "Skapa ett konto",
-        "alreadyHaveAccount": "Har du redan ett konto?",
-        "dontHaveAccount": "Har du inget konto?"
+        "title1": "Skapa och dela din första",
+        "title2": "MemoCast-video",
+        "title3": "på nolltid!",
+        "signIn": "Logga in med Google",
+        "testimony": "MemoCast gör skärminspelning enkelt. Från snabba genomgångar till fullständiga presentationer – det är snabbt, smidigt och delbart på några sekunder"
     },
     "list": {
         "title": "Filtrera",

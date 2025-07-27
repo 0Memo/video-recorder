@@ -57,12 +57,12 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
                             <h1
                                 className="text-[#1d073a] text-2xl font-bold text-shadow-lg"
                             >
-                                {dictionary.video.allVideos}
+                                { dictionary.video.allVideos }
                             </h1>
                             <p
                                 className="text-sm text-gray-100 font-medium"
                             >
-                                {dictionary.video.publicLibrary}
+                                { dictionary.video.publicLibrary }
                             </p>
                         </article>
                     </div>
@@ -90,7 +90,7 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
                             <span
                                 className="truncate"
                             >
-                                {dictionary.upload.uploadVideo}
+                                { dictionary.upload.uploadVideo }
                             </span>
                         </button>
                         <RecordScreen dictionary={dictionary} />

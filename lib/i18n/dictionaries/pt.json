@@ -21,17 +21,11 @@
         "language": "Idioma"
     },
     "auth": {
-        "signIn": "Entrar",
-        "signOut": "Sair",
-        "signUp": "Cadastrar",
-        "email": "Email",
-        "password": "Senha",
-        "forgotPassword": "Esqueceu a senha?",
-        "rememberMe": "Lembrar de mim",
-        "welcomeBack": "Bem-vindo de volta",
-        "createAccount": "Criar uma conta",
-        "alreadyHaveAccount": "Já tem uma conta?",
-        "dontHaveAccount": "Não tem uma conta?"
+        "title1": "Crie e compartilhe seu primeiro",
+        "title2": "vídeo no MemoCast",
+        "title3": "em instantes!",
+        "signIn": "Entrar com o Google",
+        "testimony": "O MemoCast facilita a gravação de tela. De tutoriais rápidos a apresentações completas, é rápido, suave e compartilhável em segundos"
     },
     "list": {
         "title": "Filtrar",
