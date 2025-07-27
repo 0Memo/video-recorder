@@ -4,10 +4,11 @@ import Image from "next/image"
 import DropdownList from "./DropdownList"
 import RecordScreen from "./RecordScreen"
 import LoadingOverlay from "./LoadingOverlay"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { getLocaleFromPathname } from "../lib/i18n/utils";
 import type { Dictionary } from "../lib/i18n/dictionaries";
+import { usePathname } from "next/navigation"
+import { getLocaleFromPathname } from "../lib/i18n/utils";
 
 interface HeaderProps extends SharedHeaderProps {
     dictionary: Dictionary;
@@ -15,9 +16,9 @@ interface HeaderProps extends SharedHeaderProps {
 
 const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
     const pathname = usePathname();
     const currentLocale = getLocaleFromPathname(pathname);
-    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <>
@@ -86,10 +87,10 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
                             <span
                                 className="truncate"
                             >
-                                {dictionary.upload.title}
+                                {dictionary.upload.uploadVideo}
                             </span>
                         </button>
-                        <RecordScreen />
+                        <RecordScreen dictionary={dictionary} />
                     </aside>
                 </section>
             

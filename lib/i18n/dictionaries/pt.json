@@ -52,19 +52,19 @@
         "views": "Visualizações"
     },
     "time": {
-        "justNow": "Just now",
-        "oneMinuteAgo": "1 minute ago",
-        "minutesAgo": "{count} minutes ago",
-        "oneHourAgo": "1 hour ago",
-        "hoursAgo": "{count} hours ago",
-        "oneDayAgo": "1 day ago",
-        "daysAgo": "{count} days ago",
-        "oneWeekAgo": "1 week ago",
-        "weeksAgo": "{count} weeks ago",
-        "oneMonthAgo": "1 month ago",
-        "monthsAgo": "{count} months ago",
-        "oneYearAgo": "1 year ago",
-        "yearsAgo": "{count} years ago"
+        "justNow": "Agora mesmo",
+        "oneMinuteAgo": "Há 1 minuto",
+        "minutesAgo": "Há {count} minutos",
+        "oneHourAgo": "Há 1 hora",
+        "hoursAgo": "Há {count} horas",
+        "oneDayAgo": "Há 1 dia",
+        "daysAgo": "Há {count} dias",
+        "oneWeekAgo": "Há 1 semana",
+        "weeksAgo": "Há {count} semanas",
+        "oneMonthAgo": "Há 1 mês",
+        "monthsAgo": "Há {count} meses",
+        "oneYearAgo": "Há 1 ano",
+        "yearsAgo": "Há {count} anos"
     },
     "profile": {
         "title": "Perfil",
@@ -74,21 +74,35 @@
         "settings": "Configurações"
     },
     "upload": {
-        "title": "Enviar Vídeo",
-        "selectFile": "Selecionar Arquivo",
-        "dragAndDrop": "Arraste e solte seu vídeo aqui",
-        "supportedFormats": "Formatos suportados: MP4, AVI, MOV",
-        "maxSize": "Tamanho máximo do arquivo: 100MB",
-        "uploading": "Enviando...",
-        "uploadSuccess": "Envio bem-sucedido!",
-        "uploadError": "Falha no envio. Tente novamente."
+        "upload": "Enviar um vídeo",
+        "title": "Título",
+        "titlePlaceholder": "Insira um título claro e conciso para o vídeo",
+        "description": "Descrição",
+        "descriptionPlacherholder": "Descreva sobre o que é o vídeo",
+        "text": "Clique para enviar seu ",
+        "video": "Vídeo",
+        "videoMin": "vídeo",
+        "thumbnail": "Miniatura",
+        "thumbnailMin": "miniatura",
+        "visibility": "Visibilidade",
+        "public": "Público",
+        "private": "Privado",
+        "uploadVideo": "Enviar vídeo",
+        "uploading": "Enviando..."
     },
     "record": {
+        "title": "Gravar",
         "screen": "Gravação de tela",
         "recording": "Gravando...",
         "click": "Clique em gravar para começar a capturar sua tela",
         "stop": "Parar gravação",
         "again": "Gravar novamente",
         "continue": "Continuar para o envio"
+    },
+    "delete": {
+        "title": "Excluir este vídeo?",
+        "sure": "Isso removerá permanentemente o vídeo e sua miniatura. Tem certeza?",
+        "cancel": "Cancelar",
+        "confirm": "Excluir"
     }
 }

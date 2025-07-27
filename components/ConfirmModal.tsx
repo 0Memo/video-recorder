@@ -1,5 +1,8 @@
 "use client";
 import { useEffect } from "react";
+import type { Dictionary } from "../lib/i18n/dictionaries";
+import { usePathname } from "next/navigation"
+import { getLocaleFromPathname } from "../lib/i18n/utils";
 
 interface ConfirmModalProps {
     isOpen: boolean;
@@ -7,6 +10,7 @@ interface ConfirmModalProps {
     onConfirm: () => void;
     title?: string;
     message?: string;
+    dictionary: Dictionary
 }
 
 const ConfirmModal = ({
@@ -15,7 +19,11 @@ const ConfirmModal = ({
     onConfirm,
     title = "Are you sure?",
     message = "This action cannot be undone.",
+    dictionary
 }: ConfirmModalProps) => {
+    const pathname = usePathname();
+    const currentLocale = getLocaleFromPathname(pathname);
+
     useEffect(() => {
         if (isOpen) document.body.style.overflow = "hidden";
         else document.body.style.overflow = "";
@@ -32,15 +40,15 @@ const ConfirmModal = ({
                     <div className="flex justify-end gap-2">
                     <button
                         onClick={ onClose }
-                        className="px-4 py-2 bg-gray-400 text-gray-800 hover:bg-gray-300 rounded-[255px_15px_225px_15px/15px_225px_15px_255px]"
+                        className="px-4 py-2 bg-gray-400 text-gray-800 hover:bg-gray-300 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border-b-4 border-b-[#C3B1E1]"
                     >
-                        Cancel
+                        { dictionary.delete.cancel }
                     </button>
                     <button
                         onClick={ onConfirm }
-                        className="px-4 py-2 bg-[#1d073a] text-white hover:bg-[#C3B1E1] rounded-[255px_15px_225px_15px/15px_225px_15px_255px]"
+                        className="px-4 py-2 bg-[#1d073a] text-white hover:bg-[#C3B1E1] rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border-b-4 border-b-[#C3B1E1]"
                     >
-                        Delete
+                        { dictionary.delete.confirm }
                     </button>
                     </div>
                 </div>

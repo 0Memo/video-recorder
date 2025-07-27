@@ -5,8 +5,13 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useScreenRecording } from "../lib/hooks/useScreenRecording"
 import LoadingOverlay from "./LoadingOverlay"
+import type { Dictionary } from "../lib/i18n/dictionaries";
 
-const RecordScreen = () => {
+interface RecordScreenProps {
+    dictionary: Dictionary;
+}
+
+const RecordScreen = ({ dictionary }: RecordScreenProps) => {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -98,7 +103,7 @@ const RecordScreen = () => {
                         style={{ filter: 'brightness(0) invert(1)' }} 
                     />
                     <span>
-                        Record a video
+                        { dictionary.video.record }
                     </span>
                 </button>
             
@@ -117,7 +122,7 @@ const RecordScreen = () => {
                                 <h3
                                     className="text-xl font-bold text-[#1d073a]"
                                 >
-                                    Screen Recording
+                                    { dictionary.record.screen }
                                 </h3>
                                 <button
                                     className="p-2 rounded-full hover:bg-[#C3B1E1]"
@@ -146,7 +151,7 @@ const RecordScreen = () => {
                                             <span
                                                 className="text-dark-100 text-base font-medium"
                                             >
-                                                Recording in progress...
+                                                { dictionary.record.recording }
                                             </span>
                                         </article>
                                     ) : recordedVideoUrl ? (
@@ -160,7 +165,7 @@ const RecordScreen = () => {
                                         <p
                                             className="text-base font-medium text-gray-100"
                                         >
-                                            Click record to start capturing your screen
+                                            { dictionary.record.click }
                                         </p>
                                     )
                                 }
@@ -184,7 +189,7 @@ const RecordScreen = () => {
                                                 height={22}
                                                 className="brightness-0 invert -mt-1"
                                             />
-                                            Record
+                                            { dictionary.record.title }
                                         </button>
                                     )
                                 }
@@ -204,7 +209,7 @@ const RecordScreen = () => {
                                                 height={22}
                                                 className="brightness-0 invert -mt-1"
                                             />
-                                            Stop recording
+                                            { dictionary.record.stop }
                                         </button>
                                     )
                                 }
@@ -218,7 +223,7 @@ const RecordScreen = () => {
                                                 border-b-4 border-b-[#C3B1E1]"
                                                 onClick={ recordAgain }
                                             >
-                                                Record Again
+                                                { dictionary.record.again }
                                             </button>
                                             <button
                                                 className="py-2.5 px-6 bg-[#1d073a] text-white font-medium flex items-center gap-2
@@ -233,7 +238,7 @@ const RecordScreen = () => {
                                                     height={16}
                                                     className="brightness-0 invert"
                                                 />
-                                                Continue to Upload
+                                                { dictionary.record.continue }
                                             </button>
                                         </>
                                     )

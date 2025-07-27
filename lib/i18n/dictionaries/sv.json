@@ -52,19 +52,19 @@
         "views": "Visningar"
     },
     "time": {
-        "justNow": "Just now",
-        "oneMinuteAgo": "1 minute ago",
-        "minutesAgo": "{count} minutes ago",
-        "oneHourAgo": "1 hour ago",
-        "hoursAgo": "{count} hours ago",
-        "oneDayAgo": "1 day ago",
-        "daysAgo": "{count} days ago",
-        "oneWeekAgo": "1 week ago",
-        "weeksAgo": "{count} weeks ago",
-        "oneMonthAgo": "1 month ago",
-        "monthsAgo": "{count} months ago",
-        "oneYearAgo": "1 year ago",
-        "yearsAgo": "{count} years ago"
+        "justNow": "Just nu",
+        "oneMinuteAgo": "För 1 minut sedan",
+        "minutesAgo": "För {count} minuter sedan",
+        "oneHourAgo": "För 1 timme sedan",
+        "hoursAgo": "För {count} timmar sedan",
+        "oneDayAgo": "För 1 dag sedan",
+        "daysAgo": "För {count} dagar sedan",
+        "oneWeekAgo": "För 1 vecka sedan",
+        "weeksAgo": "För {count} veckor sedan",
+        "oneMonthAgo": "För 1 månad sedan",
+        "monthsAgo": "För {count} månader sedan",
+        "oneYearAgo": "För 1 år sedan",
+        "yearsAgo": "För {count} år sedan"
     },
     "profile": {
         "title": "Profil",
@@ -74,21 +74,35 @@
         "settings": "Inställningar"
     },
     "upload": {
-        "title": "Ladda upp Video",
-        "selectFile": "Välj Fil",
-        "dragAndDrop": "Dra och släpp din video här",
-        "supportedFormats": "Stödda format: MP4, AVI, MOV",
-        "maxSize": "Maximal filstorlek: 100MB",
-        "uploading": "Laddar upp...",
-        "uploadSuccess": "Uppladdning lyckades!",
-        "uploadError": "Uppladdning misslyckades. Försök igen."
+        "upload": "Ladda upp en video",
+        "title": "Titel",
+        "titlePlaceholder": "Ange en tydlig och kortfattad videotitel",
+        "description": "Beskrivning",
+        "descriptionPlacherholder": "Beskriv vad videon handlar om",
+        "text": "Klicka för att ladda upp din ",
+        "video": "Video",
+        "videoMin": "video",
+        "thumbnail": "Miniatyrbild",
+        "thumbnailMin": "miniatyrbild",
+        "visibility": "Synlighet",
+        "public": "Offentlig",
+        "private": "Privat",
+        "uploadVideo": "Ladda upp video",
+        "uploading": "Laddar upp..."
     },
     "record": {
+        "title": "Spela",
         "screen": "Skärminspelning",
         "recording": "Inspelning pågår...",
         "click": "Klicka på spela in för att börja fånga din skärm",
         "stop": "Stoppa inspelning",
         "again": "Spela in igen",
         "continue": "Fortsätt till uppladdning"
+    },
+    "delete": {
+        "title": "Radera den här videon?",
+        "sure": "Detta kommer att ta bort videon och dess miniatyr permanent. Är du säker?",
+        "cancel": "Avbryt",
+        "confirm": "Radera"
     }
 }

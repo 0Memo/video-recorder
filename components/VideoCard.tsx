@@ -7,6 +7,11 @@ import { useRouter } from "next/navigation";
 import { ICONS } from "../constants"
 import ConfirmModal from "./ConfirmModal";
 import { deleteVideo } from "../lib/actions/video";
+import type { Dictionary } from "../lib/i18n/dictionaries";
+
+interface VideoDictionaryProps extends VideoCardProps {
+    dictionary: Dictionary;
+}
 
 const VideoCard = ({
     id,
@@ -18,7 +23,8 @@ const VideoCard = ({
     views,
     visibility,
     duration,
-}: VideoCardProps) => {
+    dictionary
+}: VideoDictionaryProps) => {
     const [formattedDate, setFormattedDate] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -192,8 +198,9 @@ const VideoCard = ({
                     isOpen={showModal}
                     onClose={() => setShowModal(false)}
                     onConfirm={handleDelete}
-                    title="Delete this video?"
-                    message="This will permanently remove the video and its thumbnail. Are you sure?"
+                    title={ dictionary.delete.title }
+                    message={ dictionary.delete.sure }
+                    dictionary={ dictionary }
                 />
             )}
             {isLoading && <LoadingOverlay color="#1d073a" />}{" "}

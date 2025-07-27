@@ -75,21 +75,36 @@
         "settings": "Settings"
     },
     "upload": {
-        "title": "Upload Video",
-        "selectFile": "Select File",
-        "dragAndDrop": "Drag and drop your video here",
-        "supportedFormats": "Supported formats: MP4, AVI, MOV",
-        "maxSize": "Maximum file size: 100MB",
-        "uploading": "Uploading...",
-        "uploadSuccess": "Upload successful!",
-        "uploadError": "Upload failed. Please try again."
+        "upload": "Upload a Video",
+        "title": "Title",
+        "titlePlaceholder": "Enter a clear and concise video title",
+        "description": "Description",
+        "descriptionPlacherholder": "Describe what the video is about",
+        "text": "Click to upload your ",
+        "video": "Video",
+        "videoMin": "video",
+        "thumbnail": "Thumbnail",
+        "thumbnailMin": "thumbnail",
+        "visibility": "Visibility",
+        "public": "Public",
+        "private": "Private",
+        "uploadVideo": "Upload video",
+        "uploading": "Uploading..."
     },
     "record": {
+        "title": "Record",
         "screen": "Screen Recording",
         "recording": "Recording in progress...",
         "click": "Click record to start capturing your screen",
         "stop": "Stop recording",
         "again": "Record again",
         "continue": "Continue to upload"
+    },
+    "delete": {
+        "title": "Delete this video?",
+        "sure": "This will permanently remove the video and its thumbnail. Are you sure?",
+        "cancel": "Cancel",
+        "confirm": "Delete"
     }
+
 }

@@ -52,19 +52,19 @@
         "views": "Vues"
     },
     "time": {
-        "justNow": "Just now",
-        "oneMinuteAgo": "1 minute ago",
-        "minutesAgo": "{count} minutes ago",
-        "oneHourAgo": "1 hour ago",
-        "hoursAgo": "{count} hours ago",
-        "oneDayAgo": "1 day ago",
-        "daysAgo": "{count} days ago",
-        "oneWeekAgo": "1 week ago",
-        "weeksAgo": "{count} weeks ago",
-        "oneMonthAgo": "1 month ago",
-        "monthsAgo": "{count} months ago",
-        "oneYearAgo": "1 year ago",
-        "yearsAgo": "{count} years ago"
+        "justNow": "À l’instant",
+        "oneMinuteAgo": "Il y a 1 minute",
+        "minutesAgo": "Il y a {count} minutes",
+        "oneHourAgo": "Il y a 1 heure",
+        "hoursAgo": "Il y a {count} heures",
+        "oneDayAgo": "Il y a 1 jour",
+        "daysAgo": "Il y a {count} jours",
+        "oneWeekAgo": "Il y a 1 semaine",
+        "weeksAgo": "Il y a {count} semaines",
+        "oneMonthAgo": "Il y a 1 mois",
+        "monthsAgo": "Il y a {count} mois",
+        "oneYearAgo": "Il y a 1 an",
+        "yearsAgo": "Il y a {count} ans"
     },
     "profile": {
         "title": "Profil",
@@ -74,21 +74,35 @@
         "settings": "Paramètres"
     },
     "upload": {
-        "title": "Télécharger une Vidéo",
-        "selectFile": "Sélectionner un Fichier",
-        "dragAndDrop": "Glissez et déposez votre vidéo ici",
-        "supportedFormats": "Formats supportés : MP4, AVI, MOV",
-        "maxSize": "Taille maximale du fichier : 100MB",
-        "uploading": "Téléchargement...",
-        "uploadSuccess": "Téléchargement réussi !",
-        "uploadError": "Échec du téléchargement. Veuillez réessayer."
+        "upload": "Téléverser une vidéo",
+        "title": "Titre",
+        "titlePlaceholder": "Entrez un titre clair et concis pour la vidéo",
+        "description": "Description",
+        "descriptionPlacherholder": "Décrivez le contenu de la vidéo",
+        "text": "Cliquez pour téléverser votre ",
+        "video": "Vidéo",
+        "videoMin": "vidéo",
+        "thumbnail": "Miniature",
+        "thumbnailMin": "miniature",
+        "visibility": "Visibilité",
+        "public": "Public",
+        "private": "Privé",
+        "uploadVideo": "Téléverser la vidéo",
+        "uploading": "Téléversement en cours..."
     },
     "record": {
+        "title": "Enregistrer",
         "screen": "Enregistrement de l'écran",
         "recording": "Enregistrement en cours...",
         "click": "Cliquez sur enregistrer pour commencer à capturer votre écran",
         "stop": "Arrêter l'enregistrement",
         "again": "Recommencer l'enregistrement",
         "continue": "Continuer vers le téléversement"
+    },
+    "delete": {
+        "title": "Supprimer cette vidéo ?",
+        "sure": "Cela supprimera définitivement la vidéo et sa miniature. Êtes-vous sûr ?",
+        "cancel": "Annuler",
+        "confirm": "Supprimer"
     }
 }

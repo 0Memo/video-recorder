@@ -52,19 +52,19 @@
         "views": "Vizualizări"
     },
     "time": {
-        "justNow": "Just now",
-        "oneMinuteAgo": "1 minute ago",
-        "minutesAgo": "{count} minutes ago",
-        "oneHourAgo": "1 hour ago",
-        "hoursAgo": "{count} hours ago",
-        "oneDayAgo": "1 day ago",
-        "daysAgo": "{count} days ago",
-        "oneWeekAgo": "1 week ago",
-        "weeksAgo": "{count} weeks ago",
-        "oneMonthAgo": "1 month ago",
-        "monthsAgo": "{count} months ago",
-        "oneYearAgo": "1 year ago",
-        "yearsAgo": "{count} years ago"
+        "justNow": "Chiar acum",
+        "oneMinuteAgo": "Acum 1 minut",
+        "minutesAgo": "Acum {count} minute",
+        "oneHourAgo": "Acum 1 oră",
+        "hoursAgo": "Acum {count} ore",
+        "oneDayAgo": "Acum 1 zi",
+        "daysAgo": "Acum {count} zile",
+        "oneWeekAgo": "Acum 1 săptămână",
+        "weeksAgo": "Acum {count} săptămâni",
+        "oneMonthAgo": "Acum 1 lună",
+        "monthsAgo": "Acum {count} luni",
+        "oneYearAgo": "Acum 1 an",
+        "yearsAgo": "Acum {count} ani"
     },
     "profile": {
         "title": "Profil",
@@ -74,21 +74,35 @@
         "settings": "Setări"
     },
     "upload": {
-        "title": "Încarcă Video",
-        "selectFile": "Selectează Fișier",
-        "dragAndDrop": "Trage și lasă videoclipul aici",
-        "supportedFormats": "Formate suportate: MP4, AVI, MOV",
-        "maxSize": "Dimensiunea maximă a fișierului: 100MB",
-        "uploading": "Se încarcă...",
-        "uploadSuccess": "Încărcare reușită!",
-        "uploadError": "Încărcarea a eșuat. Te rog încearcă din nou."
+        "upload": "Încarcă un videoclip",
+        "title": "Titlu",
+        "titlePlaceholder": "Introduceți un titlu clar și concis pentru videoclip",
+        "description": "Descriere",
+        "descriptionPlacherholder": "Descrie despre ce este videoclipul",
+        "text": "Fă clic pentru a încărca ",
+        "video": "Videoclip",
+        "videoMin": "videoclip",
+        "thumbnail": "Miniatură",
+        "thumbnailMin": "miniatură",
+        "visibility": "Vizibilitate",
+        "public": "Public",
+        "private": "Privat",
+        "uploadVideo": "Încarcă videoclipul",
+        "uploading": "Se încarcă..."
     },
     "record": {
+        "title": "Înregistreazăă",
         "screen": "Înregistrare ecran",
         "recording": "Înregistrare în curs...",
         "click": "Apasă pe înregistrare pentru a începe capturarea ecranului",
         "stop": "Oprește înregistrarea",
         "again": "Înregistrează din nou",
         "continue": "Continuă pentru a încărca"
+    },
+    "delete": {
+        "title": "Ștergi acest videoclip?",
+        "sure": "Acest lucru va șterge permanent videoclipul și miniatura sa. Ești sigur?",
+        "cancel": "Anulează",
+        "confirm": "Șterge"
     }
 }

@@ -1,7 +1,12 @@
 import { ICONS } from "../constants"
 import Image from "next/image"
+import type { Dictionary } from "../lib/i18n/dictionaries";
 
-const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, onReset, type }: FileInputProps) => {
+interface FileDictionaryProps extends FileInputProps {
+    dictionary: Dictionary;
+}
+
+const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, onReset, type, dictionary }: FileDictionaryProps) => {
     return (
         <section className="flex flex-col gap-2">
             <label
@@ -32,7 +37,7 @@ const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, on
                     <p
                         className="text-[#1d073a] text-base font-medium"
                     >
-                        Click to upload your { id }
+                        { dictionary.upload.text } { id }
                     </p>
                 </figure>
             ) : (

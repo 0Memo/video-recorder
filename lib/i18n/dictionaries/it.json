@@ -52,19 +52,19 @@
         "views": "Visualizzazioni"
     },
     "time": {
-        "justNow": "Just now",
-        "oneMinuteAgo": "1 minute ago",
-        "minutesAgo": "{count} minutes ago",
-        "oneHourAgo": "1 hour ago",
-        "hoursAgo": "{count} hours ago",
-        "oneDayAgo": "1 day ago",
-        "daysAgo": "{count} days ago",
-        "oneWeekAgo": "1 week ago",
-        "weeksAgo": "{count} weeks ago",
-        "oneMonthAgo": "1 month ago",
-        "monthsAgo": "{count} months ago",
-        "oneYearAgo": "1 year ago",
-        "yearsAgo": "{count} years ago"
+        "justNow": "Proprio ora",
+        "oneMinuteAgo": "1 minuto fa",
+        "minutesAgo": "{count} minuti fa",
+        "oneHourAgo": "1 ora fa",
+        "hoursAgo": "{count} ore fa",
+        "oneDayAgo": "1 giorno fa",
+        "daysAgo": "{count} giorni fa",
+        "oneWeekAgo": "1 settimana fa",
+        "weeksAgo": "{count} settimane fa",
+        "oneMonthAgo": "1 mese fa",
+        "monthsAgo": "{count} mesi fa",
+        "oneYearAgo": "1 anno fa",
+        "yearsAgo": "{count} anni fa"
     },
     "profile": {
         "title": "Profilo",
@@ -74,21 +74,35 @@
         "settings": "Impostazioni"
     },
     "upload": {
-        "title": "Carica Video",
-        "selectFile": "Seleziona File",
-        "dragAndDrop": "Trascina e rilascia il tuo video qui",
-        "supportedFormats": "Formati supportati: MP4, AVI, MOV",
-        "maxSize": "Dimensione massima file: 100MB",
-        "uploading": "Caricamento...",
-        "uploadSuccess": "Caricamento riuscito!",
-        "uploadError": "Caricamento fallito. Riprova."
+        "upload": "Carica un video",
+        "title": "Titolo",
+        "titlePlaceholder": "Inserisci un titolo chiaro e conciso per il video",
+        "description": "Descrizione",
+        "descriptionPlacherholder": "Descrivi di cosa parla il video",
+        "text": "Clicca per caricare il tuo ",
+        "video": "Video",
+        "videoMin": "video",
+        "thumbnail": "Miniatura",
+        "thumbnailMin": "miniatura",
+        "visibility": "Visibilità",
+        "public": "Pubblico",
+        "private": "Privato",
+        "uploadVideo": "Carica video",
+        "uploading": "Caricamento in corso..."
     },
     "record": {
+        "title": "Registra",
         "screen": "Registrazione dello schermo",
         "recording": "Registrazione in corso...",
         "click": "Clicca su registra per iniziare a catturare lo schermo",
         "stop": "Interrompi registrazione",
         "again": "Registra di nuovo",
         "continue": "Continua per caricare"
+    },
+    "delete": {
+        "title": "Eliminare questo video?",
+        "sure": "Questo rimuoverà definitivamente il video e la sua miniatura. Sei sicuro?",
+        "cancel": "Annulla",
+        "confirm": "Elimina"
     }
 }

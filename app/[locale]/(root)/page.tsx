@@ -37,6 +37,7 @@ const Page = async ({ searchParams, params }: CustomParams) => {
               thumbnail={video.thumbnailUrl}
               userImg={user?.image || ""}
               username={user?.name || "Guest"}
+              dictionary={ dictionary }
             />
           ))}
         </section>

@@ -54,6 +54,7 @@ const Page = async ({ params, searchParams } : PageProps) => {
                             views={video.views}
                             visibility={video.visibility}
                             duration={video.duration}
+                            dictionary={ dictionary }
                         />
                     ))}
                 </section>

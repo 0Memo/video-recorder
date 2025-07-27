@@ -8,12 +8,7 @@ import { useState } from "react";
 import LoadingOverlay from "./LoadingOverlay";
 import { ICONS } from "../constants";
 import { getLocaleFromPathname } from "../lib/i18n/utils";
-import type { Dictionary } from "../lib/i18n/dictionaries";
 import LanguageSwitcher from "./LanguageSwitcher";
-
-interface NavbarProps {
-    dictionary: Dictionary;
-}
 
 const Navbar = () => {
     const router = useRouter();

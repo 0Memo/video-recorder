@@ -26,12 +26,12 @@
         "signUp": "Registrarse",
         "email": "Correo Electrónico",
         "password": "Contraseña",
-        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "forgotPassword": "¿Olvidó su contraseña?",
         "rememberMe": "Recordarme",
         "welcomeBack": "Bienvenido de nuevo",
         "createAccount": "Crear una cuenta",
-        "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-        "dontHaveAccount": "¿No tienes una cuenta?"
+        "alreadyHaveAccount": "¿Ya tiene una cuenta?",
+        "dontHaveAccount": "¿No tiene una cuenta?"
     },
     "list": {
         "title": "Filtrar",
@@ -74,21 +74,35 @@
         "settings": "Configuración"
     },
     "upload": {
-        "title": "Subir Video",
-        "selectFile": "Seleccionar Archivo",
-        "dragAndDrop": "Arrastra y suelta tu video aquí",
-        "supportedFormats": "Formatos soportados: MP4, AVI, MOV",
-        "maxSize": "Tamaño máximo de archivo: 100MB",
-        "uploading": "Subiendo...",
-        "uploadSuccess": "¡Subida exitosa!",
-        "uploadError": "Error al subir. Por favor, inténtalo de nuevo."
+        "upload": "Subir un video",
+        "title": "Título",
+        "titlePlaceholder": "Introduzca un título claro y conciso para el video",
+        "description": "Descripción",
+        "descriptionPlacherholder": "Describa de qué trata el video",
+        "text": "Haga clic para subir su ",
+        "video": "Video",
+        "videoMin": "video",
+        "thumbnail": "Miniatura",
+        "thumbnailMin": "miniatura",
+        "visibility": "Visibilidad",
+        "public": "Público",
+        "private": "Privado",
+        "uploadVideo": "Subir video",
+        "uploading": "Subiendo..."
     },
     "record": {
+        "title": "Grabar",
         "screen": "Grabación de pantalla",
         "recording": "Grabando...",
-        "click": "Haz clic en grabar para comenzar a capturar tu pantalla",
+        "click": "Haga clic en grabar para comenzar a capturar tu pantalla",
         "stop": "Detener grabación",
         "again": "Grabar de nuevo",
         "continue": "Continuar para subir"
+    },
+    "delete": {
+        "title": "¿Eliminar este video?",
+        "sure": "Esto eliminará permanentemente el video y su miniatura. ¿Está seguro?",
+        "cancel": "Cancelar",
+        "confirm": "Eliminar"
     }
 }
