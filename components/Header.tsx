@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import type { Dictionary } from "../lib/i18n/dictionaries";
 import { usePathname } from "next/navigation"
-import { getLocaleFromPathname } from "../lib/i18n/utils";
+import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 
 interface HeaderProps extends SharedHeaderProps {
     dictionary: Dictionary;
@@ -19,6 +19,15 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const pathname = usePathname();
     const currentLocale = getLocaleFromPathname(pathname);
+
+    const handleUploadNavigation = () => {
+        setIsLoading(true);
+        const uploadUrl = addLocaleToPathname("/upload", currentLocale);
+        router.push(uploadUrl);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    };
 
     return (
         <>
@@ -62,13 +71,7 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
                         className="flex items-center gap-2 md:gap-4"
                     >
                         <button
-                            onClick={() => {
-                                setIsLoading(true);
-                                router.push('/upload')
-                                setTimeout(() => {
-                                    setIsLoading(false);
-                                }, 1000);
-                            }}
+                            onClick={ handleUploadNavigation }
                             style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}
                             className="border !border-t-purple-900
                             border-r-purple-900 border-l-purple-900

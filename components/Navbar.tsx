@@ -7,7 +7,7 @@ import ImageWithFallback from "./ImageWithFallback";
 import { useState } from "react";
 import LoadingOverlay from "./LoadingOverlay";
 import { ICONS } from "../constants";
-import { getLocaleFromPathname } from "../lib/i18n/utils";
+import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
@@ -17,6 +17,41 @@ const Navbar = () => {
     const { data: session } = authClient.useSession();
     const user = session?.user;
     const [isLoading, setIsLoading] = useState(false);
+
+    const handleHomeNavigation = () => {
+        setIsLoading(true);
+        const homeUrl = addLocaleToPathname("/", currentLocale);
+        router.push(homeUrl);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    };
+
+    const handleProfileNavigation = () => {
+        if (!user?.id) return;
+        setIsLoading(true);
+        const profileUrl = addLocaleToPathname(
+            `/profile/${user.id}`,
+            currentLocale
+        );
+        router.push(profileUrl);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    };
+
+    const handleSignOut = async () => {
+        setIsLoading(true);
+        await authClient.signOut({
+            fetchOptions: {
+            onSuccess: () => {
+                setIsLoading(false);
+                const signInUrl = addLocaleToPathname("/sign-in", currentLocale);
+                redirect(signInUrl);
+            },
+            },
+        });
+    };
 
     return (
         <>
@@ -34,13 +69,7 @@ const Navbar = () => {
             >
                 <nav className="flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <button
-                    onClick={() => {
-                        setIsLoading(true);
-                        router.push('/')
-                        setTimeout(() => {
-                            setIsLoading(false);
-                        }, 1000);
-                    }} 
+                    onClick={ handleHomeNavigation } 
                     className="flex items-center gap-2.5"
                 >
                     <Image
@@ -52,7 +81,7 @@ const Navbar = () => {
                     <h1
                         className="font-semibold mt-1 text-xl text-[#1d073a] text-shadow-lg font-satochi -tracking-[0.1px]"
                     >
-                    MemoCast
+                        MemoCast
                     </h1>
                 </button>
                 <div className="flex items-center gap-4">
@@ -62,13 +91,7 @@ const Navbar = () => {
                             className="flex items-center gap-2.5"
                         >
                         <button
-                            onClick={() => {
-                                setIsLoading(true);
-                                router.push(`/profile/${user?.id}`);
-                                setTimeout(() => {
-                                    setIsLoading(false);
-                                }, 1000);
-                            }}
+                            onClick={ handleProfileNavigation }
                         >
                             <ImageWithFallback
                             src={session?.user.image ?? ""}
@@ -81,20 +104,10 @@ const Navbar = () => {
                         </button>
                         <button
                             className="cursor-pointer"
-                            onClick={async () => {
-                                setIsLoading(true);
-                                await authClient.signOut({
-                                    fetchOptions: {
-                                    onSuccess: () => {
-                                        setIsLoading(false);
-                                        redirect("/sign-in");
-                                    },
-                                    },
-                                });
-                            }}
+                            onClick={ handleSignOut }
                         >
                             <Image
-                            src="/assets/icons/exit.svg"
+                            src={ ICONS.exit }
                             alt="logout"
                             width={32}
                             height={32}

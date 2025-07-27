@@ -2,8 +2,9 @@
 import Image from 'next/image';
 import { getVideoById } from '../lib/actions/video';
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { ICONS } from '../constants';
+import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import type { Dictionary } from "../lib/i18n/dictionaries";
 import { daysAgo } from "../lib/utils";
 
@@ -16,11 +17,21 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
 
     const router = useRouter()
     const [copied, setCopied] = useState(false)
+    const pathname = usePathname();
+    const currentLocale = getLocaleFromPathname(pathname);
     
     const handleCopyLink = () => {
         navigator.clipboard.writeText(`${ window.location.origin }/video/${ id }`)
         setCopied(true)
     }
+
+    const handleProfileNavigation = () => {
+        const profileUrl = addLocaleToPathname(
+            `/profile/${ownerId}`,
+            currentLocale
+        );
+        router.push(profileUrl);
+    };
 
     useEffect(() => {
         const changeChecked = setTimeout(() => {
@@ -47,7 +58,7 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
                 >
                     <button
                         className='flex items-center gap-2 text-gray-100 text-sm font-semibold'
-                        onClick={() => router.push(`/profile/${ ownerId }`)}
+                        onClick={ handleProfileNavigation }
                     >
                         <Image
                             src={finalUserImgSrc || "/placeholder.svg"}

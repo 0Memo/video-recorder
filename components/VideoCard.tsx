@@ -3,14 +3,17 @@
 import Image from "next/image";
 import { startTransition, useEffect, useState } from "react";
 import LoadingOverlay from "./LoadingOverlay";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { ICONS } from "../constants"
 import ConfirmModal from "./ConfirmModal";
 import { deleteVideo } from "../lib/actions/video";
 import type { Dictionary } from "../lib/i18n/dictionaries";
+import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
+import { daysAgo } from "../lib/utils";
 
 interface VideoDictionaryProps extends VideoCardProps {
     dictionary: Dictionary;
+    userId?: string
 }
 
 const VideoCard = ({
@@ -23,20 +26,46 @@ const VideoCard = ({
     views,
     visibility,
     duration,
-    dictionary
+    dictionary,
+    userId
 }: VideoDictionaryProps) => {
-    const [formattedDate, setFormattedDate] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const router = useRouter();
+    const pathname = usePathname();
+    const currentLocale = getLocaleFromPathname(pathname);
     const [isLoading, setIsLoading] = useState(false);
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
     const [copied, setCopied] = useState(false)
+    const [formattedDate, setFormattedDate] = useState("");
         
     const handleCopyLink = () => {
         navigator.clipboard.writeText(`${ window.location.origin }/video/${ id }`)
         setCopied(true)
     }
+
+    const handleVideoNavigation = () => {
+        setIsLoading(true);
+        const videoUrl = addLocaleToPathname(`/video/${id}`, currentLocale);
+        router.push(videoUrl);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    };
+
+    const handleProfileNavigation = (e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevent triggering the video navigation
+        if (!userId) return;
+        setIsLoading(true);
+        const profileUrl = addLocaleToPathname(
+            `/profile/${userId}`,
+            currentLocale
+        );
+        router.push(profileUrl);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    };
 
     useEffect(() => {
         const changeChecked = setTimeout(() => {
@@ -75,13 +104,7 @@ const VideoCard = ({
     return (
         <>
             <div
-                onClick={() => {
-                    setIsLoading(true);
-                    router.push(`/video/${id}`);
-                    setTimeout(() => {
-                        setIsLoading(false);
-                    }, 1000);
-                }} 
+                onClick={ handleVideoNavigation } 
                 className="relative block max-w-90 rounded-2xl shadow-md overflow-hidden bg-white cursor-pointer"
             >
                 <div
@@ -106,21 +129,33 @@ const VideoCard = ({
                         <figure
                             className="flex items-center gap-1.5"
                         >
-                            <Image
-                                src={finalUserImgSrc || "/placeholder.svg"}
-                                alt="avatar"
-                                width={34}
-                                height={34}
-                                className="rounded-full aspect-square"
-                            />
+                            <button
+                                onClick={ handleProfileNavigation }
+                                className="flex-shrink-0 hover:opacity-80 transition-opacity"
+                                title={`${dictionary.navbar.profile} - ${username}`}
+                            >
+                                <Image
+                                    src={finalUserImgSrc || "/placeholder.svg"}
+                                    alt="avatar"
+                                    width={34}
+                                    height={34}
+                                    className="rounded-full aspect-square"
+                                />
+                            </button>
                             <figcaption
                                 className="flex flex-col gap-0.5"
                             >
-                                <h3
-                                    className="text-xs font-semibold text-[#1d073a]"
+                                <button
+                                    onClick={handleProfileNavigation}
+                                    className="text-left hover:underline transition-all"
+                                    title={`${dictionary.navbar.profile} - ${username}`}
                                 >
-                                    { username }
-                                </h3>
+                                    <h3
+                                        className="text-xs font-semibold text-[#1d073a]"
+                                    >
+                                        { username }
+                                    </h3>
+                                </button>
                                 <p
                                     className="text-xs text-gray-100 font-normal capitalize"
                                 >
@@ -151,9 +186,7 @@ const VideoCard = ({
                         className="text-bas font-semibold truncate"
                     >
                         <span className="text-[#1d073a]">{ title }</span> - {" "} 
-                        <span className="text-sm font-extralight capitalize">
-                            { formattedDate }
-                        </span>
+                        <span className="text-sm font-extralight capitalize">{daysAgo(createdAt, dictionary)}</span>
                     </h2>
                 </article>
                 <button
