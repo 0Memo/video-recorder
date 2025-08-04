@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Karla } from "next/font/google";
 import "./globals.css";
 import { satoshi } from "../fonts/font";
+import BodyFadeEffect from "./BodyFadeEffect";
 
 const geistKarla = Karla({
     variable: "--font-geist-karla",
@@ -33,6 +34,7 @@ export default function Layout({
     return (
         <html lang="en" className={htmlClassNames}>
             <body suppressHydrationWarning={true} className="font-karla">
+                <BodyFadeEffect/>
                 {children}
             </body>
         </html>

@@ -20,6 +20,7 @@ const Navbar = () => {
     const user = session?.user;
     const { theme, toggleTheme, mounted } = useTheme();
     const [isLoading, setIsLoading] = useState(false);
+    const [isFading, setIsFading] = useState(false);
     if (!mounted) return null;
 
     const baseColor = theme === "dark" ? "#ffffff" : "#1d073a";
@@ -60,7 +61,11 @@ const Navbar = () => {
     };
 
     return (
-        <>
+        <div
+            className={`transition-opacity duration-300 ease-in-out ${
+                isFading ? "opacity-0" : "opacity-100"
+            }`}
+        >
             <header
                 className="h-[90px] flex items-center"
                 style={{
@@ -145,7 +150,7 @@ const Navbar = () => {
                 </nav>
             </header>
             {isLoading && <LoadingOverlay color="#1d073a" />}{" "}
-        </>
+        </div>
     );
 };
 

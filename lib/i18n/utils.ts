@@ -23,10 +23,6 @@ export function removeLocaleFromPathname(pathname: string): string {
 }
 
 export function addLocaleToPathname(pathname: string, locale: Locale): string {
-    if (locale === i18n.defaultLocale) {
-        return pathname
-    }
-
     const cleanPathname = removeLocaleFromPathname(pathname)
     return `/${locale}${cleanPathname === "/" ? "" : cleanPathname}`
 }

@@ -59,6 +59,14 @@
     background-color: #000000f8;
   }
 
+  body {
+    transition: opacity 1s ease;
+  }
+
+  body.fading {
+    opacity: 0;
+  }
+
   /* For IE10 */
   select::-ms-expand {
     display: none;

@@ -40,10 +40,16 @@ const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
     if (!mounted) return null;
 
     const handleLocaleChange = (newLocale: Locale) => {
+        if (newLocale === currentLocale) {
+            setIsOpen(false);
+            return;
+        }
+        document.body.classList.add("fading");
+        setIsOpen(false);
+
         const pathnameWithoutLocale = removeLocaleFromPathname(pathname);
         const newPathname = addLocaleToPathname(pathnameWithoutLocale, newLocale);
 
-        setIsOpen(false);
         router.push(newPathname);
     };
 
