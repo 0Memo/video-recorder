@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { type NextRequest, NextResponse, type NextFetchEvent } from "next/server"
 import { getSessionCookie } from "better-auth/cookies"
 import aj from "./lib/arcjet"
@@ -52,25 +53,22 @@ async function authAndRedirectHandler(request: NextRequest, event: NextFetchEven
 
     // Define paths that should always be accessible without a session cookie.
     const publicPaths = [
-        "/sign-in", // Your sign-in page
-        "/api/auth", // Better Auth API routes
+        "/sign-in",
+        "/api/auth",
     ]
 
     // Check if the current path (without locale) starts with any of the public paths.
     const isPublicPath = publicPaths.some((path) => pathnameWithoutLocale.startsWith(path))
 
-    // If it's a public path, allow the request to proceed without checking for a session.
     if (isPublicPath) {
         return NextResponse.next()
     }
 
-    // If it's not a public path and no session cookie is found, redirect to the sign-in page.
     if (!sessionCookie) {
         const signInUrl = new URL(addLocaleToPathname("/sign-in", currentLocale), request.url)
         return NextResponse.redirect(signInUrl)
     }
 
-    // If a session cookie exists and it's not a public path, allow the request to proceed.
     return NextResponse.next()
 }
 
@@ -90,7 +88,6 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
         return authAndRedirectHandler(request, event)
     }
 
-    // Otherwise, apply Arcjet rules first, then your authentication/redirection logic.
     return arcjetMiddleware(request, event)
 }
 

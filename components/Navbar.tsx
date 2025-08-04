@@ -22,6 +22,8 @@ const Navbar = () => {
     const [isLoading, setIsLoading] = useState(false);
     if (!mounted) return null;
 
+    const baseColor = theme === "dark" ? "#ffffff" : "#1d073a";
+
     const handleHomeNavigation = () => {
         setIsLoading(true);
         const homeUrl = addLocaleToPathname("/", currentLocale);
@@ -62,14 +64,16 @@ const Navbar = () => {
             <header
                 className="h-[90px] flex items-center"
                 style={{
-                    backgroundImage:
-                        "linear-gradient(to bottom, #1d073a 0%, #1d073a 100%), linear-gradient(to bottom, #1d073a 0%, #1d073a 100%), radial-gradient(circle, #1d073a 0%, #1d073a 30%, transparent 40%, transparent 100%)",
-                    backgroundSize:
-                        "calc(50% - 1rem) 1px, calc(50% - 1rem) 1px, 1rem 1rem",
+                    backgroundImage: `
+                    linear-gradient(to bottom, ${baseColor} 0%, ${baseColor} 100%),
+                    linear-gradient(to bottom, ${baseColor} 0%, ${baseColor} 100%),
+                    radial-gradient(circle, ${baseColor} 0%, ${baseColor} 30%, transparent 40%, transparent 100%)`,
+                    backgroundSize: "calc(50% - 1rem) 1px, calc(50% - 1rem) 1px, 1rem 1rem",
                     backgroundPosition:
-                        "0% calc(100% - .5rem), 100% calc(100% - .5rem), 50% 100%",
+                    "0% calc(100% - .5rem), 100% calc(100% - .5rem), 50% 100%",
                     backgroundRepeat: "no-repeat",
                 }}
+                suppressHydrationWarning
             >
                 <nav className="flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <button
