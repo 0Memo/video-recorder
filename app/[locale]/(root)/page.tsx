@@ -6,17 +6,28 @@ import { getDictionary } from "../../../lib/i18n/dictionaries";
 import type { Locale } from "../../../lib/i18n/config";
 import { ICONS } from "../../../constants"
 
-interface CustomParams extends SearchParams {
-  params: {
+interface CustomParams {
+  searchParams: Promise<{
+    query?: string;
+    filter?: string;
+    page?: string;
+  }>;
+  params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 const Page = async ({ searchParams, params }: CustomParams) => {
-  const { query, filter, page } = await searchParams
+  const resolvedSearchParams = await searchParams;
+  const resolvedParams = await params;
 
-  const { videos, pagination } = await getAllVideos(query, filter, Number(page) || 1)
-  const dictionary = await getDictionary(params.locale);
+  const { query, filter, page } = resolvedSearchParams;
+  const { videos, pagination } = await getAllVideos(
+    query,
+    filter,
+    Number(page) || 1
+  );
+  const dictionary = await getDictionary(resolvedParams.locale);
 
   return (
     <main

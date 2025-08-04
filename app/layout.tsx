@@ -33,7 +33,7 @@ export default function Layout({
     return (
         <html lang="en" className={htmlClassNames}>
             <body suppressHydrationWarning={true} className="font-karla">
-                    {children}
+                {children}
             </body>
         </html>
     );

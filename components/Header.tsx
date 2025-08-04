@@ -9,6 +9,7 @@ import { useState } from "react"
 import type { Dictionary } from "../lib/i18n/dictionaries";
 import { usePathname } from "next/navigation"
 import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
+import TextWithTheme from "./TextWithTheme";
 
 interface HeaderProps extends SharedHeaderProps {
     dictionary: Dictionary;
@@ -49,21 +50,23 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
                                 style={{ width: 'auto', height: 'auto' }}
                                 className="rounded-full aspect-square"
                             />
-                        )}
-            
+                        )}            
                         <article
                             className="flex flex-col gap-1 -tracking-[0.8px]"
                         >
-                            <h1
-                                className="text-[#1d073a] text-2xl font-bold text-shadow-lg"
+                            <TextWithTheme
+                                as="h1"
+                                className="text-2xl font-bold text-shadow-lg"
                             >
-                                { dictionary.video.allVideos }
-                            </h1>
-                            <p
-                                className="text-sm text-gray-100 font-medium"
+                                {dictionary.video.allVideos}
+                            </TextWithTheme>
+
+                            <TextWithTheme
+                                as="p"
+                                className="text-sm font-medium"
                             >
-                                { dictionary.video.publicLibrary }
-                            </p>
+                                {dictionary.video.publicLibrary}
+                            </TextWithTheme>
                         </article>
                     </div>
             
@@ -87,11 +90,12 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
                                     filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)'
                                 }}
                             />
-                            <span
+                            <TextWithTheme
+                                as="span"
                                 className="truncate"
                             >
                                 { dictionary.upload.uploadVideo }
-                            </span>
+                            </TextWithTheme>
                         </button>
                         <RecordScreen dictionary={dictionary} />
                     </aside>

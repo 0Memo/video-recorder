@@ -9,6 +9,8 @@ import LoadingOverlay from "./LoadingOverlay";
 import { ICONS } from "../constants";
 import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { useTheme } from "../lib/hooks/useTheme";
 
 const Navbar = () => {
     const router = useRouter();
@@ -16,7 +18,9 @@ const Navbar = () => {
     const currentLocale = getLocaleFromPathname(pathname);
     const { data: session } = authClient.useSession();
     const user = session?.user;
+    const { theme, toggleTheme, mounted } = useTheme();
     const [isLoading, setIsLoading] = useState(false);
+    if (!mounted) return null;
 
     const handleHomeNavigation = () => {
         setIsLoading(true);
@@ -58,13 +62,13 @@ const Navbar = () => {
             <header
                 className="h-[90px] flex items-center"
                 style={{
-                backgroundImage:
-                    "linear-gradient(to bottom, #1d073a 0%, #1d073a 100%), linear-gradient(to bottom, #1d073a 0%, #1d073a 100%), radial-gradient(circle, #1d073a 0%, #1d073a 30%, transparent 40%, transparent 100%)",
-                backgroundSize:
-                    "calc(50% - 1rem) 1px, calc(50% - 1rem) 1px, 1rem 1rem",
-                backgroundPosition:
-                    "0% calc(100% - .5rem), 100% calc(100% - .5rem), 50% 100%",
-                backgroundRepeat: "no-repeat",
+                    backgroundImage:
+                        "linear-gradient(to bottom, #1d073a 0%, #1d073a 100%), linear-gradient(to bottom, #1d073a 0%, #1d073a 100%), radial-gradient(circle, #1d073a 0%, #1d073a 30%, transparent 40%, transparent 100%)",
+                    backgroundSize:
+                        "calc(50% - 1rem) 1px, calc(50% - 1rem) 1px, 1rem 1rem",
+                    backgroundPosition:
+                        "0% calc(100% - .5rem), 100% calc(100% - .5rem), 50% 100%",
+                    backgroundRepeat: "no-repeat",
                 }}
             >
                 <nav className="flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -79,13 +83,27 @@ const Navbar = () => {
                         height={32}
                     />
                     <h1
-                        className="font-semibold mt-1 text-xl text-[#1d073a] text-shadow-lg font-satochi -tracking-[0.1px]"
+                        className={`font-semibold mt-1 text-xl text-shadow-lg font-satochi -tracking-[0.1px] ${
+                            theme === "dark" ? "text-white" : "text-[#1d073a]"
+                        }`}
+                        suppressHydrationWarning
                     >
                         MemoCast
                     </h1>
                 </button>
                 <div className="flex items-center gap-4">
                     <LanguageSwitcher currentLocale={currentLocale} />
+                    <button
+                        onClick={ toggleTheme }
+                        className="p-2 rounded-lg hover:bg-gray-500 dark:hover:bg-gray-200 transition-colors duration-200"
+                        aria-label="Toggle Theme"
+                    >
+                        {theme === "light" ? (
+                        <MoonIcon className="w-6 h-6 text-blue-600" />
+                        ) : (
+                        <SunIcon className="w-6 h-6 text-yellow-600" />
+                        )}
+                    </button>
                     {user && (
                         <figure
                             className="flex items-center gap-2.5"

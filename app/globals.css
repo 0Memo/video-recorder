@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --font-karla: var(--font-geist-karla);
   --font-satoshi: var(--font-satoshi);
@@ -54,6 +49,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-geist-karla);
+  }
+
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html.dark {
+    background-color: #0a0a0a;
   }
 
   /* For IE10 */

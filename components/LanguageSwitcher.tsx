@@ -8,6 +8,7 @@ import {
     addLocaleToPathname,
     removeLocaleFromPathname,
 } from "../lib/i18n/utils";
+import { useTheme } from "../lib/hooks/useTheme";
 
 interface LanguageSwitcherProps {
     currentLocale: Locale;
@@ -18,7 +19,8 @@ const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
     const router = useRouter();
     const pathname = usePathname();
     const dropdownRef = useRef<HTMLDivElement>(null);
-
+    const { theme, mounted } = useTheme();
+    
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
         if (
@@ -35,6 +37,8 @@ const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
         };
     }, []);
 
+    if (!mounted) return null;
+
     const handleLocaleChange = (newLocale: Locale) => {
         const pathnameWithoutLocale = removeLocaleFromPathname(pathname);
         const newPathname = addLocaleToPathname(pathnameWithoutLocale, newLocale);
@@ -47,7 +51,7 @@ const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
         <div className="relative" ref={dropdownRef}>
         <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#1d073a] hover:bg-[#1d073a] hover:text-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] transition-colors border-b-4 border-transparent duration-200 hover:border-b-4 hover:border-b-[#C3B1E1]"
+            className={`flex items-center gap-2 px-3 py-2 text-sm font-medium hover:bg-[#1d073a] hover:text-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] transition-colors border-b-4 border-transparent duration-200 hover:border-b-4 hover:border-b-[#C3B1E1] ${ theme === "dark" ? "text-white" : "text-[#1d073a]" }`}
             aria-label="Select language"
         >
             <GlobeAltIcon className="w-4 h-4" />
