@@ -60,11 +60,14 @@
   }
 
   body {
-    transition: opacity 1s ease;
+    opacity: 1;
+    transition: opacity 0.35s ease;
   }
 
   body.fading {
     opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+    pointer-events: none;
   }
 
   /* For IE10 */
