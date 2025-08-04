@@ -4,16 +4,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { ICONS } from "../../../../constants"
 import type { Dictionary } from "../../../../lib/i18n/dictionaries";
-import { usePathname } from "next/navigation"
-import { getLocaleFromPathname, addLocaleToPathname } from "../../../../lib/i18n/utils";
 
 interface SignInProps {
     dictionary: Dictionary;
 }
 
 const Page = ({ dictionary }: SignInProps) => {
-    const pathname = usePathname();
-    const currentLocale = getLocaleFromPathname(pathname);
 
     const handleSignIn = async () => {
         return await authClient.signIn.social({ provider: 'google'})

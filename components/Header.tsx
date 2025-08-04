@@ -10,16 +10,19 @@ import type { Dictionary } from "../lib/i18n/dictionaries";
 import { usePathname } from "next/navigation"
 import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import TextWithTheme from "./TextWithTheme";
+import { useTheme } from "../lib/hooks/useTheme";
+import { cn } from "@/lib/utils"
 
 interface HeaderProps extends SharedHeaderProps {
     dictionary: Dictionary;
 }
 
-const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
+const Header = ({ userImg, dictionary } : HeaderProps) => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const pathname = usePathname();
     const currentLocale = getLocaleFromPathname(pathname);
+    const { theme, mounted } = useTheme();
 
     const handleUploadNavigation = () => {
         setIsLoading(true);
@@ -109,20 +112,26 @@ const Header = ({ subHeader, title, userImg, dictionary } : HeaderProps) => {
                     >
                         <input
                             type="text"
-                            style={{ border: '1px solid #1d073a', borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
+                            style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px' }}
                             placeholder={dictionary.common.search}
-                            className="focus:outline-[#C3B1E1] py-2 pl-8
-                            pr-5 text-[#1d073a] text-sm font-normal w-full
-                            placeholder:text-gray-100 placeholder:italic
-                            placeholder:font-semibold"
+                            className={cn(
+                            "py-2 pl-10 pr-5 text-sm font-normal w-full rounded-[255px_15px_225px_15px/15px_225px_15px_255px] focus:outline-[#C3B1E1] placeholder:italic placeholder:font-semibold",
+                            theme === "dark"
+                                ? "bg-[#0e0e0e] text-white placeholder:text-white border border-white"
+                                : "bg-white text-[#1d073a] placeholder:text-[#1d073a9a] border border-[#1d073a]"
+                            )}
+                            suppressHydrationWarning={!mounted}
                         />
                         <Image
                             src={ ICONS.search }
                             alt="search"
                             width={20}
                             height={20}
-                            style={{ 
-                                filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)'
+                            style={{
+                            filter:
+                                theme === "dark"
+                                ? "invert(100%)"
+                                : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
                             }}
                             className="absolute top-1/2 left-3 -translate-y-1/2"
                         />
