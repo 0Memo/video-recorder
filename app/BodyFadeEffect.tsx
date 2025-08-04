@@ -8,17 +8,15 @@ export default function BodyFadeEffect() {
 
     useEffect(() => {
         if (prevPathname.current !== pathname) {
-        // Path changed — fade-in after content "should be" loaded
         const timeout = setTimeout(() => {
             document.body.classList.remove("fading");
-        }, 300); // tweak duration for your fade
+        }, 100);
 
         prevPathname.current = pathname;
 
         return () => clearTimeout(timeout);
         } else {
-        // On first mount (no path change), just remove fading immediately
-        document.body.classList.remove("fading");
+            document.body.classList.remove("fading");
         }
     }, [pathname]);
 
