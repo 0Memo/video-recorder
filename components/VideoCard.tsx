@@ -11,9 +11,19 @@ import type { Dictionary } from "../lib/i18n/dictionaries";
 import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import { daysAgo } from "../lib/utils";
 
-interface VideoDictionaryProps extends VideoCardProps {
+interface VideoCardProps {
+    videoId: string;
+    title: string;
+    thumbnail: string;
+    userImg: string;
+    username: string;
+    createdAt: Date;
+    views: number;
+    visibility: string;
+    duration: number | null | undefined;
     dictionary: Dictionary;
-    userId?: string
+    userId?: string;
+    id: string;
 }
 
 const VideoCard = ({
@@ -27,8 +37,9 @@ const VideoCard = ({
     visibility,
     duration,
     dictionary,
-    userId
-}: VideoDictionaryProps) => {
+    userId,
+    videoId
+}: VideoCardProps) => {
     const [showModal, setShowModal] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const router = useRouter();
@@ -37,7 +48,6 @@ const VideoCard = ({
     const [isLoading, setIsLoading] = useState(false);
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
     const [copied, setCopied] = useState(false)
-    const [formattedDate, setFormattedDate] = useState("");
         
     const handleCopyLink = () => {
         navigator.clipboard.writeText(`${ window.location.origin }/video/${ id }`)
@@ -46,7 +56,8 @@ const VideoCard = ({
 
     const handleVideoNavigation = () => {
         setIsLoading(true);
-        const videoUrl = addLocaleToPathname(`/video/${id}`, currentLocale);
+        const videoUrl = addLocaleToPathname(`/video/${ id }`, currentLocale);
+        console.log("videoUrl:", videoUrl);
         router.push(videoUrl);
         setTimeout(() => {
             setIsLoading(false);
@@ -54,7 +65,7 @@ const VideoCard = ({
     };
 
     const handleProfileNavigation = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent triggering the video navigation
+        e.stopPropagation();
         if (!userId) return;
         setIsLoading(true);
         const profileUrl = addLocaleToPathname(
@@ -74,16 +85,6 @@ const VideoCard = ({
 
         return () => clearTimeout(changeChecked)
     }, [ copied ])
-
-    useEffect(() => {
-        const date = new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        }).format(new Date(createdAt));
-        setFormattedDate(date);
-    }, [createdAt]);
-
 
     const handleDelete = () => {
         setIsDeleting(true);
@@ -186,7 +187,7 @@ const VideoCard = ({
                         className="text-bas font-semibold truncate"
                     >
                         <span className="text-[#1d073a]">{ title }</span> - {" "} 
-                        <span className="text-sm font-extralight capitalize">{daysAgo(createdAt, dictionary)}</span>
+                        <span className="text-sm font-extralight">{daysAgo(createdAt, dictionary)}</span>
                     </h2>
                 </article>
                 <button

@@ -45,7 +45,8 @@ const Page = async ({ params, searchParams } : PageProps) => {
                     {videos.map(({ video }) => (
                         <VideoCard
                             key={video.id}
-                            id={video.videoId}
+                            videoId={video.videoId}
+                            id={video.id}
                             title={video.title}
                             thumbnail={video.thumbnailUrl}
                             createdAt={video.createdAt}

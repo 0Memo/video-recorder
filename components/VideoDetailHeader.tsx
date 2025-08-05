@@ -7,6 +7,7 @@ import { ICONS } from '../constants';
 import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import type { Dictionary } from "../lib/i18n/dictionaries";
 import { daysAgo } from "../lib/utils";
+import { useTheme } from "../lib/hooks/useTheme";
 
 interface VideoDetailHeaderDictionaryProps extends VideoDetailHeaderProps {
     dictionary: Dictionary
@@ -41,6 +42,10 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
         return () => clearTimeout(changeChecked)
     }, [ copied ])
 
+    const { theme, mounted } = useTheme();
+    
+    if (!mounted) return null;
+
     return (
         <header
             className='flex justify-between gap-5 flex-col md:flex-row'
@@ -49,7 +54,9 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
                 className='flex flex-col gap-2.5'
             >
                 <h1
-                    className='text-3xl font-bold text-[#1d073a]'
+                    className={`text-3xl font-bold ${
+                            theme === "dark" ? "text-white" : "text-[#1d073a]"
+                        }`}
                 >
                     {title}
                 </h1>
@@ -67,17 +74,27 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
                             height={24}
                             className='rounded-full'
                         />
-                        <h2>{ username ?? 'Guest' }</h2>
+                        <h2
+                            className={`${
+                            theme === "dark" ? "text-white" : "text-[#1d073a]"
+                        }`}
+                        >
+                            { username ?? 'Guest' }
+                        </h2>
                     </button>
                     <figcaption
-                        className='flex items-center gap-1 text-gray-100 text-sm font-semibold'
+                        className={`flex items-center gap-1 text-sm font-semibold ${
+                            theme === "dark" ? "text-white" : "text-gray-100"
+                        }`}
                     >
                         <span
                             className='mt-1'
                         >
                             ・
                         </span>
-                        <p>{daysAgo(createdAt, dictionary)}</p>
+                        <p>
+                            {daysAgo(createdAt, dictionary)}
+                        </p>
                     </figcaption>
                 </figure>
             </aside>
