@@ -51,11 +51,11 @@ const Navbar = () => {
         setIsLoading(true);
         await authClient.signOut({
             fetchOptions: {
-            onSuccess: () => {
-                setIsLoading(false);
-                const signInUrl = addLocaleToPathname("/sign-in", currentLocale);
-                redirect(signInUrl);
-            },
+                onSuccess: () => {
+                        setIsLoading(false);
+                        const signInUrl = addLocaleToPathname("/sign-in", currentLocale);
+                        redirect(signInUrl);
+                    },
             },
         });
     };

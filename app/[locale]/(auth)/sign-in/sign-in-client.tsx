@@ -1,9 +1,12 @@
 "use client"
-import { authClient } from "@/lib/auth-client"
+import { authClient } from "../../../../lib/auth-client"
 import Image from "next/image"
 import Link from "next/link"
 import { ICONS } from "../../../../constants"
 import type { Dictionary } from "../../../../lib/i18n/dictionaries";
+import { useTheme } from "../../../../lib/hooks/useTheme";
+import LoadingOverlay from "../../../../components/LoadingOverlay"
+import { useState } from "react"
 
 interface SignInProps {
     dictionary: Dictionary;
@@ -11,8 +14,14 @@ interface SignInProps {
 
 const Page = ({ dictionary }: SignInProps) => {
 
+    const { theme } = useTheme();
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSignIn = async () => {
-        return await authClient.signIn.social({ provider: 'google'})
+        setIsLoading(true);
+        await authClient.signIn.social({
+            provider: 'google'
+        })
     }
 
     return (
@@ -35,7 +44,7 @@ const Page = ({ dictionary }: SignInProps) => {
                         height={32} 
                     />
                     <h1 
-                        className="font-bold text-shadow-lg"
+                        className="font-bold text-shadow-lg text-neutral-200"
                     >
                         MemoCast
                     </h1>
@@ -63,7 +72,7 @@ const Page = ({ dictionary }: SignInProps) => {
                         </figure>
                         <p 
                             className="text-3xl font-semibold text-dark-100
-                            text-center -tracking-[2px]"
+                            text-center -tracking-[2px] text-neutral-200"
                         >
                             { dictionary.auth.testimony }
                         </p>
@@ -87,7 +96,7 @@ const Page = ({ dictionary }: SignInProps) => {
                                     Luis Contreras
                                 </h2>
                                 <p 
-                                    className="text-gray-100 font-normal text-sm
+                                    className="text-gray-50 font-normal text-sm
                                     -tracking-[0.5px]"
                                 >
                                     Product Designer, ViloCyte
@@ -96,13 +105,16 @@ const Page = ({ dictionary }: SignInProps) => {
                         </article>
                     </section>
                 </div>
-                <p className="flex flex-row gap-2">
+                <p className="flex flex-row gap-2 text-neutral-200">
                     <Image
                         src={ ICONS.copyright }
                         alt="copyright"
                         width={16}
                         height={16}
                         className="w-6 h-6 object-contain"
+                        style={{
+                            filter: "invert(100%)"
+                        }}
                     />
                     MemoCast {(new Date()).getFullYear()}
                 </p>
@@ -111,9 +123,15 @@ const Page = ({ dictionary }: SignInProps) => {
             <aside 
                 className="flex items-center justify-center lg:w-1/2 w-full
                 lg:h-screen px-10 py-10"
+                style={{
+                    filter:
+                        theme === "dark"
+                        ? "bg-neutral-100"
+                        : "bg-[#000000f8]",
+                }}
             >
                 <section 
-                    className="rounded-20 bg-white shadow-10 max-w-xl w-full
+                    className="rounded-20 bg-neutral-200 shadow-8 max-w-xl w-full
                     flex flex-col px-5 py-7.5 gap-8"
                 >
                     <Link 
@@ -127,8 +145,8 @@ const Page = ({ dictionary }: SignInProps) => {
                             height={40} 
                         />
                         <h1 
-                            className="text-28 font-black text-blue-100 font-satoshi
-                            text-shadow-lg"
+                            className="text-28 font-black text-[#1d073a] font-satoshi
+                            text-shadow-sm"
                         >
                             MemoCast
                         </h1>
@@ -147,8 +165,8 @@ const Page = ({ dictionary }: SignInProps) => {
                     </p>
                     <button 
                         className="w-full flex justify-center items-center gap-2.5
-                        bg-white border border-gray-25 rounded-4xl py-4 text-base 
-                        text-dark-100 font-semibold cursor-pointer -tracking-[0.8px]"
+                        bg-neutral-100 border border-gray-25 rounded-20 py-4 text-base 
+                        text-[#1d073a] font-semibold cursor-pointer -tracking-[0.8px]"
                         onClick={ handleSignIn }
                     >
                         <Image
@@ -163,6 +181,7 @@ const Page = ({ dictionary }: SignInProps) => {
                     </button>
                 </section>
             </aside>
+            {isLoading && <LoadingOverlay color="#1d073a" />}{" "}
         </main>
     )
 }
