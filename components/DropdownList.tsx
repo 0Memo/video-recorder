@@ -31,7 +31,7 @@ const DropdownList = ({ dictionary }: DropDownProps) => {
                     className='p-4 flex flex-row items-center justify-center gap-3 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border border-[#1d073a] border-b-4 border-b-[#C3B1E1]'
                 >
                     <figure
-                        className={`inline-flex ${
+                        className={`inline-flex gap-3 ${
                             theme === "dark" ? "text-white" : "text-[#1d073a]"
                         }`}
                     >
@@ -40,8 +40,11 @@ const DropdownList = ({ dictionary }: DropDownProps) => {
                             alt="menu"
                             width={24}
                             height={24}
-                            style={{ 
-                                filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)', marginRight: '5px'
+                            style={{
+                                filter:
+                                    theme === "dark"
+                                    ? "invert(100%)"
+                                    : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
                             }}
                         />
                         {dictionary.list.title}

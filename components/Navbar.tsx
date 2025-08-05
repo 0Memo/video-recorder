@@ -80,7 +80,9 @@ const Navbar = () => {
                 }}
                 suppressHydrationWarning
             >
-                <nav className="flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <nav
+                className="flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full"
+                >
                 <button
                     onClick={ handleHomeNavigation } 
                     className="flex items-center gap-2.5"
@@ -100,7 +102,9 @@ const Navbar = () => {
                         MemoCast
                     </h1>
                 </button>
-                <div className="flex items-center gap-4">
+                <div
+                    className="flex items-center gap-4"
+                >
                     <LanguageSwitcher currentLocale={currentLocale} />
                     <button
                         onClick={ toggleTheme }
@@ -121,12 +125,12 @@ const Navbar = () => {
                             onClick={ handleProfileNavigation }
                         >
                             <ImageWithFallback
-                            src={session?.user.image ?? ""}
-                            alt="user"
-                            width={20}
-                            height={20}
-                            className="mt-2"
-                            style={{ width: "auto", height: "auto" }}
+                                src={session?.user.image ?? ""}
+                                alt="user"
+                                width={20}
+                                height={20}
+                                className="mt-2"
+                                style={{ width: "auto", height: "auto" }}
                             />
                         </button>
                         <button
@@ -134,14 +138,16 @@ const Navbar = () => {
                             onClick={ handleSignOut }
                         >
                             <Image
-                            src={ ICONS.exit }
-                            alt="logout"
-                            width={32}
-                            height={32}
-                            style={{
-                                filter:
-                                "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
-                            }}
+                                src={ ICONS.exit }
+                                alt="logout"
+                                width={38}
+                                height={38}
+                                style={{
+                                    filter:
+                                        theme === "dark"
+                                        ? "invert(100%)"
+                                        : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
+                                }}
                             />
                         </button>
                         </figure>

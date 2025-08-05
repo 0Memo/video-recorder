@@ -25,7 +25,7 @@
         "title2": "vidéo MemoCast",
         "title3": "en un rien de temps !",
         "signIn": "Se connecter avec Google",
-        "testimony": "MemoCast rend l’enregistrement d’écran simple. Des tutoriels rapides aux présentations complètes, c’est rapide, fluide et partageable en quelques secondes"
+        "testimony": "MemoCast rend l'enregistrement d'écran simple. Des tutoriels rapides aux présentations complètes, c'est rapide, fluide et partageable en quelques secondes"
     },
     "list": {
         "title": "Filtrer",
@@ -34,8 +34,8 @@
     },
     "video": {
         "title": "Vidéo",
-        "upload": "Télécharger une Vidéo",
-        "record": "Enregistrer l'Écran",
+        "upload": "Télécharger Vidéo",
+        "record": "Enregistrer Écran",
         "myVideos": "Mes Vidéos",
         "allVideos": "Toutes les Vidéos",
         "publicLibrary": "Bibliothèque publique",
@@ -46,7 +46,7 @@
         "views": "Vues"
     },
     "time": {
-        "justNow": "À l’instant",
+        "justNow": "À l'instant",
         "oneMinuteAgo": "Il y a 1 minute",
         "minutesAgo": "Il y a {count} minutes",
         "oneHourAgo": "Il y a 1 heure",
@@ -68,12 +68,12 @@
         "settings": "Paramètres"
     },
     "upload": {
-        "upload": "Téléverser une vidéo",
+        "upload": "Charger vidéo",
         "title": "Titre",
         "titlePlaceholder": "Entrez un titre clair et concis pour la vidéo",
         "description": "Description",
         "descriptionPlacherholder": "Décrivez le contenu de la vidéo",
-        "text": "Cliquez pour téléverser votre ",
+        "text": "Cliquez pour charger votre ",
         "video": "Vidéo",
         "videoMin": "vidéo",
         "thumbnail": "Miniature",
@@ -81,8 +81,8 @@
         "visibility": "Visibilité",
         "public": "Public",
         "private": "Privé",
-        "uploadVideo": "Téléverser la vidéo",
-        "uploading": "Téléversement en cours..."
+        "uploadVideo": "Charger vidéo",
+        "uploading": "Chargement en cours..."
     },
     "record": {
         "title": "Enregistrer",

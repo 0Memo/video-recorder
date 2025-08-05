@@ -83,7 +83,7 @@ const RecordScreen = ({ dictionary }: RecordScreenProps) => {
 
     return (
         <>
-            <div>
+            <div className="hidden md:block">
                 <button
                     className="py-2.5 px-5 flex items-center gap-2.5 text-sm font-semibold text-white !bg-[#1d073a]"
                     style={{ borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px', borderBottom: '4px solid #C3B1E1' }}

@@ -82,15 +82,18 @@ const Header = ({ userImg, dictionary } : HeaderProps) => {
                             className="border !border-t-purple-900
                             border-r-purple-900 border-l-purple-900
                             py-2.5 px-5 flex items-center gap-2.5 text-sm
-                            font-semibold"
+                            font-semibold w-full md:w-auto"
                         >
                             <Image
                                 src={ ICONS.upload }
                                 alt="upload"
                                 width={24}
                                 height={24}
-                                style={{ 
-                                    filter: 'brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%)    hue-rotate(229deg) brightness(92%) contrast(101%)'
+                                style={{
+                                    filter:
+                                        theme === "dark"
+                                        ? "invert(100%)"
+                                        : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
                                 }}
                             />
                             <TextWithTheme
@@ -128,10 +131,10 @@ const Header = ({ userImg, dictionary } : HeaderProps) => {
                             width={20}
                             height={20}
                             style={{
-                            filter:
-                                theme === "dark"
-                                ? "invert(100%)"
-                                : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
+                                filter:
+                                    theme === "dark"
+                                    ? "invert(100%)"
+                                    : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
                             }}
                             className="absolute top-1/2 left-3 -translate-y-1/2"
                         />
