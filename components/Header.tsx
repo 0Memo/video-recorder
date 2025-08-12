@@ -142,7 +142,7 @@ const Header = ({ userImg, dictionary }: HeaderProps) => {
                 className="absolute top-1/2 left-3 -translate-y-1/2"
                 />
             </div>
-            <DropdownList dictionary={dictionary} />
+            {/* <DropdownList dictionary={dictionary} /> */}
             </section>
         </header>
         {isLoading && <LoadingOverlay color="#1d073a" />}
