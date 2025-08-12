@@ -1,17 +1,26 @@
 import { ICONS } from "../constants"
 import Image from "next/image"
 import type { Dictionary } from "../lib/i18n/dictionaries";
+import { useTheme } from "../lib/hooks/useTheme";
+import { cn } from "../lib/utils";
 
 interface FileDictionaryProps extends FileInputProps {
     dictionary: Dictionary;
 }
 
 const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, onReset, type, dictionary }: FileDictionaryProps) => {
+    const { theme, mounted } = useTheme();
+
     return (
         <section className="flex flex-col gap-2">
             <label
                 htmlFor={ id }
-                className="text-[#1d073a] text-base font-medium"
+                className={cn("text-[#1d073a] text-base font-medium",
+                theme === "dark"
+                    ? "text-white"
+                    : "text-[#1d073a]"
+                )}
+                suppressHydrationWarning={!mounted}
             >
                 { label }
             </label>
@@ -35,7 +44,12 @@ const FileInput = ({ id, label, accept, file, previewUrl, inputRef, onChange, on
                         height={24}
                     />
                     <p
-                        className="text-[#1d073a] text-base font-medium"
+                        className={cn("text-base font-medium",
+                        theme === "dark"
+                            ? "text-white"
+                            : "text-[#1d073a]"
+                        )}
+                        suppressHydrationWarning={!mounted}
                     >
                         { dictionary.upload.text } { id }
                     </p>

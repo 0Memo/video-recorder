@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation"
 import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import TextWithTheme from "./TextWithTheme";
 import { useTheme } from "../lib/hooks/useTheme";
-import { cn } from "@/lib/utils"
+import { cn } from "../lib/utils"
 
 interface HeaderProps extends SharedHeaderProps {
     dictionary: Dictionary;

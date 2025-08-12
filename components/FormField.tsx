@@ -10,6 +10,8 @@ import {
 } from "@headlessui/react";
 import { memo, useCallback } from "react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import { useTheme } from "../lib/hooks/useTheme";
+import { cn } from "../lib/utils"
 
 interface OptionType {
     label: string;
@@ -27,7 +29,6 @@ interface FormFieldProps {
     options?: OptionType[];
 }
 
-// New interface for props passed to InputToRenderComponent
 interface InputToRenderProps {
     id: string;
     type: "input" | "textarea" | "select"; // This corresponds to the 'as' prop from FormField
@@ -42,7 +43,6 @@ interface InputToRenderProps {
     ) => void;
 }
 
-// CRITICAL FIX: Move InputToRenderComponent outside FormFieldComponent
 const InputToRenderComponent = memo(function InputToRender({
     id,
     type,
@@ -75,7 +75,7 @@ const InputToRenderComponent = memo(function InputToRender({
             <ListboxButton
                 style={sharedStyles}
                 className={`${sharedClasses} w-full border-2 text-left bg-white pr-10
-                focus:border-[#C3B1E1]`}
+                focus:border-[#C3B1E1] !text-[#1d073a]`}
             >
                 {options?.find((opt) => opt.value === value)?.label || "Select"}
                 <span
@@ -99,7 +99,7 @@ const InputToRenderComponent = memo(function InputToRender({
                     value={option.value}
                     className={({ focus }) =>
                     `cursor-pointer select-none relative py-2 pl-10 pr-4 rounded-xl ${
-                        focus ? "bg-[#1d073a] text-white" : "text-[#1d073a]"
+                        focus ? "bg-[#C3B1E1] text-white" : "text-[#1d073a]"
                     }`
                     }
                     style={sharedStyles}
@@ -158,7 +158,7 @@ const FormField = memo(function FormFieldComponent({
         borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
     };
     const sharedClasses =
-        "border-2 border-[#1d073a] focus:outline-[#C3B1E1] placeholder:text-gray-100 placeholder:font-medium text-base font-semibold text-[#1d073a] py-2.5 px-4";
+        "border-2 border-[#1d073a] focus:outline-[#C3B1E1] placeholder:font-medium text-base font-semibold py-2.5 px-4";
 
     const handleTextChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -167,25 +167,36 @@ const FormField = memo(function FormFieldComponent({
         [onChange]
     );
 
+    const { theme, mounted } = useTheme();
+
     return (
         <div
             className="flex flex-col gap-2"
         >
             <label
                 htmlFor={id}
-                className="text-[#1d073a] text-base font-medium"
+                className={cn("text-[#1d073a] text-base font-medium",
+                theme === "dark"
+                    ? "text-white"
+                    : "text-[#1d073a]"
+                )}
+                suppressHydrationWarning={!mounted}
             >
                 {label}
             </label>
             <InputToRenderComponent
                 id={id}
-                type={as} // Pass 'as' as 'type' to InputToRenderComponent
+                type={as}
                 value={value}
-                onChange={onChange} // Pass the original onChange for select, and for handleTextChange
+                onChange={onChange}
                 placeholder={placeholder}
                 options={options}
                 sharedStyles={sharedStyles}
-                sharedClasses={sharedClasses}
+                sharedClasses={cn(sharedClasses,
+                    theme === "dark"
+                        ? "text-white placeholder:text-gray-050"
+                        : "text-[#1d073a] placeholder:text-[#1d073a]"
+                )}
                 handleTextChange={handleTextChange}
             />
         </div>

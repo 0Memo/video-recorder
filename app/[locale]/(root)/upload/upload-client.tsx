@@ -1,19 +1,19 @@
 "use client";
 import {
-  useState,
-  useCallback,
-  type FormEvent,
-  useEffect,
-  type ChangeEvent,
+    useState,
+    useCallback,
+    type FormEvent,
+    useEffect,
+    type ChangeEvent,
 } from "react";
 import FileInput from "../../../../components/FileInput";
 import FormField from "../../../../components/FormField";
 import { useFileInput } from "../../../../lib/hooks/useFileInput";
 import { MAX_THUMBNAIL_SIZE, MAX_VIDEO_SIZE } from "../../../../constants";
 import {
-  getThumbnailUploadUrl,
-  getVideoUploadUrl,
-  saveVideoDetails,
+    getThumbnailUploadUrl,
+    getVideoUploadUrl,
+    saveVideoDetails,
 } from "../../../../lib/actions/video";
 import { useRouter } from "next/navigation";
 import LoadingOverlay from "../../../../components/LoadingOverlay";
@@ -23,6 +23,8 @@ import {
     getLocaleFromPathname,
     addLocaleToPathname,
 } from "../../../../lib/i18n/utils";
+import { useTheme } from "../../../../lib/hooks/useTheme";
+import { cn } from "../../../../lib/utils"
 
 interface PageProps {
     dictionary: Dictionary;
@@ -52,6 +54,7 @@ const UploadClient = ({ dictionary }: PageProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const pathname = usePathname();
     const currentLocale = getLocaleFromPathname(pathname);
+    const { theme, mounted } = useTheme();
 
     const [formData, setFormData] = useState({
         title: "",
@@ -174,83 +177,94 @@ const UploadClient = ({ dictionary }: PageProps) => {
 
     return (
         <>
-        <main className="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-7.5 pt-12.5 pb-20">
-            <h1 className="text-shadow-lg text-[#1d073a] text-3xl font-bold">
-            {dictionary.upload.upload}
-            </h1>
-            {error && (
-            <div className="border border-red-500 bg-red-100 text-red-700 p-4 rounded-[255px_15px_225px_15px/15px_225px_15px_255px]">
-                {error}
-            </div>
-            )}
-            <form
-            className="rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5"
-            onSubmit={handleSubmit}
+            <main
+                className="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-7.5 pt-12.5 pb-20"
             >
-            <FormField
-                id="title"
-                label={dictionary.upload.title}
-                value={formData.title}
-                onChange={handleInputChange("title")}
-                placeholder={dictionary.upload.titlePlaceholder}
-            />
-            <FormField
-                id="description"
-                label={dictionary.upload.description}
-                value={formData.description}
-                onChange={handleInputChange("description")}
-                placeholder={dictionary.upload.descriptionPlacherholder}
-                as="textarea"
-            />
+                <h1
+                    className={cn("text-shadow-lg text-3xl font-bold",
+                    theme === "dark"
+                        ? "text-white"
+                        : "text-[#1d073a]"
+                    )}
+                    suppressHydrationWarning={!mounted}
+                >
+                    {dictionary.upload.upload}
+                </h1>
+                {error && (
+                <div
+                    className="border border-red-500 bg-red-100 text-red-700 p-4 rounded-[255px_15px_225px_15px/15px_225px_15px_255px]"
+                >
+                    {error}
+                </div>
+                )}
+                <form
+                    className="rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5"
+                    onSubmit={handleSubmit}
+                >
+                <FormField
+                    id="title"
+                    label={dictionary.upload.title}
+                    value={formData.title}
+                    onChange={handleInputChange("title")}
+                    placeholder={dictionary.upload.titlePlaceholder}
+                />
+                <FormField
+                    id="description"
+                    label={dictionary.upload.description}
+                    value={formData.description}
+                    onChange={handleInputChange("description")}
+                    placeholder={dictionary.upload.descriptionPlacherholder}
+                    as="textarea"
+                />
 
-            <FileInput
-                id={dictionary.upload.videoMin}
-                label={dictionary.upload.video}
-                accept="video/*"
-                file={video.file}
-                previewUrl={video.previewUrl}
-                inputRef={video.inputRef}
-                onChange={video.handleFileChange}
-                onReset={video.resetFile}
-                type="video"
-                dictionary={ dictionary }
-            />
+                <FileInput
+                    id={dictionary.upload.videoMin}
+                    label={dictionary.upload.video}
+                    accept="video/*"
+                    file={video.file}
+                    previewUrl={video.previewUrl}
+                    inputRef={video.inputRef}
+                    onChange={video.handleFileChange}
+                    onReset={video.resetFile}
+                    type="video"
+                    dictionary={ dictionary }
+                />
 
-            <FileInput
-                id={dictionary.upload.thumbnailMin}
-                label={dictionary.upload.thumbnail}
-                accept="image/*"
-                file={thumbnail.file}
-                previewUrl={thumbnail.previewUrl}
-                inputRef={thumbnail.inputRef}
-                onChange={thumbnail.handleFileChange}
-                onReset={thumbnail.resetFile}
-                type="image"
-                dictionary={ dictionary }
-            />
+                <FileInput
+                    id={dictionary.upload.thumbnailMin}
+                    label={dictionary.upload.thumbnail}
+                    accept="image/*"
+                    file={thumbnail.file}
+                    previewUrl={thumbnail.previewUrl}
+                    inputRef={thumbnail.inputRef}
+                    onChange={thumbnail.handleFileChange}
+                    onReset={thumbnail.resetFile}
+                    type="image"
+                    dictionary={ dictionary }
+                />
 
-            <FormField
-                id="visibility"
-                label={dictionary.upload.visibility}
-                value={formData.visibility}
-                onChange={handleSelectChange("visibility")}
-                options={[
-                { value: "public", label: dictionary.upload.public },
-                { value: "private", label: dictionary.upload.private },
-                ]}
-                as="select"
-            />
+                <FormField
+                    id="visibility"
+                    label={dictionary.upload.visibility}
+                    value={formData.visibility}
+                    onChange={handleSelectChange("visibility")}
+                    options={[
+                    { value: "public", label: dictionary.upload.public },
+                    { value: "private", label: dictionary.upload.private },
+                    ]}
+                    as="select"
+                />
 
-            <button
-                type="submit"
-                disabled={isSubmitting}
-                className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px] bg-[#1d073a] text-white px-4 py-3 cursor-pointer text-base font-semibold hover:bg-[#C3B1E1] transition-colors border-b-4 border-b-[#C3B1E1]"
-            >
-                {isSubmitting ? dictionary.upload.uploading : dictionary.upload.uploadVideo}
-            </button>
-            </form>
-        </main>
-        {isLoading && <LoadingOverlay color="#1d073a" />}
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px] bg-[#1d073a] text-white px-4 py-3 cursor-pointer text-base font-semibold hover:bg-[#C3B1E1] transition-colors border-b-4 border-b-[#C3B1E1]"
+                >
+                    {isSubmitting ? dictionary.upload.uploading : dictionary.upload.uploadVideo}
+                </button>
+                </form>
+            </main>
+            {isLoading && <LoadingOverlay color="#1d073a" />}
         </>
     );
 };
