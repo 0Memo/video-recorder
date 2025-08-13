@@ -104,7 +104,7 @@ const Navbar = () => {
                     </h1>
                 </button>
                 <div
-                    className="flex items-center gap-4"
+                    className="flex items-center gap-1"
                 >
                     <LanguageSwitcher currentLocale={currentLocale} />
                     <button
