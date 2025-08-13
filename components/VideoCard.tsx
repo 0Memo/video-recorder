@@ -109,7 +109,7 @@ const VideoCard = ({
                 className="relative block max-w-90 rounded-2xl overflow-hidden bg-white cursor-pointer shadow-md shadow-[#1d073a]"
             >
                 <div
-                    className="relative w-auto h-[210px] rounded-sm overflow-hidden"
+                    className="relative w-auto h-[250px] rounded-sm overflow-hidden -top-10"
                 >
                     <Image
                         src={thumbnail || "/placeholder.svg"}
@@ -220,7 +220,7 @@ const VideoCard = ({
                 </button>
                 {duration && (
                     <div
-                        className="absolute top-40 right-2 font-medium text-white text-xs px-2.5 py-1 bg-[#1d073a] flex flex-col items-center justify-center p-3"
+                        className="absolute top-34 right-2 font-medium text-white text-xs px-2.5 py-1 bg-[#1d073a] flex flex-col items-center justify-center p-3"
                         style={{ borderRadius: '59% 41% 56% 44% / 58% 52% 48% 42%' }}
                     >
                         {Math.ceil(duration / 60)}min
