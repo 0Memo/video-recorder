@@ -121,7 +121,7 @@ const Header = ({ userImg, dictionary }: HeaderProps) => {
                 className={cn(
                     "py-2 pl-10 pr-5 text-sm font-normal w-full rounded-[255px_15px_225px_15px/15px_225px_15px_255px] focus:outline-[#C3B1E1] placeholder:italic placeholder:font-semibold",
                     theme === "dark"
-                    ? "bg-[#0e0e0e] text-blue-800 placeholder:text-green-500 border border-white"
+                    ? "bg-[#0e0e0e] text-blue-800 placeholder:text-gray-50 border border-white"
                     : "bg-white text-[#1d073a] placeholder:text-[#1d073a9a] border border-[#1d073a]"
                 )}
                 suppressHydrationWarning={!mounted}
