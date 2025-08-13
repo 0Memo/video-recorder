@@ -198,70 +198,70 @@ const UploadClient = ({ dictionary }: PageProps) => {
                 </div>
                 )}
                 <form
-                    className="rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5"
+                    className="rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5 border-2 border-[#1d073a]"
                     onSubmit={handleSubmit}
                 >
-                <FormField
-                    id="title"
-                    label={dictionary.upload.title}
-                    value={formData.title}
-                    onChange={handleInputChange("title")}
-                    placeholder={dictionary.upload.titlePlaceholder}
-                />
-                <FormField
-                    id="description"
-                    label={dictionary.upload.description}
-                    value={formData.description}
-                    onChange={handleInputChange("description")}
-                    placeholder={dictionary.upload.descriptionPlacherholder}
-                    as="textarea"
-                />
+                    <FormField
+                        id="title"
+                        label={dictionary.upload.title}
+                        value={formData.title}
+                        onChange={handleInputChange("title")}
+                        placeholder={dictionary.upload.titlePlaceholder}
+                    />
+                    <FormField
+                        id="description"
+                        label={dictionary.upload.description}
+                        value={formData.description}
+                        onChange={handleInputChange("description")}
+                        placeholder={dictionary.upload.descriptionPlacherholder}
+                        as="textarea"
+                    />
 
-                <FileInput
-                    id={dictionary.upload.videoMin}
-                    label={dictionary.upload.video}
-                    accept="video/*"
-                    file={video.file}
-                    previewUrl={video.previewUrl}
-                    inputRef={video.inputRef}
-                    onChange={video.handleFileChange}
-                    onReset={video.resetFile}
-                    type="video"
-                    dictionary={ dictionary }
-                />
+                    <FileInput
+                        id={dictionary.upload.videoMin}
+                        label={dictionary.upload.video}
+                        accept="video/*"
+                        file={video.file}
+                        previewUrl={video.previewUrl}
+                        inputRef={video.inputRef}
+                        onChange={video.handleFileChange}
+                        onReset={video.resetFile}
+                        type="video"
+                        dictionary={ dictionary }
+                    />
 
-                <FileInput
-                    id={dictionary.upload.thumbnailMin}
-                    label={dictionary.upload.thumbnail}
-                    accept="image/*"
-                    file={thumbnail.file}
-                    previewUrl={thumbnail.previewUrl}
-                    inputRef={thumbnail.inputRef}
-                    onChange={thumbnail.handleFileChange}
-                    onReset={thumbnail.resetFile}
-                    type="image"
-                    dictionary={ dictionary }
-                />
+                    <FileInput
+                        id={dictionary.upload.thumbnailMin}
+                        label={dictionary.upload.thumbnail}
+                        accept="image/*"
+                        file={thumbnail.file}
+                        previewUrl={thumbnail.previewUrl}
+                        inputRef={thumbnail.inputRef}
+                        onChange={thumbnail.handleFileChange}
+                        onReset={thumbnail.resetFile}
+                        type="image"
+                        dictionary={ dictionary }
+                    />
 
-                <FormField
-                    id="visibility"
-                    label={dictionary.upload.visibility}
-                    value={formData.visibility}
-                    onChange={handleSelectChange("visibility")}
-                    options={[
-                    { value: "public", label: dictionary.upload.public },
-                    { value: "private", label: dictionary.upload.private },
-                    ]}
-                    as="select"
-                />
+                    <FormField
+                        id="visibility"
+                        label={dictionary.upload.visibility}
+                        value={formData.visibility}
+                        onChange={handleSelectChange("visibility")}
+                        options={[
+                        { value: "public", label: dictionary.upload.public },
+                        { value: "private", label: dictionary.upload.private },
+                        ]}
+                        as="select"
+                    />
 
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px] bg-[#1d073a] text-white px-4 py-3 cursor-pointer text-base font-semibold hover:bg-[#C3B1E1] transition-colors border-b-4 border-b-[#C3B1E1]"
-                >
-                    {isSubmitting ? dictionary.upload.uploading : dictionary.upload.uploadVideo}
-                </button>
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px] bg-[#1d073a] text-white px-4 py-3 cursor-pointer text-base font-semibold hover:bg-[#C3B1E1] transition-colors border-b-4 border-b-[#C3B1E1]"
+                    >
+                        {isSubmitting ? dictionary.upload.uploading : dictionary.upload.uploadVideo}
+                    </button>
                 </form>
             </main>
             {isLoading && <LoadingOverlay color="#1d073a" />}

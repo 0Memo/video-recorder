@@ -84,12 +84,12 @@ const Header = ({ userImg, dictionary }: HeaderProps) => {
             </div>
             <aside className="flex items-center gap-2 md:gap-4">
                 <button
-                onClick={handleUploadNavigation}
-                style={{
-                    borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
-                    borderBottom: "4px solid #C3B1E1",
-                }}
-                className="border !border-t-purple-900 border-r-purple-900 border-l-purple-900 py-2.5 px-5 flex items-center gap-2.5 text-sm font-semibold w-full md:w-auto"
+                    onClick={handleUploadNavigation}
+                    style={{
+                        borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
+                        borderBottom: "4px solid #C3B1E1",
+                    }}
+                    className="border !border-t-purple-900 border-r-purple-900 border-l-purple-900 py-2.5 px-5 flex items-center gap-2.5 text-sm font-semibold w-full md:w-auto"
                 >
                 <Image
                     src={ICONS.upload}
@@ -121,7 +121,7 @@ const Header = ({ userImg, dictionary }: HeaderProps) => {
                 className={cn(
                     "py-2 pl-10 pr-5 text-sm font-normal w-full rounded-[255px_15px_225px_15px/15px_225px_15px_255px] focus:outline-[#C3B1E1] placeholder:italic placeholder:font-semibold",
                     theme === "dark"
-                    ? "bg-[#0e0e0e] text-white placeholder:text-white border border-white"
+                    ? "bg-[#0e0e0e] text-blue-800 placeholder:text-green-500 border border-white"
                     : "bg-white text-[#1d073a] placeholder:text-[#1d073a9a] border border-[#1d073a]"
                 )}
                 suppressHydrationWarning={!mounted}
@@ -129,17 +129,17 @@ const Header = ({ userImg, dictionary }: HeaderProps) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <Image
-                src={ICONS.search}
-                alt="search"
-                width={20}
-                height={20}
-                style={{
-                    filter:
-                    theme === "dark"
-                        ? "invert(100%)"
-                        : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
-                }}
-                className="absolute top-1/2 left-3 -translate-y-1/2"
+                    src={ICONS.search}
+                    alt="search"
+                    width={20}
+                    height={20}
+                    style={{
+                        filter:
+                        theme === "dark"
+                            ? "invert(100%)"
+                            : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
+                    }}
+                    className="absolute top-1/2 left-3 -translate-y-1/2"
                 />
             </div>
             {/* <DropdownList dictionary={dictionary} /> */}
