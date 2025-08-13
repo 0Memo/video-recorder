@@ -10,6 +10,8 @@ import { deleteVideo } from "../lib/actions/video";
 import type { Dictionary } from "../lib/i18n/dictionaries";
 import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import { daysAgo } from "../lib/utils";
+import { useTheme } from "../lib/hooks/useTheme";
+import { cn } from "../lib/utils"
 
 interface VideoCardProps {
     videoId: string;
@@ -47,7 +49,8 @@ const VideoCard = ({
     const currentLocale = getLocaleFromPathname(pathname);
     const [isLoading, setIsLoading] = useState(false);
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
-    const [copied, setCopied] = useState(false)
+    const [copied, setCopied] = useState(false);
+    const { theme } = useTheme();
         
     const handleCopyLink = () => {
         navigator.clipboard.writeText(`${ window.location.origin }/video/${ id }`)
@@ -140,7 +143,7 @@ const VideoCard = ({
                                     alt="avatar"
                                     width={34}
                                     height={34}
-                                    className="rounded-full aspect-square"
+                                    className="rounded-full aspect-square p-1 ring-1 ring-[#2F2776]"
                                 />
                             </button>
                             <figcaption
@@ -186,7 +189,7 @@ const VideoCard = ({
                     <h2
                         className="text-bas font-semibold truncate"
                     >
-                        <span className="text-[#1d073a]">{ title }</span> - {" "} 
+                        <span className="text-[#1d073a]">{ title }</span> - {" "}
                         <span className="text-sm font-extralight">{daysAgo(createdAt, dictionary)}</span>
                     </h2>
                 </article>

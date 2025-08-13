@@ -198,7 +198,11 @@ const UploadClient = ({ dictionary }: PageProps) => {
                 </div>
                 )}
                 <form
-                    className="rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5 border-2 border-[#1d073a]"
+                    className={cn("rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5 border",
+                        theme === "dark"
+                            ? "border-[#C3B1E1]"
+                            : "border-[#1d073a]"
+                    )}
                     onSubmit={handleSubmit}
                 >
                     <FormField
@@ -249,8 +253,8 @@ const UploadClient = ({ dictionary }: PageProps) => {
                         value={formData.visibility}
                         onChange={handleSelectChange("visibility")}
                         options={[
-                        { value: "public", label: dictionary.upload.public },
-                        { value: "private", label: dictionary.upload.private },
+                            { value: "public", label: dictionary.upload.public },
+                            { value: "private", label: dictionary.upload.private },
                         ]}
                         as="select"
                     />

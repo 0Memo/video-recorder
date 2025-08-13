@@ -67,7 +67,11 @@ const Header = ({ userImg, dictionary }: HeaderProps) => {
                     width={66}
                     height={66}
                     style={{ width: "auto", height: "auto" }}
-                    className="rounded-full aspect-square"
+                    className={cn("rounded-full aspect-square p-1 ring-1",
+                        theme === "dark"
+                            ? "ring-white"
+                            : "ring-[#2F2776]"
+                    )}
                 />
                 )}
                 <article className="flex flex-col gap-1 -tracking-[0.8px]">
@@ -113,20 +117,20 @@ const Header = ({ userImg, dictionary }: HeaderProps) => {
             <section className="flex flex-col md:flex-row md:items-center gap-5 justify-between">
             <div className="relative max-w-[500px] w-full">
                 <input
-                type="text"
-                style={{
-                    borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
-                }}
-                placeholder={dictionary.common.search}
-                className={cn(
-                    "py-2 pl-10 pr-5 text-sm font-normal w-full rounded-[255px_15px_225px_15px/15px_225px_15px_255px] focus:outline-[#C3B1E1] placeholder:italic placeholder:font-semibold",
-                    theme === "dark"
-                    ? "bg-[#0e0e0e] text-blue-800 placeholder:text-gray-50 border border-white"
-                    : "bg-white text-[#1d073a] placeholder:text-[#1d073a9a] border border-[#1d073a]"
-                )}
-                suppressHydrationWarning={!mounted}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                    type="text"
+                    style={{
+                        borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
+                    }}
+                    placeholder={dictionary.common.search}
+                    className={cn(
+                        "py-2 pl-10 pr-5 text-sm font-normal w-full rounded-[255px_15px_225px_15px/15px_225px_15px_255px] focus:outline-[#C3B1E1] placeholder:italic placeholder:font-semibold",
+                        theme === "dark"
+                        ? "bg-[#0e0e0e] text-white placeholder:text-gray-50 border border-white"
+                        : "bg-white text-[#1d073a] placeholder:text-[#1d073a9a] border border-[#1d073a]"
+                    )}
+                    suppressHydrationWarning={!mounted}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <Image
                     src={ICONS.search}

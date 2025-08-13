@@ -1,12 +1,13 @@
 "use client";
 
 import type React from "react";
+import { Fragment } from "react";
 
 import {
     Listbox,
     ListboxButton,
     ListboxOptions,
-    ListboxOption,
+    ListboxOption
 } from "@headlessui/react";
 import { memo, useCallback } from "react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
@@ -31,9 +32,9 @@ interface FormFieldProps {
 
 interface InputToRenderProps {
     id: string;
-    type: "input" | "textarea" | "select"; // This corresponds to the 'as' prop from FormField
+    type: "input" | "textarea" | "select";
     value: string;
-    onChange: (value: string) => void; // This is the direct onChange for Listbox, or the one passed to handleTextChange
+    onChange: (value: string) => void;
     placeholder?: string;
     options?: OptionType[];
     sharedStyles: React.CSSProperties;
@@ -54,6 +55,8 @@ const InputToRenderComponent = memo(function InputToRender({
     sharedClasses,
     handleTextChange,
 }: InputToRenderProps) {
+    const { theme, mounted } = useTheme();
+
     if (type === "textarea") {
         return (
         <textarea
@@ -72,57 +75,73 @@ const InputToRenderComponent = memo(function InputToRender({
         return (
         <Listbox value={value} onChange={onChange}>
             <div className="relative">
-            <ListboxButton
-                style={sharedStyles}
-                className={`${sharedClasses} w-full border-2 text-left bg-white pr-10
-                focus:border-[#C3B1E1] !text-[#1d073a]`}
-            >
-                {options?.find((opt) => opt.value === value)?.label || "Select"}
-                <span
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
-                >
-                <ChevronUpDownIcon
-                    className="w-5 h-5 text-[#1d073a]"
-                    aria-hidden="true"
-                />
-                </span>
-            </ListboxButton>
-            <ListboxOptions
-                className="absolute mt-1 w-full max-h-60 overflow-auto z-10 bg-white
-                shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none
-                text-[#1d073a] text-base font-semibold
-                rounded-[255px_15px_225px_15px/15px_225px_15px_255px]"
-            >
-                {options?.map((option) => (
-                <ListboxOption
-                    key={option.value}
-                    value={option.value}
-                    className={({ focus }) =>
-                    `cursor-pointer select-none relative py-2 pl-10 pr-4 rounded-xl ${
-                        focus ? "bg-[#C3B1E1] text-white" : "text-[#1d073a]"
-                    }`
-                    }
+                <ListboxButton
                     style={sharedStyles}
-                >
-                    {({ selected }) => (
-                    <>
-                        <span
-                        className={`block truncate ${
-                            selected ? "font-bold" : "font-normal"
-                        }`}
-                        >
-                        {option.label}
-                        </span>
-                        {selected && (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
-                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
-                        </span>
-                        )}
-                    </>
+                    className={cn(sharedClasses,
+                        theme === "dark"
+                            ? "text-white focus:border-white"
+                            : "text-[#1d073a] focus:border-[#C3B1E1]"
                     )}
-                </ListboxOption>
-                ))}
-            </ListboxOptions>
+                    suppressHydrationWarning={!mounted}
+                >
+                    {options?.find((opt) => opt.value === value)?.label || "Select"}
+                    <span
+                        className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                    >
+                        <ChevronUpDownIcon
+                            className={cn("w-5 h-5 text-[#C3B1E1]",
+                                theme === "dark"
+                                    ? "text-white"
+                                    : "text-[#1d073a]"
+                            )}
+                            suppressHydrationWarning={!mounted}
+                            aria-hidden="true"
+                        />
+                    </span>
+                </ListboxButton>
+                <ListboxOptions
+                    portal={ true }
+                    anchor="bottom start"
+                    className={cn(
+                        "z-50 mt-1 w-[var(--button-width)] max-h-60 overflow-auto",
+                        "bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
+                        "text-base font-semibold rounded-[255px_15px_225px_15px/15px_225px_15px_255px]",
+                        "border border-gray-200",
+                        theme === "dark" ? "bg-none" : "bg-white border-white"
+                    )}
+                    style={{
+                    '--button-width': 'var(--button-width)',
+                    } as React.CSSProperties}
+                >
+                    {options?.map((option) => (
+                    <ListboxOption
+                        key={option.value}
+                        value={option.value}
+                        className="cursor-pointer select-none relative py-2 pl-10 pr-4 rounded-xl text-[#1d073a] focus:bg-[#C3B1E1] hover:bg-[#C3B1E1]"
+                        style={sharedStyles}
+                    >
+                        {({ selected }) => (
+                        <>
+                            <span
+                            className={`block truncate ${
+                                selected ? "font-bold" : "font-normal"
+                            }`}
+                            >
+                            {option.label}
+                            </span>
+                            {selected && (
+                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
+                                <CheckIcon
+                                    className="w-5 h-5 text-[#1d073a]"
+                                    aria-hidden="true"
+                                />
+                            </span>
+                            )}
+                        </>
+                        )}
+                    </ListboxOption>
+                    ))}
+                </ListboxOptions>
             </div>
         </Listbox>
         );
@@ -158,7 +177,7 @@ const FormField = memo(function FormFieldComponent({
         borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
     };
     const sharedClasses =
-        "border-2 border-[#1d073a] focus:outline-[#C3B1E1] placeholder:font-medium text-base font-semibold py-2.5 px-4";
+        "border-2 placeholder:font-medium text-left font-semibold py-2.5 px-4 block w-full text-sm h-[50px] px-4 text-slate-900 rounded-[8px] appearance-none hover:border-[#C3B1E1] focus:border-[#C3B1E1] focus:outline-[#C3B1E1] focus:ring-0 invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px]y";
 
     const handleTextChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -171,14 +190,14 @@ const FormField = memo(function FormFieldComponent({
 
     return (
         <div
-            className="flex flex-col gap-2"
+            className="flex flex-col gap-2 relative"
         >
             <label
                 htmlFor={id}
-                className={cn("text-[#1d073a] text-base font-medium",
+                className={cn("text-base font-medium peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[15px] leading-[150%] peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] disabled:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1",
                 theme === "dark"
-                    ? "text-white"
-                    : "text-[#1d073a]"
+                    ? "text-white bg-[#000000f8] border-[#1d073a]"
+                    : "text-[#1d073a] bg-white border-white"
                 )}
                 suppressHydrationWarning={!mounted}
             >
@@ -194,8 +213,8 @@ const FormField = memo(function FormFieldComponent({
                 sharedStyles={sharedStyles}
                 sharedClasses={cn(sharedClasses,
                     theme === "dark"
-                        ? "text-white placeholder:text-gray-050"
-                        : "text-[#1d073a] placeholder:text-[#1d073a]"
+                        ? "text-white placeholder:text-gray-050 border-[#C3B1E1]"
+                        : "text-[#1d073a] placeholder:text-[#1d073a] border-[#1d073a]"
                 )}
                 handleTextChange={handleTextChange}
             />

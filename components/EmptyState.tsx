@@ -1,10 +1,19 @@
+"use client"
+
 import Image from "next/image"
+import { useTheme } from "../lib/hooks/useTheme";
+import { cn } from "../lib/utils";
 
 const EmptyState = ({ icon, title, description} : EmptyStateProps) => {
+    const { theme } = useTheme();
+
     return (
         <section
-            className="flex flex-col items-center px-4 py-10 gap-6
-            rounded-2xl border border-gray-20 shadow-10 w-full"
+            className={cn("flex flex-col items-center px-4 py-10 gap-6 rounded-2xl border shadow-10 w-full",
+                theme === "dark"
+                    ? "border-[#C3B1E1]"
+                    : "border-[#1d073a]"
+            )}
         >
             <figure
                 className="bg-[#C3B1E1] rounded-[20px] flex items-center justify-center size-20"
@@ -20,7 +29,11 @@ const EmptyState = ({ icon, title, description} : EmptyStateProps) => {
                 className="flex flex-col items-center gap-1.5"
             >
                 <h1
-                    className="text-[#1d073a] text-2xl font-bold -tracking-[1px]"
+                    className={cn("text-2xl font-bold -tracking-[1px]",
+                        theme === "dark"
+                            ? "text-[#C3B1E1]"
+                            : "text-[#1d073a]"
+                    )}
                 >
                     { title}
                 </h1>

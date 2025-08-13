@@ -11,6 +11,7 @@ import { getLocaleFromPathname, addLocaleToPathname } from "../lib/i18n/utils";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "../lib/hooks/useTheme";
+import { cn } from "../lib/utils"
 
 const Navbar = () => {
     const router = useRouter();
@@ -123,6 +124,11 @@ const Navbar = () => {
                         >
                         <button
                             onClick={ handleProfileNavigation }
+                            className={cn("border border-white rounded-full",
+                                theme === "dark"
+                                    ? "border-white"
+                                    : "border-[#1d073a]"
+                            )}
                         >
                             <ImageWithFallback
                                 src={session?.user.image ?? ""}
@@ -140,13 +146,13 @@ const Navbar = () => {
                             <Image
                                 src={ ICONS.exit }
                                 alt="logout"
-                                width={38}
-                                height={38}
+                                width={42}
+                                height={42}
                                 style={{
                                     filter:
                                         theme === "dark"
                                         ? "invert(100%)"
-                                        : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
+                                        : "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)"
                                 }}
                             />
                         </button>

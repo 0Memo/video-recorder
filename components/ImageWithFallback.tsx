@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useTheme } from "../lib/hooks/useTheme";
+import { cn } from "../lib/utils"
 
 const ImageWithFallback = ({
     fallback = "/assets/images/dummy.jpg",
@@ -10,6 +12,7 @@ const ImageWithFallback = ({
     }: ImageWithFallbackProps) => {
     const [error, setError] = useState<boolean | null>(null);
     const [imgSrc, setImgSrc] = useState<string>(src || fallback);
+    const { theme } = useTheme();
 
     useEffect(() => {
         setError(null);
@@ -22,7 +25,11 @@ const ImageWithFallback = ({
             onError={() => setError(true)}
             src={error ? fallback : imgSrc}
             {...props}
-            className="rounded-full aspect-square"
+            className={cn("rounded-full aspect-square p-1 ring-2",
+                theme === "dark"
+                    ? "ring-white"
+                    : "ring-[#2F2776]"
+            )}
         />
     );
 };

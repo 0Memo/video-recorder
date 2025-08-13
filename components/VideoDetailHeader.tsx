@@ -13,7 +13,7 @@ interface VideoDetailHeaderDictionaryProps extends VideoDetailHeaderProps {
     dictionary: Dictionary
 }
 
-const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id, dictionary }: VideoDetailHeaderDictionaryProps) => {
+const VideoDetailHeader = ({ title, description, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id, dictionary }: VideoDetailHeaderDictionaryProps) => {
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
 
     const router = useRouter()
@@ -55,11 +55,18 @@ const VideoDetailHeader = ({ title, createdAt, userImg, username, videoId, owner
             >
                 <h1
                     className={`text-3xl font-bold ${
-                            theme === "dark" ? "text-white" : "text-[#1d073a]"
-                        }`}
+                        theme === "dark" ? "text-white" : "text-[#1d073a]"
+                    }`}
                 >
                     {title}
                 </h1>
+                <span
+                    className={`text-lg font-bold ${
+                        theme === "dark" ? "text-white" : "text-[#1d073a]"
+                    }`}
+                >
+                    { description }
+                    </span>
                 <figure
                     className='gap-1 flex items-center'
                 >
