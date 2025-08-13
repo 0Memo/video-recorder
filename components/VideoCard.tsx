@@ -106,7 +106,7 @@ const VideoCard = ({
         <>
             <div
                 onClick={ handleVideoNavigation } 
-                className="relative block max-w-90 rounded-2xl shadow-md overflow-hidden bg-white cursor-pointer"
+                className="relative block max-w-90 rounded-2xl overflow-hidden bg-white cursor-pointer shadow-md shadow-[#1d073a]"
             >
                 <div
                     className="relative w-auto h-[210px] rounded-sm overflow-hidden"
@@ -116,7 +116,7 @@ const VideoCard = ({
                         alt="thumbnail"
                         fill
                         sizes="(max-width: 768px) 100vw, 290px"
-                        className="object-cover rounded-xl"
+                        className="object-contain rounded-xl"
                         priority={true}
                     />
                 </div>
@@ -195,7 +195,7 @@ const VideoCard = ({
                         e.stopPropagation()
                         handleCopyLink()
                     }}
-                    className="absolute top-3 left-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
+                    className="absolute top-5 left-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
                 >
                     <Image
                         src={ copied ? ICONS.checked : ICONS.link }
@@ -209,7 +209,7 @@ const VideoCard = ({
                         e.stopPropagation()
                         setShowModal(true)
                     }}
-                    className="absolute top-3 right-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
+                    className="absolute top-5 right-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
                 >
                     <Image
                         src={ ICONS.garbage }
