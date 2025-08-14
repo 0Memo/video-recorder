@@ -113,7 +113,7 @@ const Navbar = ({ dictionary }: NavbarProps) => {
                         <LanguageSwitcher currentLocale={currentLocale} />
                         <button
                             onClick={toggleTheme}
-                            className={cn("p-1 rounded-lg transition-colors duration-200",
+                            className={cn("p-1 rounded-lg transition-colors duration-200 -ml-2 md:ml-0",
                                 theme === "dark"
                                     ? "hover:bg-gray-500"
                                     : "hover:bg-gray-300"

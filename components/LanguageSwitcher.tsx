@@ -63,7 +63,7 @@ const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
         <div className="relative" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex items-center gap-1 px-1 py-2 text-sm font-medium hover:bg-[#1d073a] hover:text-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] transition-colors border-b-4 border-transparent duration-200 hover:border-b-4 hover:border-b-[#C3B1E1] ${ theme === "dark" ? "text-white" : "text-[#1d073a]" }`}
+                className={`flex items-center gap-1 px-2 py-2 text-sm font-medium hover:bg-[#1d073a] hover:text-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] transition-colors border-b-4 border-transparent duration-200 hover:border-b-4 hover:border-b-[#C3B1E1] ${ theme === "dark" ? "text-white" : "text-[#1d073a]" }`}
                 aria-label="Select language"
             >
                 <GlobeAltIcon className="w-4 h-4" />
