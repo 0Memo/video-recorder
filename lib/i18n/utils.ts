@@ -19,14 +19,10 @@ export function removeLocaleFromPathname(pathname: string): string {
 }
 
 export function addLocaleToPathname(pathname: string, locale: Locale): string {
-    const cleanPathname = removeLocaleFromPathname(pathname);
+    const cleanPathname = removeLocaleFromPathname(pathname)
 
-    // Avoid adding locale if it's the default and you're not using default prefixing
-    if (locale === i18n.defaultLocale) {
-        return cleanPathname === "/" ? "/" : cleanPathname;
-    }
-
-    return `/${locale}${cleanPathname === "/" ? "" : cleanPathname}`;
+    // Always add locale prefix for all languages, including default
+    return `/${locale}${cleanPathname === "/" ? "" : cleanPathname}`
 }
 
 export function getPathnameWithoutLocale(pathname: string): string {

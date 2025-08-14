@@ -25,17 +25,17 @@ const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
     
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-        if (
-            dropdownRef.current &&
-            !dropdownRef.current.contains(event.target as Node)
-        ) {
-            setIsOpen(false);
-        }
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setIsOpen(false);
+            }
         };
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
