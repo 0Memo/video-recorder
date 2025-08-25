@@ -151,12 +151,12 @@ const VideoCard = ({
                 {/* Card Image */}
                 <div className="card-image relative w-auto h-[250px] rounded-sm overflow-hidden">
                     <Image
-                    src={thumbnail || "/placeholder.svg"}
-                    alt="thumbnail"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 290px"
-                    className="object-cover rounded-xl"
-                    priority={true}
+                        src={thumbnail || "/placeholder.svg"}
+                        alt="thumbnail"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 290px"
+                        className="object-cover rounded-xl"
+                        priority={true}
                     />
                 </div>
 
@@ -239,14 +239,14 @@ const VideoCard = ({
                     </figure>
                     <aside className="flex items-center gap-1">
                         <Image
-                        src={ICONS.eye || "/placeholder.svg"}
-                        alt="views"
-                        width={16}
-                        height={16}
-                        style={{
-                            filter:
-                            "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
-                        }}
+                            src={ICONS.eye || "/placeholder.svg"}
+                            alt="views"
+                            width={16}
+                            height={16}
+                            style={{
+                                filter:
+                                "brightness(0) saturate(100%) invert(16%) sepia(51%) saturate(2261%) hue-rotate(229deg) brightness(92%) contrast(101%)",
+                            }}
                         />
                         <span className="text-xs text-[#1d073a] font-normal">{views}</span>
                     </aside>
@@ -287,7 +287,7 @@ const VideoCard = ({
                 {/* Duration Badge */}
                 {duration && (
                     <div
-                        className="absolute top-36 right-2 font-medium text-white text-xs px-2.5 py-1 bg-[#1d073a]/90 backdrop-blur-sm flex flex-col items-center justify-center z-40"
+                        className="absolute top-50 right-2 font-medium text-white text-xs px-2.5 py-1 bg-[#1d073a]/90 backdrop-blur-sm flex flex-col items-center justify-center z-40"
                         style={{ borderRadius: "59% 41% 56% 44% / 58% 52% 48% 42%" }}
                         >
                         {Math.ceil(duration / 60)}min

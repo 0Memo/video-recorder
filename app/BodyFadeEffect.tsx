@@ -5,20 +5,36 @@ import { usePathname } from "next/navigation";
 export default function BodyFadeEffect() {
     const pathname = usePathname();
     const prevPathname = useRef(pathname);
+    const isInitialMount = useRef(true);
+
 
     useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return;
+        }
+
         if (prevPathname.current !== pathname) {
-        const timeout = setTimeout(() => {
-            document.body.classList.remove("fading");
-        }, 100);
+            document.body.classList.add("fading");
 
-        prevPathname.current = pathname;
+            const timeout = setTimeout(() => {
+                document.body.classList.remove("fading");
+            }, 100);
 
-        return () => clearTimeout(timeout);
-        } else {
-            document.body.classList.remove("fading");
+            prevPathname.current = pathname;
+
+            return () => {
+                clearTimeout(timeout);
+                document.body.classList.remove("fading");
+            };
         }
     }, [pathname]);
+
+    useEffect(() => {
+        return () => {
+            document.body.classList.remove("fading");
+        };
+    }, []);
 
     return null;
 }

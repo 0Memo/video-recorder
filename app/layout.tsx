@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { Karla } from "next/font/google";
 import "./globals.css";
 import { satoshi } from "../fonts/font";
+import { i18n, type Locale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import BodyFadeEffect from "./BodyFadeEffect";
 
 const geistKarla = Karla({
     variable: "--font-geist-karla",
     subsets: ["latin"],
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -17,10 +20,16 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Layout({
+export async function generateStaticParams() {
+    return i18n.locales.map((locale) => ({ locale }));
+}
+
+export default async function Layout({
     children,
+    params
 }: Readonly<{
-    children: React.ReactNode;
+    children: React.ReactNode
+    params: { locale: Locale }
 }>) {
     const htmlClassNames = `${geistKarla.variable} ${satoshi.variable} antialiased`;
 
@@ -32,8 +41,8 @@ export default function Layout({
     }
 
     return (
-        <html lang="en" className={htmlClassNames}>
-            <body suppressHydrationWarning={true} className="font-karla">
+        <html lang={params.locale}  className={htmlClassNames} suppressHydrationWarning>
+            <body suppressHydrationWarning className="font-karla">
                 <BodyFadeEffect/>
                 {children}
             </body>
