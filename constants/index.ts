@@ -26,6 +26,7 @@ export const ICONS = {
   upload: "/assets/icons/upload.svg",
   favicon: "/assets/icons/favicon.ico",
   link: "/assets/icons/link.svg",
+  download: "/assets/icons/download.svg",
   garbage: "/assets/icons/garbage.svg",
   arrowDown: "/assets/icons/arrow-down.svg",
   menu: "/assets/icons/menu.svg",

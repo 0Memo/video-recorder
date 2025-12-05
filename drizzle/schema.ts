@@ -61,6 +61,7 @@ export const videos = pgTable("videos", {
     duration: integer("duration"),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
+    downloadUrl: text("download_url"),
 });
 
 export const schema = {

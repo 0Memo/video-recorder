@@ -9,21 +9,37 @@ import type { Dictionary } from "../lib/i18n/dictionaries";
 import { daysAgo } from "../lib/utils";
 import { useTheme } from "../lib/hooks/useTheme";
 
+interface VideoDetailHeaderProps {
+    title: string;
+    description: string;
+    createdAt: Date;
+    userImg?: string | null;
+    username?: string;
+    videoId: string;
+    ownerId: string;
+    visibility: string;
+    thumbnailUrl: string;
+    id: string;
+    downloadUrl?: string | null;
+}
+
 interface VideoDetailHeaderDictionaryProps extends VideoDetailHeaderProps {
     dictionary: Dictionary
 }
 
-const VideoDetailHeader = ({ title, description, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id, dictionary }: VideoDetailHeaderDictionaryProps) => {
+const VideoDetailHeader = ({ title, description, createdAt, userImg, username, videoId, ownerId, visibility, thumbnailUrl, id, dictionary, downloadUrl }: VideoDetailHeaderDictionaryProps) => {
     const finalUserImgSrc = userImg || "/assets/images/dummy.jpg";
 
     const router = useRouter()
     const [copied, setCopied] = useState(false)
     const pathname = usePathname();
-    const currentLocale = getLocaleFromPathname(pathname);
+    const currentLocale = getLocaleFromPathname(pathname)
+    const [downloaded, setDownloaded] = useState(false)
     
     const handleCopyLink = () => {
         navigator.clipboard.writeText(`${ window.location.origin }/video/${ id }`)
         setCopied(true)
+        setDownloaded(false);
     }
 
     const handleProfileNavigation = () => {
@@ -34,13 +50,46 @@ const VideoDetailHeader = ({ title, description, createdAt, userImg, username, v
         router.push(profileUrl);
     };
 
-    useEffect(() => {
-        const changeChecked = setTimeout(() => {
-            if (copied) setCopied(false)
-        }, 2000)
+    const handleDownload = async () => {
+        if (!downloadUrl) {
+            alert("This video is not yet ready for download.");
+            return;
+        }
 
-        return () => clearTimeout(changeChecked)
-    }, [ copied ])
+        try {
+            const res = await fetch(downloadUrl, { method: "HEAD" });
+
+            // If Bunny responds OK → use download URL
+            let finalUrl = downloadUrl;
+            if (!res.ok) {
+            console.warn(
+                `⚠️ Download URL not available (${res.status}), falling back.`
+            );
+            finalUrl = `https://iframe.mediadelivery.net/play/${process.env.NEXT_PUBLIC_BUNNY_LIBRARY_ID}/${videoId}`;
+            }
+
+            const link = document.createElement("a");
+            link.href = finalUrl;
+            link.download = `${title}.mp4`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setDownloaded(true);
+        } catch (error) {
+            console.error("❌ Error trying to download:", error);
+            alert("Could not download the video right now.");
+        } finally {
+            setTimeout(() => setDownloaded(false), 2000);
+        }
+    };
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            if (copied) setCopied(false);
+            if (downloaded) setDownloaded(false);
+        }, 2000);
+        return () => clearTimeout(timeout);
+    }, [copied, downloaded]);
 
     const { theme, mounted } = useTheme();
     
@@ -48,7 +97,7 @@ const VideoDetailHeader = ({ title, description, createdAt, userImg, username, v
 
     return (
         <header
-            className='flex justify-between gap-5 flex-col md:flex-row'
+            className='flex justify-between gap-5 flex-col md:flex-row relative'
         >
             <aside
                 className='flex flex-col gap-2.5'
@@ -110,6 +159,7 @@ const VideoDetailHeader = ({ title, description, createdAt, userImg, username, v
             >
                 <button
                     onClick={ handleCopyLink }
+                    className="absolute top-15 right-20 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
                 >
                     <Image
                         src={ copied ? ICONS.checked : ICONS.link }
@@ -118,6 +168,22 @@ const VideoDetailHeader = ({ title, description, createdAt, userImg, username, v
                         height={24}
                     />
                 </button>
+                { downloadUrl ? (
+                    <button
+                        onClick={ handleDownload }
+                        className="absolute top-15 right-3 shadow-md hover:shadow-lg transition duration-200 bg-white rounded-full size-8 flex items-center justify-center"
+                    >
+                        <Image
+                            src={ downloaded ? ICONS.checked : ICONS.download } alt="download"
+                            width={24}
+                            height={24}
+                        />
+                    </button>
+                ) : (
+                    <p className="absolute top-16 right-3 text-xs text-gray-400 italic">
+                        Next...
+                    </p>
+                )}
             </aside>
         </header>
     );

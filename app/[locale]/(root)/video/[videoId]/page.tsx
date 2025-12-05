@@ -33,9 +33,10 @@ const page = async ({ params }: VideoPageProps) => {
             <VideoDetailHeader
                 { ...video }
                 userImg={ user?.image}
-                username={ user?.name}
+                username={ user?.name || "Guest"}
                 ownerId={ video.userId}
                 dictionary={ dictionary }
+                downloadUrl={ video.downloadUrl ?? undefined }
             />
             <section
                 className='flex flex-col lg:flex-row gap-7.5'
