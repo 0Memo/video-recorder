@@ -1,6 +1,0 @@
-{
-  "databaseURL": "https://Guillermo-s-workspace-63c3l9.eu-central-1.xata.sh/db/vid_memocast",
-  "codegen": {
-    "output": "src/xata.ts"
-  }
-}
