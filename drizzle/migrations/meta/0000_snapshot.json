@@ -1,5 +1,5 @@
 {
-  "id": "800871cf-29ce-4154-9538-a9907454efe2",
+  "id": "fdc11968-a275-4b58-a0de-8cb115fba0d5",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -383,6 +383,12 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
+        },
+        "download_url": {
+          "name": "download_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -402,15 +408,7 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "videos_id_unique": {
-          "name": "videos_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "id"
-          ]
-        }
-      },
+      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false

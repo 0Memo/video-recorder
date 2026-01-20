@@ -4,10 +4,18 @@ import { eq } from "drizzle-orm";
 import { videos } from "@/drizzle/schema";
 import { db } from "@/drizzle/db";
 
-const BUNNY_API_KEY = process.env.BUNNY_API_KEY!;
-const BUNNY_LIBRARY_ID = process.env.BUNNY_LIBRARY_ID!;
-
 export async function POST(req: NextRequest) {
+    if (!process.env.BUNNY_API_KEY || !process.env.BUNNY_LIBRARY_ID) {
+        console.error("Missing Bunny environment variables");
+        return NextResponse.json(
+            { success: false, error: "Server misconfiguration" },
+            { status: 500 }
+        );
+    }
+
+    const BUNNY_API_KEY = process.env.BUNNY_API_KEY;
+    const BUNNY_LIBRARY_ID = process.env.BUNNY_LIBRARY_ID;
+
     try {
         const payload = await req.json();
         console.log("📦 Received Bunny webhook payload:", payload);
