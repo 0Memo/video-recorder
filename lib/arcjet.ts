@@ -21,8 +21,13 @@ export {
     ArcjetDecision,
 };
 
+const ARCJET_API_KEY = getEnv('ARCJET_API_KEY');
+if (!ARCJET_API_KEY) {
+    throw new Error("ARCJET_API_KEY is not set");
+}
+
 const aj = arcjet({
-    key: getEnv('ARCJET_API_KEY'),
+    key: ARCJET_API_KEY,
     rules: [],
 })
 

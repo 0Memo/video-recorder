@@ -6,7 +6,7 @@ import { NextRequest } from "next/server";
 import ip from '@arcjet/ip'
 
 const emailValidation = aj.withRule(
-    validateEmail({ mode: 'LIVE', block: ['DISPOSABLE', 'INVALID', 'NO_MX_RECORDS']})
+    validateEmail({ mode: 'LIVE', deny: ['DISPOSABLE', 'INVALID', 'NO_MX_RECORDS']})
 )
 
 const rateLimit = aj.withRule(
